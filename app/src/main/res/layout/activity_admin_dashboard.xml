@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".admin.AdminDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/contentBodyColor">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+        <TextView
+                style="@style/viewParent.headerText"
+                android:text="Admin operations" />
+
+        <!-- Department -->
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Departments"/>
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_edit_profile"
+                android:id="@+id/add_department"
+                android:text="Add new"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_edit_password"
+                android:layout_marginTop="10dp"
+                android:id="@+id/view_departs"
+                android:text="View all"/>
+
+
+        <!-- Classrooms -->
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Classrooms"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_edit_profile"
+                android:id="@+id/add_classroom"
+                android:text="Add class"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_edit_password"
+                android:layout_marginTop="10dp"
+                android:id="@+id/view_classes"
+                android:text="View classes"/>
+
+
+        <!-- Lecturers -->
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Lecturers"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_edit_profile"
+                android:text="Add new"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_edit_password"
+                android:layout_marginTop="10dp"
+                android:text="View all"/>
+
+
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="More details"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_notifications"
+                android:id="@+id/btnAdminSettings"
+                android:text="Settings"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Attendance App @ 2021"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+</ScrollView>

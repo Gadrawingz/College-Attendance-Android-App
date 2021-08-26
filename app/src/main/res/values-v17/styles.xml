@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="headerText" parent="parent">
+        <item name="android:textSize">@dimen/headerTextSize</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="mainFooter" parent="viewParent">
+        <item name="android:text">@string/mainFooterText</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:layout_margin">@dimen/mainViewsMargin</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+</resources>
