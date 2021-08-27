@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.donnekt.attendanceapp.MainActivity;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.StaffMembers;
+import com.donnekt.attendanceapp.StaffRegister;
 import com.donnekt.attendanceapp.classroom.ClassroomActivity;
+import com.donnekt.attendanceapp.classroom.ClassroomViewAll;
 import com.donnekt.attendanceapp.department.DepartmentActivity;
 import com.donnekt.attendanceapp.department.DepartmentViewAll;
 
@@ -30,6 +33,9 @@ public class AdminDashboard extends AppCompatActivity {
         TextView addDept = (TextView) findViewById(R.id.add_department);
         TextView viewDept = (TextView) findViewById(R.id.view_departs);
         TextView addClass = (TextView) findViewById(R.id.add_classroom);
+        TextView viewClass = (TextView) findViewById(R.id.view_classes);
+        TextView addStaff = (TextView) findViewById(R.id.add_staff);
+        TextView viewStaff = (TextView) findViewById(R.id.view_staff);
 
         goToSettings.setMovementMethod(LinkMovementMethod.getInstance());
         goToSettings.setOnClickListener(v -> {
@@ -52,6 +58,24 @@ public class AdminDashboard extends AppCompatActivity {
         addClass.setMovementMethod(LinkMovementMethod.getInstance());
         addClass.setOnClickListener(v -> {
             Intent intent = new Intent(AdminDashboard.this, ClassroomActivity.class);
+            startActivity(intent);
+        });
+
+        viewClass.setMovementMethod(LinkMovementMethod.getInstance());
+        viewClass.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashboard.this, ClassroomViewAll.class);
+            startActivity(intent);
+        });
+
+        addStaff.setMovementMethod(LinkMovementMethod.getInstance());
+        addStaff.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashboard.this, StaffRegister.class);
+            startActivity(intent);
+        });
+
+        viewStaff.setMovementMethod(LinkMovementMethod.getInstance());
+        viewStaff.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashboard.this, StaffMembers.class);
             startActivity(intent);
         });
 

@@ -46,6 +46,19 @@
         <item>ACADEMIC</item>
     </array>
 
+    <array name="class_levels">
+        <item>Level 1</item>
+        <item>Level 2</item>
+        <item>Level 3</item>
+        <item>Level 4</item>
+    </array>
+
+    <array name="departments">
+        <item>ICT</item>
+        <item>CROP</item>
+        <item>CEE</item>
+    </array>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 

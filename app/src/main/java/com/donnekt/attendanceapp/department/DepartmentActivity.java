@@ -14,12 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.TestActivity;
+import com.donnekt.attendanceapp.admin.AdminDashboard;
 
 public class DepartmentActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String DATABASE_NAME = "AttendanceTest";
 
-    TextView viewDepartments;
+    TextView viewDepartments, exitDepartments;
     EditText deptName, deptCaption;
     Button addDeptButton;
     SQLiteDatabase mDatabase;
@@ -30,12 +31,15 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_department);
 
         viewDepartments = (TextView) findViewById(R.id.tvViewDepartments);
+        exitDepartments = (TextView) findViewById(R.id.tvExitDepartments);
+
         deptName = (EditText) findViewById(R.id.editDeptName);
         deptCaption = (EditText) findViewById(R.id.editDeptCaption);
         addDeptButton = (Button) findViewById(R.id.buttonAddDept);
 
         // Save & View Dept button
         viewDepartments.setOnClickListener(this);
+        exitDepartments.setOnClickListener(this);
         addDeptButton.setOnClickListener(this);
 
         //creating a database
@@ -44,17 +48,6 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
         // Creating a table
         createDepartmentTable();
 
-
-        // Link creation to tvTest
-        TextView tvTest = (TextView)findViewById(R.id.tvTest);
-        tvTest.setMovementMethod(LinkMovementMethod.getInstance());
-        tvTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DepartmentActivity.this, TestActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
@@ -108,6 +101,11 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
             // case: click to view all dept
             case R.id.tvViewDepartments:
                 startActivity(new Intent(this, DepartmentViewAll.class));
+                break;
+
+            // case: click to quit depts
+            case R.id.tvExitDepartments:
+                startActivity(new Intent(this, AdminDashboard.class));
                 break;
         }
     }

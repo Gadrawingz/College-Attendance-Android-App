@@ -4,20 +4,11 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".department.DepartmentViewAll">
+                tools:context=".classroom.ClassroomViewAll">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="Manage Departments"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:gravity="center_horizontal"/>
 
     <ListView
-            android:id="@+id/listViewDepartments"
+            android:id="@+id/listViewClassrooms"
             android:layout_width="match_parent"
             android:background="@drawable/border_blue1"
             android:layout_height="wrap_content"/>

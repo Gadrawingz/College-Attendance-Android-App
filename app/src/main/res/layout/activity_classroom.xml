@@ -1,10 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".classroom.ClassroomActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".classroom.ClassroomActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:background="@drawable/border_green"
+            android:layout_margin="5dp"
+            android:padding="16dp">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="Add a new classroom"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:gravity="center_horizontal"/>
+
+        <EditText
+                android:id="@+id/editClassName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Example: ICTL3a" />
+
+
+        <!-- levels -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="6dp"
+                android:text="Select level" />
+
+        <Spinner
+                android:id="@+id/spinnerClassLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/class_levels" />
+
+        <!-- department -->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="6dp"
+                android:text="Select department" />
+
+        <Spinner
+                android:id="@+id/spinnerClassDept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/departments" />
+
+
+        <Button
+                android:id="@+id/buttonAddClass"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="Save" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_blue1"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tvViewClassrooms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bluish400"
+                    android:padding="10dp"
+                    android:text="View"
+                    android:textAlignment="center"
+                    android:textSize="18dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/tvExitClassrooms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/reddish280"
+                    android:padding="10dp"
+                    android:layout_marginLeft="38dp"
+                    android:text="Exit"
+                    android:textAlignment="center"
+                    android:textSize="18dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

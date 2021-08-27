@@ -21,6 +21,23 @@
     <color name="imageBorderColor">#E01E7A</color>
     <color name="miniTitle">#2A2E43</color>
 
+
+    <color name="greenLess50">#B8E99D</color>
+    <color name="greenLess49">#C4E9B7</color>
+    <color name="greenLess55">#036404</color>
+
+    <color name="bluishGad">#0F1198</color>
+    <color name="bluish400">#0008A3</color>
+
+
+
+    <color name="reddish300">#E90121</color>
+    <color name="reddish280">#BE0C13</color>
+
+
+
+
+
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#00a5ff</color>
     <color name="loginBkColor">#f0f0f0</color>

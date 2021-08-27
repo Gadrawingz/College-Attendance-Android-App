@@ -2,63 +2,54 @@ package com.donnekt.attendanceapp.classroom;
 
 public class Classroom {
 
-    int classId, departmentId, levelId, lecturerId;
-    String className;
+    int classroomId;
+    String classroomName, classroomLevel, department;
 
-    public Classroom(int classId, String className, int departmentId, int levelId, int lecturerId) {
-        this.classId = classId;
-        this.className = className;
-        this.departmentId = departmentId;
-        this.levelId = levelId;
-        this.lecturerId = lecturerId;
+    // Const without ID:
+    public Classroom(String className, String classLevel, String department) {
+        this.classroomName = className;
+        this.classroomLevel = classLevel;
+        this.department = department;
+    }
+
+    public Classroom(int classId, String className, String classLevel, String department) {
+        this.classroomId = classId;
+        this.classroomName = className;
+        this.classroomLevel = classLevel;
+        this.department = department;
     }
 
     // (1)
-    public int getClassId() {
-        return classId;
+    public int getClassroomId() {
+        return classroomId;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClassroomId(int classroomId) {
+        this.classroomId = classroomId;
     }
 
     // (2)
-    public String getClassName() {
-        return className;
+    public String getClassroomName() {
+        return classroomName;
     }
-
-    public void setClassName(String className) {
-        this.className = className;
+    public void setClassroomName(String classroomName) {
+        this.classroomName = classroomName;
     }
-
 
     // (3)
-    public int getDepartmentId() {
-        return departmentId;
+    public String getClassroomLevel() {
+        return classroomLevel;
     }
-
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
+    public void setClassroomLevel(String classroomLevel) {
+        this.classroomLevel = classroomLevel;
     }
 
 
     // (4)
-    public int getLevelId() {
-        return levelId;
+    public String getDepartment() {
+        return department;
     }
-
-    public void setLevelId(int levelId) {
-        this.levelId = levelId;
+    public void setDepartment(String department) {
+        this.department = department;
     }
-
-
-    // (5)
-    public int getLecturerId() {
-        return lecturerId;
-    }
-
-    public void setLecturerId(int lecturerId) {
-        this.lecturerId = lecturerId;
-    }
-    
 }

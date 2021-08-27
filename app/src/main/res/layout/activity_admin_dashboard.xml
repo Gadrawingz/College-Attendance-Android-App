@@ -26,7 +26,7 @@
                 style="@style/viewParent.headerText.settingsTextIcon"
                 android:drawableLeft="@drawable/ic_edit_profile"
                 android:id="@+id/add_department"
-                android:text="Add new"/>
+                android:text="Add department"/>
 
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
@@ -49,32 +49,34 @@
 
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
-                android:drawableLeft="@drawable/ic_edit_password"
+                android:drawableLeft="@drawable/ic_languages"
                 android:layout_marginTop="10dp"
                 android:id="@+id/view_classes"
                 android:text="View classes"/>
 
 
-        <!-- Lecturers -->
+        <!-- Staff members -->
         <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
-                android:text="Lecturers"/>
+                android:text="Staff Members"/>
 
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
                 android:drawableLeft="@drawable/ic_edit_profile"
-                android:text="Add new"/>
+                android:id="@+id/add_staff"
+                android:text="Register new"/>
 
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
                 android:drawableLeft="@drawable/ic_edit_password"
                 android:layout_marginTop="10dp"
-                android:text="View all"/>
+                android:id="@+id/view_staff"
+                android:text="View staffs"/>
 
 
         <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
-                android:text="More details"/>
+                android:text="More..."/>
 
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
@@ -86,6 +88,7 @@
                 style="@style/viewParent.headerText.settingsMiniTitle"
                 android:text="Attendance App @ 2021"
                 android:textAlignment="center"
+                android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"/>
 
     </LinearLayout>

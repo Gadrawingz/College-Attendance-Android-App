@@ -12,6 +12,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AttendanceApp">
+        <activity android:name=".classroom.ClassroomViewAll">
+        </activity>
         <activity android:name=".admin.AdminSettings">
         </activity>
         <activity android:name=".classroom.ClassroomActivity">

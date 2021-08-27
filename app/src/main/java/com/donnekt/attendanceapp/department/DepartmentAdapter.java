@@ -46,7 +46,7 @@ public class DepartmentAdapter extends ArrayAdapter<Department> {
 
         // Adding data to views (using DepartmentClass
         textViewDeptName.setText(department.getDepartmentName());
-        textViewDeptCaption.setText(department.getDepartmentCaption());
+        textViewDeptCaption.setText(">>"+department.getDepartmentCaption().trim());
 
         // We will use these buttons later for update and delete operation
         Button buttonDelete = view.findViewById(R.id.buttonDeleteDept);
@@ -65,7 +65,7 @@ public class DepartmentAdapter extends ArrayAdapter<Department> {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
-                builder.setTitle("Are you sure u want to delete ("+department.departmentName+")?");
+                builder.setTitle("Are you sure you want to delete ("+department.departmentName+")?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

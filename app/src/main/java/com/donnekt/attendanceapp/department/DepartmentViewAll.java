@@ -28,10 +28,10 @@ public class DepartmentViewAll extends AppCompatActivity {
         mDatabase = openOrCreateDatabase(DepartmentActivity.DATABASE_NAME, MODE_PRIVATE, null);
 
         // Method for displaying departments in the list
-        showEmployeesFromDatabase();
+        showDepartmentsFromDatabase();
     }
 
-    private void showEmployeesFromDatabase() {
+    private void showDepartmentsFromDatabase() {
 
         // We used rawQuery(sql, selectionArgs) for fetching all the departments
         Cursor cursorDepartments = mDatabase.rawQuery("SELECT * FROM departments", null);
