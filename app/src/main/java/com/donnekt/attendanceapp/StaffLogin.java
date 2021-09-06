@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.donnekt.attendanceapp.department.DepartmentActivity;
+import com.donnekt.attendanceapp.staff.Staff;
 
 public class StaffLogin extends AppCompatActivity {
 

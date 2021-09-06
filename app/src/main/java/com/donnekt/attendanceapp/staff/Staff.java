@@ -1,4 +1,4 @@
-package com.donnekt.attendanceapp;
+package com.donnekt.attendanceapp.staff;
 
 // Model class
 public class Staff {
@@ -17,6 +17,17 @@ public class Staff {
     }
 
     // Parameter constructor containing all three parameters
+    public Staff(int staffId, String firstname, String lastname, String email, String phone, String role, String password) {
+        this.staffId = staffId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
+        this.password = password;
+    }
+
+    // Parameter constructor containing all three parameters
     public Staff(String firstname, String lastname, String email, String phone, String role, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -25,6 +36,7 @@ public class Staff {
         this.role = role;
         this.password = password;
     }
+    
 
     // Getting id
     public int getStaffId() {
