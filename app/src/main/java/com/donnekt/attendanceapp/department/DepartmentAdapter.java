@@ -134,6 +134,7 @@ public class DepartmentAdapter extends ArrayAdapter<Department> {
                 dialog.dismiss();
             }
         });
+
     }
 
 

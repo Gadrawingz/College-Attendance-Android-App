@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp">
+
+    <Button
+            android:id="@+id/linkExitStaff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/reddish300"
+            android:textStyle="bold|normal"
+            android:text="Exit" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:id="@+id/detailsHeader"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" tools:ignore="RtlCompat"/>
+
+    <TextView
+            android:id="@+id/detailStaffFName"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/detailStaffLName"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/detailStaffEmail"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/detailStaffPhone"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/detailStaffRole"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/detailRegDate"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/linkUpdateStaff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textStyle="bold|normal"
+            android:text="Update" />
+
+</LinearLayout>

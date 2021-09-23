@@ -37,7 +37,7 @@ public class ClassroomViewAll extends AppCompatActivity {
 
     private void showAllClassrooms() {
 
-        // We used rawQuery(sql, selectionArgs) for fetching all the departments
+        // We used rawQuery(sql, selectionArgs) for fetching all the records
         Cursor cursorClassrooms = mDatabase.rawQuery("SELECT * FROM classrooms", null);
 
         // If the cursor has some data

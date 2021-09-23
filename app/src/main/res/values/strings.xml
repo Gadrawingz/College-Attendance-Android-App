@@ -33,6 +33,7 @@
     <!-- Newly defined strings -->
     <string name="loginTitleText">LOGIN NOW</string>
     <string name="loginUsernameHint">Username...</string>
+    <string name="loginEmailHint">Email address...</string>
     <string name="loginPasswordHint">Password...</string>
     <string name="mainHeaderText">College Attendance App</string>
     <string name="mainFooterText">Copyright @2021</string>
@@ -57,6 +58,13 @@
         <item>ICT</item>
         <item>CROP</item>
         <item>CEE</item>
+    </array>
+
+    <array name="staffRoles">
+        <item>DAS</item>
+        <item>HOD</item>
+        <item>LECTURER</item>
+        <item>ACADEMIC REPORT</item>
     </array>
 
     <string name="drawer_open">Open navigation drawer</string>

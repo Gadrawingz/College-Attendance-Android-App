@@ -6,14 +6,16 @@
     <!--dimes for design 3-->
     <dimen name="headerTextSize">22sp</dimen>
     <dimen name="newsMoreTextSize">12sp</dimen>
-    <dimen name="newsMediumTextSize">12sp</dimen>
+    <dimen name="newsMediumTextSize">16sp</dimen>
     <dimen name="mediumTextSize">20dp</dimen>
+    <dimen name="largeTextSize">28dp</dimen>
     <dimen name="loginCardRadius">20dp</dimen>
     <dimen name="loginViewsMargin">20dp</dimen>
     <dimen name="signup_text_margin_top">10dp</dimen>
 
     <!--Main dimens (Margins) -->
     <dimen name="smallMargin">2dp</dimen>
+    <dimen name="margin10dp">10dp</dimen>
     <dimen name="largeMargin">25dp</dimen>
     <dimen name="mainViewsMargin">20dp</dimen>
     <dimen name="mainViewsMarginTop">15dp</dimen>

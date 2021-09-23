@@ -43,7 +43,6 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
         //creating a database
         mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
 
-        // Creating a table
         createDepartmentTable();
 
     }

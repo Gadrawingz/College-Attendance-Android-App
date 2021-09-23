@@ -25,11 +25,11 @@
                 android:layout_marginTop="@dimen/textMarginTop">
 
             <EditText
-                    android:id="@+id/editUsername"
+                    android:id="@+id/editEmail"
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="@string/loginUsernameHint" />
+                    android:hint="@string/loginEmailHint" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -48,6 +48,13 @@
                 style="@style/loginButton"
                 android:layout_gravity="center"
                 android:text="Login"/>
+
+        <ProgressBar android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_centerHorizontal="true"
+                     android:layout_centerVertical="true"
+                     android:visibility="gone"
+                     android:id="@+id/loginLoadingPB"/>
 
         <TextView
                 style="@style/mainFooter"

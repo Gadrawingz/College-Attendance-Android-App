@@ -1,10 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".staff.StaffActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                style="@style/loginParent"
+                tools:context=".staff.StaffActivity">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:background="@color/blackish401">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true">
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp">
+
+                <androidx.cardview.widget.CardView
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        style="@style/mainCard"
+                        app:cardCornerRadius="@dimen/loginCardRadius"
+                        android:elevation="5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/mainViewsMarginTop"
+                        android:layout_marginBottom="@dimen/mainViewsMarginBottom"
+                        android:background="@color/whiteCardColor">
+
+                    <LinearLayout
+                            style="@style/linearParent"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/mainViewsMargin">
+
+                        <TextView
+                                style="@style/headerTextPrimary"
+                                android:text="REGISTER STAFF MEMBER"
+                                android:layout_marginTop="10dp"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+
+                            <EditText
+                                    android:id="@+id/editTextFName"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="text"
+                                    android:maxLines="1"
+                                    android:hint="First name" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+
+                            <EditText
+                                    android:id="@+id/editTextLName"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="text"
+                                    android:maxLines="1"
+                                    android:hint="Last name" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+
+                            <EditText
+                                    android:id="@+id/editTextEmail"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1"
+                                    android:hint="Email address" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+                            <EditText
+                                    android:id="@+id/editTextPhone"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="phone"
+                                    android:maxLines="1"
+                                    android:hint="Phone number" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Gender -->
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:textSize="20dp"
+                                android:text="Staff member sex" />
+
+                            <RadioGroup
+                                    android:id="@+id/radioGender"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:orientation="horizontal">
+                                <RadioButton
+                                        android:id="@+id/radioButtonMale"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:checked="true"
+                                        android:text="Male"/>
+
+                                <RadioButton
+                                        android:id="@+id/radioButtonFemale"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Female"/>
+                            </RadioGroup>
+
+                        <!-- Role -->
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:textSize="20dp"
+                                android:text="Select staff role" />
+                            <Spinner
+                                    android:id="@+id/spinnerRoles"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:maxLines="1"
+                                    android:entries="@array/staffRoles" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+                            <EditText
+                                    android:id="@+id/editTextPassword"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/loginPasswordHint"
+                                    android:maxLines="1"
+                                    android:inputType="textPassword"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                                android:id="@+id/registerButton"
+                                style="@style/loginButton"
+                                android:layout_gravity="center"
+                                android:text="Register"/>
+
+                        <Button
+                                android:id="@+id/viewStaffsButton"
+                                style="@style/loginButton"
+                                android:layout_gravity="center"
+                                android:text="View Staffs"/>
+
+                        <ProgressBar android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_gravity="center"
+                                     android:layout_centerHorizontal="true"
+                                     android:layout_centerVertical="true"
+                                     android:visibility="gone"
+                                     android:id="@+id/loadingProgress"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

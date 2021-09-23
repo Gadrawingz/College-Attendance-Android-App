@@ -1,6 +1,4 @@
 package com.donnekt.attendanceapp.department;
-
-import android.text.method.LinkMovementMethod;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import com.donnekt.attendanceapp.R;
-import com.donnekt.attendanceapp.TestActivity;
 import com.donnekt.attendanceapp.admin.AdminDashboard;
 
 public class DepartmentActivity extends AppCompatActivity implements View.OnClickListener {

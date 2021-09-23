@@ -74,6 +74,25 @@
                 android:text="View staffs"/>
 
 
+        <!-- Modules -->
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Modules (courses)"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_edit_profile"
+                android:id="@+id/add_module"
+                android:text="Register new"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_edit_password"
+                android:layout_marginTop="10dp"
+                android:id="@+id/view_module"
+                android:text="View modules"/>
+
+
         <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
                 android:text="More..."/>

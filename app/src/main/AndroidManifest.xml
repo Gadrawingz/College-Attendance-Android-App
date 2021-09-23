@@ -3,6 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.donnekt.attendanceapp">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -12,7 +13,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AttendanceApp">
-        <activity android:name=".admin.SearchViewAct">
+        <activity android:name=".attendance.StudentsList">
+        </activity>
+        <activity android:name=".attendance.AttendanceAct">
+        </activity>
+        <activity android:name=".staff.StaffDashboard">
+        </activity>
+        <activity android:name=".staff.StaffViewAll">
+        </activity>
+        <activity android:name=".module.ModuleViewAll">
+        </activity>
+        <activity android:name=".module.ModuleActivity">
         </activity>
         <activity android:name=".staff.StaffActivity">
         </activity>
@@ -26,21 +37,9 @@
         </activity>
         <activity android:name=".admin.AdminDashboard">
         </activity>
-        <activity android:name=".TestActivity">
-        </activity>
         <activity android:name=".department.DepartmentViewAll">
         </activity>
         <activity android:name=".department.DepartmentActivity">
-        </activity>
-        <activity android:name=".StaffMember">
-        </activity>
-        <activity android:name=".StaffMembers">
-        </activity>
-        <activity android:name=".StaffDashboard">
-        </activity>
-        <activity android:name=".StaffLogin">
-        </activity>
-        <activity android:name=".StaffRegister">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -3,12 +3,7 @@ package com.donnekt.attendanceapp.staff;
 // Model class
 public class Staff {
     int staffId;
-    String firstname, lastname, email, phone, role, password;
-
-    // Constructor with 1 parameter for email
-    public Staff(String email) {
-        this.email = email;
-    }
+    String firstname, lastname, email, telephone, gender, role, password, regDate;
 
     // Constructor with two parameters name and password
     public Staff(String email, String password) {
@@ -16,27 +11,38 @@ public class Staff {
         this.password = password;
     }
 
-    // Parameter constructor containing all three parameters
-    public Staff(int staffId, String firstname, String lastname, String email, String phone, String role, String password) {
+    // Parameter constructor containing all parameters
+    public Staff(int staffId, String firstname, String lastname, String email, String telephone, String role, String password, String regDate) {
+        this.staffId = staffId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email    = email;
+        this.telephone = telephone;
+        this.role = role;
+        this.password = password;
+        this.regDate = regDate;
+    }
+
+    // Parameter constructor containing data for session
+    public Staff(int staffId, String firstname, String lastname, String email, String gender, String role) {
         this.staffId = staffId;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.phone = phone;
+        this.gender = gender;
         this.role = role;
-        this.password = password;
     }
 
-    // Parameter constructor containing all three parameters
-    public Staff(String firstname, String lastname, String email, String phone, String role, String password) {
+    // Parameter constructor containing all params except staffId
+    public Staff(String firstname, String lastname, String email, String telephone, String role, String password, String regDate) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.phone = phone;
+        this.telephone = telephone;
         this.role = role;
         this.password = password;
+        this.regDate = regDate;
     }
-    
 
     // Getting id
     public int getStaffId() {
@@ -79,12 +85,20 @@ public class Staff {
     }
 
     // Getting phone
-    public String getPhone() {
-        return phone;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelephone(String phone) {
+        this.telephone = phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     // Getting role
@@ -106,4 +120,11 @@ public class Staff {
         this.password = password;
     }
 
+    public String getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
+    }
 }

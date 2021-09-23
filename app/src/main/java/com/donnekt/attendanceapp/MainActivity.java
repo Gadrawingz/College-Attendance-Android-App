@@ -1,59 +1,126 @@
 package com.donnekt.attendanceapp;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.donnekt.attendanceapp.admin.AdminDashLMenus;
+import com.android.volley.*;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.admin.AdminDashboard;
+import com.donnekt.attendanceapp.module.ModuleActivity;
+import com.donnekt.attendanceapp.staff.StaffDashboard;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    EditText uName, uPass;
-    Button btnLogin;
-    SharedPreferences pref;
-    Intent intent;
+    EditText editTextEmail, editTextPassword;
+    ProgressBar loginLoadingPB;
+    SharedPrefHandler sharedPrefHandler;
+    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        uName = (EditText) findViewById(R.id.editUsername);
-        uPass = (EditText) findViewById(R.id.editPassword);
-        btnLogin = (Button) findViewById(R.id.buttonLogin);
+        // Init handler
+        sharedPrefHandler = new SharedPrefHandler(this);
 
-        pref = getSharedPreferences("admin_details", MODE_PRIVATE);
-        intent = new Intent(MainActivity.this, AdminDashboard.class);
+        /*if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, StaffDashboard.class));
+        }*/
 
-        // Condition
-        if (pref.contains("sUsername") && pref.contains("sPassword")) {
-            startActivity(intent);
+        loginLoadingPB = findViewById(R.id.loginLoadingPB);
+        editTextEmail = findViewById(R.id.editEmail);
+        editTextPassword = findViewById(R.id.editPassword);
+
+
+        //calling the method userLogin() for login the user
+        findViewById(R.id.buttonLogin).setOnClickListener(view -> staffLogin());
+
+    }
+
+    private void staffLogin() {
+
+        // Getting the values
+        final String email = editTextEmail.getText().toString();
+        final String password = editTextPassword.getText().toString();
+
+        // Validating inputs
+        if (TextUtils.isEmpty(email)) {
+            editTextEmail.setError("Please enter your email");
+            editTextEmail.requestFocus();
+            return;
         }
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onClick(View v) {
-                String username = uName.getText().toString();
-                String password = uPass.getText().toString();
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Please enter valid email address!");
+            editTextEmail.requestFocus();
+            return;
+        }
 
-                if (username.equals("Admin") && password.equals("321")) {
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putString("sUsername", username);
-                    editor.putString("sPassword", password);
-                    editor.commit();
-                    //Toast.makeText(getApplicationContext(), "Login Successful", 0).show();
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Invalid credentials!", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(password)) {
+            editTextPassword.setError("Please enter your password!");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        // If everything is fine
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadingProgBar);
+        loginLoadingPB.setVisibility(View.VISIBLE);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.STAFF_LOGIN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                requestQueue.getCache().clear();
+                loginLoadingPB.setVisibility(View.INVISIBLE);
+
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if(jsonObject.optString("success").equals("1")) {
+                        JSONObject jObj = jsonObject.getJSONObject("details");
+                        sharedPrefHandler.setFirstname(jObj.getString("firstname"));
+                        sharedPrefHandler.setLastname(jObj.getString("lastname"));
+                        sharedPrefHandler.setEmail(jObj.getString("email"));
+                        sharedPrefHandler.setGender(jObj.getString("gender"));
+                        sharedPrefHandler.setRole(jObj.getString("staff_role"));
+
+                        Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getBaseContext(), StaffDashboard.class));
+                        finish();
+                    } else {
+                        Toast.makeText(MainActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException error) {
+                    error.printStackTrace();
                 }
             }
-        });
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+        @Override
+        protected Map<String, String> getParams() {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("email", email);
+        params.put("password", password);
+        return params;
+    }
+    };
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(stringRequest);
     }
 }

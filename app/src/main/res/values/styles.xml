@@ -60,7 +60,8 @@
 
     <style name="headerTextPrimary" parent="headerText">
         <item name="android:textColor">@color/black</item>
-        <item name="android:layout_margin">@dimen/mainViewsMargin</item>
+        <item name="android:layout_marginTop">@dimen/margin10dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin10dp</item>
     </style>
 
     <style name="modifiedEditText" parent="parent">
@@ -76,7 +77,7 @@
     <style name="loginButton" parent="viewParent">
         <item name="android:background">@drawable/login_button_bk</item>
         <item name="android:textColor">@color/whiteTextColor</item>
-        <item name="android:layout_margin">@dimen/largeMargin</item>
+        <item name="android:layout_margin">@dimen/mainViewsMargin</item>
         <item name="android:textStyle">bold</item>
     </style>
 
