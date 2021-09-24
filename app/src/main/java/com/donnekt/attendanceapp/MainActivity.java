@@ -12,8 +12,9 @@ import com.android.volley.*;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.admin.AdminDashboard;
-import com.donnekt.attendanceapp.module.ModuleActivity;
+import com.donnekt.attendanceapp.module.ModuleViewAll;
 import com.donnekt.attendanceapp.staff.StaffDashboard;
+import com.donnekt.attendanceapp.staff.StaffViewAll;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,21 +33,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Init handler
-        sharedPrefHandler = new SharedPrefHandler(this);
+        //sharedPrefHandler = new SharedPrefHandler(this);
 
-        /*if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+        /*if (SharedPrefManager.getInstance(this).isLogin()){
             finish();
-            startActivity(new Intent(this, StaffDashboard.class));
+            startActivity(new Intent(MainActivity.this,StaffDashboard.class));
+            return;
         }*/
 
         loginLoadingPB = findViewById(R.id.loginLoadingPB);
         editTextEmail = findViewById(R.id.editEmail);
         editTextPassword = findViewById(R.id.editPassword);
 
-
         //calling the method userLogin() for login the user
         findViewById(R.id.buttonLogin).setOnClickListener(view -> staffLogin());
-
+        findViewById(R.id.buttonTest).setOnClickListener(view -> startActivity(new Intent(this, StaffViewAll.class)));
     }
 
     private void staffLogin() {
@@ -82,45 +83,46 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 requestQueue.getCache().clear();
-                loginLoadingPB.setVisibility(View.INVISIBLE);
-
+                loginLoadingPB.setVisibility(View.GONE);
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    if(jsonObject.optString("success").equals("1")) {
-                        JSONObject jObj = jsonObject.getJSONObject("details");
-                        sharedPrefHandler.setFirstname(jObj.getString("firstname"));
-                        sharedPrefHandler.setLastname(jObj.getString("lastname"));
-                        sharedPrefHandler.setEmail(jObj.getString("email"));
-                        sharedPrefHandler.setGender(jObj.getString("gender"));
-                        sharedPrefHandler.setRole(jObj.getString("staff_role"));
+                    if(!jsonObject.getBoolean("error") || jsonObject.getBoolean("error")) {
+                        Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        JSONObject staffJson = jsonObject.getJSONObject("details");
 
-                        Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getBaseContext(), StaffDashboard.class));
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(
+                                staffJson.getString("staff_id"),
+                                staffJson.getString("firstname"),
+                                staffJson.getString("lastname"),
+                                staffJson.getString("email")
+                        );
                         finish();
+                        startActivity(new Intent(MainActivity.this, ModuleViewAll.class));
+
                     } else {
                         Toast.makeText(MainActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
-
-                } catch (JSONException error) {
-                    error.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
             }
         }) {
-        @Override
-        protected Map<String, String> getParams() {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("email", email);
-        params.put("password", password);
-        return params;
-    }
-    };
-        requestQueue = Volley.newRequestQueue(MainActivity.this);
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("email", email);
+                params.put("password", password);
+                return params;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
+        startActivity(new Intent(MainActivity.this, StaffDashboard.class));
     }
 }

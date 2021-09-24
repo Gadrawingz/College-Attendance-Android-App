@@ -1,72 +1,69 @@
 package com.donnekt.attendanceapp;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import com.donnekt.attendanceapp.staff.Staff;
 
 public class SharedPrefManager {
+    private static SharedPrefManager minst;
+    private static Context mct;
 
-    private static final String SHARED_PREF_NAME = "staff_prefs";
-
-    private static final String KEY_STAFF_ID = "key_staff_id";
-    private static final String KEY_FIRSTNAME = "key_firstname";
-    private static final String KEY_LASTNAME = "key_lastname";
-    private static final String KEY_EMAIL = "key_email";
-    private static final String KEY_GENDER = "key_gender";
-    private static final String KEY_STAFF_ROLE = "key_staff_role";
-
-    private static SharedPrefManager mInstance;
-    private static Context ctx;
-
-    private SharedPrefManager(Context context) {
-        ctx = context;
+    private static final String SHARD_PERFNAME="myshardperf624";
+    private static final String KEY_ID="staff_id";
+    private static final String KEY_FIRSTNAME="firstname";
+    private static final String KEY_LASTNAME="lastname";
+    private static final String KEY_EMAIL="email";
+    private SharedPrefManager(Context context){
+        mct=context;
     }
-
-    public static synchronized SharedPrefManager getInstance(Context context) {
-        if (mInstance == null) {
-            mInstance = new SharedPrefManager(context);
+    public static synchronized SharedPrefManager getInstance(Context context){
+        if (minst==null){
+            minst=new SharedPrefManager(context);
         }
-        return mInstance;
+        return minst;
     }
-
-    // This method will store the user data in shared preferences
-    public void staffLogin(Staff staff) {
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(KEY_STAFF_ID, staff.getStaffId());
-        editor.putString(KEY_FIRSTNAME, staff.getFirstname());
-        editor.putString(KEY_LASTNAME, staff.getLastname());
-        editor.putString(KEY_GENDER, staff.getTelephone());
-        editor.putString(KEY_STAFF_ROLE, staff.getEmail());
+    public boolean userLogin(String id,String firstname,String lastname,String email){
+        SharedPreferences sharedPreferences=mct.getSharedPreferences(SHARD_PERFNAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString(KEY_ID,id);
+        editor.putString(KEY_FIRSTNAME,firstname);
+        editor.putString(KEY_LASTNAME,lastname);
+        editor.putString(KEY_EMAIL,email);
         editor.apply();
+        return true;
     }
-
-    //this method will checker whether user is already logged in or not
-    public boolean isLoggedIn() {
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_EMAIL, null) != null;
+    public boolean isLogin(){
+        SharedPreferences sharedPreferences=mct.getSharedPreferences(SHARD_PERFNAME,Context.MODE_PRIVATE);
+        if (sharedPreferences.getString(KEY_ID,null)!=null){
+            return true;
+        }
+        return false;
     }
-
-    // This method will give the logged in user
-    public Staff getLoggedInStaff() {
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return new Staff(
-                sharedPreferences.getInt(KEY_STAFF_ID, -1),
-                sharedPreferences.getString(KEY_FIRSTNAME, null),
-                sharedPreferences.getString(KEY_LASTNAME, null),
-                sharedPreferences.getString(KEY_EMAIL, null),
-                sharedPreferences.getString(KEY_GENDER, null),
-                sharedPreferences.getString(KEY_STAFF_ROLE, null)
-        );
-    }
-
-    //this method will logout the user
-    public void logoutStaff() {
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public boolean logout(){
+        SharedPreferences sharedPreferences=mct.getSharedPreferences(SHARD_PERFNAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.clear();
         editor.apply();
-        ctx.startActivity(new Intent(ctx, MainActivity.class));
+        return true;
+
+    }
+    public String getUserId(){
+        SharedPreferences sharedPreferences=mct.getSharedPreferences(SHARD_PERFNAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_ID,null);
+
+    }
+    public String getFirstname(){
+        SharedPreferences sharedPreferences=mct.getSharedPreferences(SHARD_PERFNAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_FIRSTNAME,null);
+    }
+
+    public String getLastname(){
+        SharedPreferences sharedPreferences=mct.getSharedPreferences(SHARD_PERFNAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_LASTNAME,null);
+
+    }
+
+    public String getUserEmail(){
+        SharedPreferences sharedPreferences=mct.getSharedPreferences(SHARD_PERFNAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_EMAIL,null);
+
     }
 }

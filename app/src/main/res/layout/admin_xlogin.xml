@@ -48,6 +48,12 @@
                 style="@style/loginButton"
                 android:layout_gravity="center"
                 android:text="Login"/>
+        <Button
+                android:id="@+id/buttonTest"
+                style="@style/loginButton"
+                android:layout_gravity="center"
+                android:text="Test"/>
+
 
         <ProgressBar android:layout_width="match_parent"
                      android:layout_height="wrap_content"

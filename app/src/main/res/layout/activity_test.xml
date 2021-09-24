@@ -59,7 +59,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/download" />
+                    android:src="@drawable/download" android:layout_alignParentStart="true"/>
         </RelativeLayout>
 
     </ScrollView>

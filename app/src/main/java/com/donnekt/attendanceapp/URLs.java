@@ -12,6 +12,7 @@ public class URLs {
     public static final String STAFF_LOGIN = MAIN_URL +"staff_api?call=login";
     public static final String STAFF_VIEW_ALL = MAIN_URL +"staff_api?call=view";
     public static final String STAFF_VIEW_ONE = MAIN_URL +"staff/view/";
+    public static final String STAFF_UPDATE = MAIN_URL +"staff/update/";
 
 
 
