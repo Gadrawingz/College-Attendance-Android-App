@@ -13,6 +13,18 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AttendanceApp">
+        <activity android:name=".classroom.ClassroomGroup">
+        </activity>
+        <activity android:name=".student.StudentViewAll">
+        </activity>
+        <activity android:name=".ProfileActivity">
+        </activity>
+        <activity android:name=".student.StudentActivity">
+        </activity>
+        <activity android:name=".UpdatingActivity">
+        </activity>
+        <activity android:name=".staff.StaffHome">
+        </activity>
         <activity android:name=".attendance.StudentsList">
         </activity>
         <activity android:name=".attendance.AttendanceAct">

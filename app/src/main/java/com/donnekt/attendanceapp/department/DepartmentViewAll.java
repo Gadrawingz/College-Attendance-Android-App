@@ -1,61 +1,69 @@
 package com.donnekt.attendanceapp.department;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.donnekt.attendanceapp.R;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.URLs;
+import com.donnekt.attendanceapp.VolleySingleton;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentViewAll extends AppCompatActivity {
 
     List<Department> departmentList;
-    SQLiteDatabase mDatabase;
     ListView listViewDepartments;
-    DepartmentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department_view_all);
 
-        listViewDepartments = (ListView) findViewById(R.id.listViewDepartments);
+        listViewDepartments = findViewById(R.id.listViewDepartments);
         departmentList = new ArrayList<>();
-
-        // Opening the database
-        mDatabase = openOrCreateDatabase(DepartmentActivity.DATABASE_NAME, MODE_PRIVATE, null);
-
-        // Method for displaying departments in the list
-        showDepartmentsFromDatabase();
+        loadDepartments();
     }
 
-    private void showDepartmentsFromDatabase() {
+    private void loadDepartments() {
+        final ProgressBar progressBar = findViewById(R.id.loadingProgBar);
+        progressBar.setVisibility(View.VISIBLE);
 
-        // We used rawQuery(sql, selectionArgs) for fetching all the departments
-        Cursor cursorDepartments = mDatabase.rawQuery("SELECT * FROM departments", null);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.DEPT_VIEW_ALL, response -> {
+            progressBar.setVisibility(View.INVISIBLE);
+            try {
+                JSONObject object = new JSONObject(response);
+                JSONArray dataArray = object.getJSONArray("departments");
 
-        // If the cursor has some data
-        if (cursorDepartments.moveToFirst()) {
-            // Loop through all the records
-            do {
-                // Pushing each record in the employee list
-                departmentList.add(new Department(
-                        cursorDepartments.getInt(0),
-                        cursorDepartments.getString(1),
-                        cursorDepartments.getString(2)
-                ));
-            } while (cursorDepartments.moveToNext());
-        }
-        // Closing the cursor
-        cursorDepartments.close();
+                for(int i=0; i<dataArray.length(); i++) {
+                    JSONObject dataObject = dataArray.getJSONObject(i);
 
-        // Creating the adapter object
-        adapter = new DepartmentAdapter(this, R.layout.list_layout_department, departmentList, mDatabase);
+                    Department department = new Department(
+                            dataObject.getInt("dept_id"),
+                            dataObject.getString("dept_name"),
+                            dataObject.getString("dept_caption")
+                    );
+                    departmentList.add(department);
+                    DepartmentAdapter adapter = new DepartmentAdapter(departmentList, getApplicationContext());
+                    listViewDepartments.setAdapter(adapter);
+                }
 
-        // Adding the adapter to listview
-        listViewDepartments.setAdapter(adapter);
+            } catch (JSONException error) {
+                error.printStackTrace();
+            }
+        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
-
 }

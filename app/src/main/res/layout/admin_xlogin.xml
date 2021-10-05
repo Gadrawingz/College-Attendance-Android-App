@@ -52,7 +52,7 @@
                 android:id="@+id/buttonTest"
                 style="@style/loginButton"
                 android:layout_gravity="center"
-                android:text="Test"/>
+                android:text="Admin Access"/>
 
 
         <ProgressBar android:layout_width="match_parent"

@@ -1,57 +1,47 @@
 package com.donnekt.attendanceapp.module;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.donnekt.attendanceapp.R;
-import com.donnekt.attendanceapp.admin.AdminDashboard;
-import com.donnekt.attendanceapp.classroom.ClassroomViewAll;
+import com.donnekt.attendanceapp.URLs;
+import com.donnekt.attendanceapp.VolleySingleton;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ModuleActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String DATABASE_NAME = "AttendanceTest";
-
     EditText moduleName, moduleCode, deptId, lecturerId;
     Button addModuleBtn, doViewModules;
-    SQLiteDatabase mDatabase;
+    ProgressBar isDataLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module);
 
-        moduleName = (EditText) findViewById(R.id.editModuleName);
-        moduleCode = (EditText) findViewById(R.id.editModuleCode);
-        deptId     = (EditText) findViewById(R.id.editDeptId);
-        lecturerId = (EditText) findViewById(R.id.editLecturerId);
-        addModuleBtn = (Button) findViewById(R.id.buttonSave);
-        doViewModules = (Button) findViewById(R.id.buttonViewModules);
+        moduleName = findViewById(R.id.editModuleName);
+        moduleCode = findViewById(R.id.editModuleCode);
+        deptId     = findViewById(R.id.editDeptId);
+        lecturerId = findViewById(R.id.editLecturerId);
+        isDataLoading = findViewById(R.id.dataLoading);
+        addModuleBtn = findViewById(R.id.buttonSave);
+        doViewModules= findViewById(R.id.buttonViewModules);
 
         // Save & View button
         doViewModules.setOnClickListener(this);
         addModuleBtn.setOnClickListener(this);
-
-        //creating a database
-        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-
-        // Creating a table
-        createModuleTable();
-    }
-
-    private void createModuleTable(){
-        mDatabase.execSQL("CREATE TABLE IF NOT EXISTS module (" +
-                "module_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "module_name VARCHAR(100) NOT NULL, " +
-                "module_code VARCHAR(100) NOT NULL, " +
-                "dept_id VARCHAR(100) NOT NULL, " +
-                "lecturer_id VARCHAR(100) NOT NULL)");
     }
 
     // This method will validate the name and caption
@@ -85,19 +75,39 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
 
     // In this method we will do the create operation
     private void addModule() {
-        String mName = moduleName.getText().toString().trim();
-        String mCode = moduleCode.getText().toString().trim();
+        String mName = (moduleName.getText().toString().trim());
+        String mCode = (moduleCode.getText().toString().trim());
         String dId   = (deptId.getText().toString().trim());
         String lId   = (lecturerId.getText().toString().trim());
 
         // Validating the inputs
         if (inputsAreCorrect(mName, mCode, dId, lId)) {
-            String insertSQL = "INSERT INTO module(module_name, module_code, dept_id, lecturer_id) VALUES (?, ?, ?, ?)";
-
-            // the execSQL method is for inserting values with 2 params
-            mDatabase.execSQL(insertSQL, new String[]{mName, mCode, dId, lId});
-            Toast.makeText(this, "Module's saved!", Toast.LENGTH_SHORT).show();
-            emptyEditTextAfterInsertion();
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.MOD_CREATE,
+                    response -> {
+                        try {
+                            isDataLoading.setVisibility(View.GONE);
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(ModuleActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            moduleName.getText().clear();
+                            moduleCode.getText().clear();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("module_name", mName);
+                    params.put("module_code", mCode);
+                    params.put("dept_id", dId);
+                    params.put("lecturer_id", lId);
+                    return params;
+                }
+            };
+            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+            moduleName.getText().clear();
+            moduleCode.getText().clear();
         }
     }
 
@@ -116,13 +126,5 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
                 //Toast.makeText(getApplicationContext(), "OOPS!", Toast.LENGTH_SHORT).show();
                 break;
         }
-    }
-
-    // Empty Shits after All shits
-    private void emptyEditTextAfterInsertion() {
-        moduleName.getText().clear();
-        moduleCode.getText().clear();
-        deptId.getText().clear();
-        lecturerId.getText().clear();
     }
 }

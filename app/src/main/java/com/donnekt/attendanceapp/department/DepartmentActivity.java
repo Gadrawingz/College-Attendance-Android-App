@@ -1,25 +1,31 @@
 package com.donnekt.attendanceapp.department;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.URLs;
+import com.donnekt.attendanceapp.VolleySingleton;
 import com.donnekt.attendanceapp.admin.AdminDashboard;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DepartmentActivity extends AppCompatActivity implements View.OnClickListener {
-
-    public static final String DATABASE_NAME = "AttendanceTest";
 
     TextView viewDepartments, exitDepartments;
     EditText deptName, deptCaption;
     Button addDeptButton;
-    SQLiteDatabase mDatabase;
+    ProgressBar isDataLoading;
+
+    public static final String DATABASE_NAME = "Attendance";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +38,12 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
         deptName = (EditText) findViewById(R.id.editDeptName);
         deptCaption = (EditText) findViewById(R.id.editDeptCaption);
         addDeptButton = (Button) findViewById(R.id.buttonAddDept);
+        isDataLoading = findViewById(R.id.dataLoading);
 
         // Save & View Dept button
         viewDepartments.setOnClickListener(this);
         exitDepartments.setOnClickListener(this);
         addDeptButton.setOnClickListener(this);
-
-        //creating a database
-        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-
-        // Creating a table
-        createDepartmentTable();
-
-
-    }
-
-    private void createDepartmentTable(){
-        mDatabase.execSQL("CREATE TABLE IF NOT EXISTS departments (departmentId INTEGER PRIMARY KEY AUTOINCREMENT, departmentName VARCHAR(100) NOT NULL, departmentCaption VARCHAR(200) NOT NULL)");
     }
 
     // This method will validate the name and caption
@@ -64,24 +59,39 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
             deptCaption.requestFocus();
             return false;
         }
-
         return true;
     }
 
     // In this method we will do the create operation
     private void addDepartment() {
-
         String name = deptName.getText().toString().trim();
         String caption = deptCaption.getText().toString().trim();
+        isDataLoading.setVisibility(View.VISIBLE);
 
         // Validating the inputs
-        if (inputsAreCorrect(name, caption)) {
-            String insertSQL = "INSERT INTO departments(departmentName, departmentCaption) VALUES (?, ?)";
-
-            // the execSQL method is for inserting values with 2 params
-            mDatabase.execSQL(insertSQL, new String[]{name, caption});
-            Toast.makeText(this, "Department's saved!", Toast.LENGTH_SHORT).show();
-            emptyEditTextAfterDataInsert();
+        if(inputsAreCorrect(name, caption)) {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.DEPT_CREATE,
+                    response -> {
+                        try {
+                            isDataLoading.setVisibility(View.GONE);
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(DepartmentActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            deptName.getText().clear();
+                            deptCaption.getText().clear();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("dept_name", name);
+                    params.put("dept_caption", caption);
+                    return params;
+                }
+            };
+            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
         }
     }
 
@@ -104,11 +114,5 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
                 startActivity(new Intent(this, AdminDashboard.class));
                 break;
         }
-    }
-
-    // Empty Shits after All shits
-    private void emptyEditTextAfterDataInsert() {
-        deptName.getText().clear();
-        deptCaption.getText().clear();
     }
 }

@@ -31,7 +31,7 @@ public class StaffViewAll extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_view_all);
 
-        listViewStaffs = (ListView) findViewById(R.id.listViewStaffs);
+        listViewStaffs = findViewById(R.id.listViewStaffs);
         staffList = new ArrayList<>();
 
         loadStaffMemberList();

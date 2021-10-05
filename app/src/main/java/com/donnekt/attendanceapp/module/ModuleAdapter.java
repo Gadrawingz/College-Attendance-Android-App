@@ -1,50 +1,53 @@
 package com.donnekt.attendanceapp.module;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.URLs;
+import com.donnekt.attendanceapp.classroom.ClassroomViewAll;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
 public class ModuleAdapter extends ArrayAdapter<Module> {
 
-    Context mCtx;
-    int listLayoutRes;
-    List<Module> moduleList;
-    SQLiteDatabase mDatabase;
+    private final Context mCtx;
+    private final List<Module> moduleList;
 
-    public ModuleAdapter(Context mCtx, int listLayoutRes, List<Module> moduleList, SQLiteDatabase mDatabase) {
-        super(mCtx, listLayoutRes, moduleList);
-
+    public ModuleAdapter(List<Module> moduleList, Context mCtx) {
+        super(mCtx, R.layout.list_layout_module, moduleList);
         this.mCtx = mCtx;
-        this.listLayoutRes = listLayoutRes;
         this.moduleList = moduleList;
-        this.mDatabase = mDatabase;
     }
 
+    @SuppressLint({"ViewHolder", "InflateParams"})
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(listLayoutRes, null);
+        View LVItem = inflater.inflate(R.layout.list_layout_module, null, true);
 
         // Getting module of the specified position
         Module module = moduleList.get(position);
 
         // Getting views
-        TextView textViewModuleName = view.findViewById(R.id.tvModuleName);
-        TextView textViewModuleCode = view.findViewById(R.id.tvModuleCode);
-        TextView textViewDepartment = view.findViewById(R.id.tvModDept);
-        TextView textViewLecturerId = view.findViewById(R.id.tvModLecturer);
+        TextView textViewModuleName = LVItem.findViewById(R.id.tvModuleName);
+        TextView textViewModuleCode = LVItem.findViewById(R.id.tvModuleCode);
+        TextView textViewDepartment = LVItem.findViewById(R.id.tvModDept);
+        TextView textViewLecturerId = LVItem.findViewById(R.id.tvModLecturer);
+        ProgressBar deleteProgBar = LVItem.findViewById(R.id.deleteProgBar);
 
         // Adding data to views
         textViewModuleName.setText(module.getModuleName());
@@ -53,130 +56,37 @@ public class ModuleAdapter extends ArrayAdapter<Module> {
         textViewLecturerId.setText(module.getLecturerId());
 
         // We will use these buttons later for update and delete operation
-        Button buttonDelete = view.findViewById(R.id.buttonDeleteMod);
-        Button buttonEdit = view.findViewById(R.id.buttonEditMod);
+        Button buttonDelete = LVItem.findViewById(R.id.buttonDeleteMod);
+        Button buttonEdit = LVItem.findViewById(R.id.buttonEditMod);
+
 
         // Adding a clickListener to button
-        buttonEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateModule(module);
-            }
+        buttonEdit.setOnClickListener(view -> {
+            //updateModule(module);
         });
 
-        // The delete operation
-        buttonDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
-                builder.setTitle("Are you sure you want to delete ("+module.getModuleName()+")?");
-                builder.setPositiveButton("Yes", (dialogInterface, i) -> {
-                    String sql = "DELETE FROM module WHERE module_id = ?";
-                    mDatabase.execSQL(sql, new Integer[]{module.getModuleId()});
-                    reloadModulesFromDatabase();
-                });
-
-                builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
-                    // Do nothing
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
+        // D&U-SHIT
+        buttonDelete.setOnClickListener(view -> {
+            deleteProgBar.setVisibility(View.VISIBLE);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.MOD_DELETE+module.getModuleId(),
+                    response -> {
+                        mCtx.startActivity(new Intent(mCtx.getApplicationContext(), ModuleViewAll.class));
+                        try {
+                            deleteProgBar.setVisibility(View.INVISIBLE);
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(mCtx.getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> Toast.makeText(mCtx.getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()) {
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+            requestQueue.add(stringRequest);
         });
 
-        return view;
+        // Return the list item
+        return LVItem;
     }
-
-    private void updateModule(final Module module) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
-
-        LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.dialog_update_module, null);
-        builder.setView(view);
-
-        final EditText moduleName = view.findViewById(R.id.editModuleName);
-        final EditText moduleCode = view.findViewById(R.id.editModuleCode);
-        final EditText department = view.findViewById(R.id.editDeptId);
-        final EditText lecturer = view.findViewById(R.id.editLecturerId);
-
-        moduleName.setText(module.getModuleName());
-        moduleCode.setText(module.getModuleCode());
-        department.setText(module.getDepartmentId());
-        lecturer.setText(module.getLecturerId());
-
-        final AlertDialog dialog = builder.create();
-        dialog.show();
-
-        view.findViewById(R.id.buttonUpdate).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = moduleName.getText().toString().trim();
-                String code = moduleCode.getText().toString().trim();
-                String dept = department.getText().toString().trim();
-                String lect = lecturer.getText().toString().trim();
-
-                if (name.isEmpty()) {
-                    moduleName.setError("Name can't be blank");
-                    moduleName.requestFocus();
-                    return;
-                }
-
-                if (code.isEmpty()) {
-                    moduleCode.setError("Module code is required");
-                    moduleCode.requestFocus();
-                    return;
-                }
-
-                if (dept.isEmpty()) {
-                    department.setError("Make sure you add department");
-                    department.requestFocus();
-                    return;
-                }
-
-                if (lect.isEmpty()) {
-                    lecturer.setError("Please add lecturer");
-                    lecturer.requestFocus();
-                    return;
-                }
-
-                String sql = "UPDATE module SET " +
-                        "module_name = ?," +
-                        "module_code = ?," +
-                        "dept_id = ?," +
-                        "lecturer_id = ?" +
-                        " WHERE module_id = ?";
-
-                String MOD_ID = String.valueOf(module.getModuleId());
-                mDatabase.execSQL(sql, new String[]{name, code, dept, lect, MOD_ID});
-
-                Toast.makeText(mCtx, "Module's updated", Toast.LENGTH_SHORT).show();
-                reloadModulesFromDatabase();
-                dialog.dismiss();
-            }
-        });
-    }
-
-    private void reloadModulesFromDatabase() {
-        String sql = "SELECT * FROM module";
-        Cursor cursorModules = mDatabase.rawQuery(sql, null);
-        if (cursorModules.moveToFirst()) {
-            moduleList.clear();
-            do {
-                moduleList.add(new Module(
-                        cursorModules.getInt(0),
-                        cursorModules.getString(1),
-                        cursorModules.getString(2),
-                        cursorModules.getString(3),
-                        cursorModules.getString(4)
-                ));
-            } while (cursorModules.moveToNext());
-        }
-        cursorModules.close();
-        notifyDataSetChanged();
-    }
-
-
-
 
 }

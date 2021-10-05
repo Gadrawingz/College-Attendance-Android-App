@@ -1,14 +1,19 @@
 package com.donnekt.attendanceapp.classroom;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.donnekt.attendanceapp.R;
-import com.donnekt.attendanceapp.department.Department;
-import com.donnekt.attendanceapp.department.DepartmentActivity;
-import com.donnekt.attendanceapp.department.DepartmentAdapter;
+import com.donnekt.attendanceapp.URLs;
+import com.donnekt.attendanceapp.VolleySingleton;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,51 +21,47 @@ import java.util.List;
 public class ClassroomViewAll extends AppCompatActivity {
 
     List<Classroom> classroomList;
-    SQLiteDatabase mDatabase;
     ListView listViewClassrooms;
-    ClassroomAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroom_view_all);
 
-        listViewClassrooms = (ListView) findViewById(R.id.listViewClassrooms);
+        listViewClassrooms = findViewById(R.id.listViewClassrooms);
         classroomList = new ArrayList<>();
-
-        // Opening the database
-        mDatabase = openOrCreateDatabase(DepartmentActivity.DATABASE_NAME, MODE_PRIVATE, null);
-
         // Method for displaying departments in the list
         showAllClassrooms();
     }
 
     private void showAllClassrooms() {
+        final ProgressBar progressBar = findViewById(R.id.loadingProgBar);
+        progressBar.setVisibility(View.VISIBLE);
 
-        // We used rawQuery(sql, selectionArgs) for fetching all the records
-        Cursor cursorClassrooms = mDatabase.rawQuery("SELECT * FROM classrooms", null);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.CLASS_VIEW_ALL, response -> {
+            progressBar.setVisibility(View.INVISIBLE);
+            try {
+                JSONObject object = new JSONObject(response);
+                JSONArray dataArray = object.getJSONArray("classrooms");
 
-        // If the cursor has some data
-        if (cursorClassrooms.moveToFirst()) {
-            // Loop through all the records
-            do {
-                // Pushing each record in the employee list
-                classroomList.add(new Classroom(
-                        cursorClassrooms.getInt(0),
-                        cursorClassrooms.getString(1),
-                        cursorClassrooms.getString(2),
-                        cursorClassrooms.getString(3)
-                ));
-            } while (cursorClassrooms.moveToNext());
-        }
+                for(int i=0; i<dataArray.length(); i++) {
+                    JSONObject dataObject = dataArray.getJSONObject(i);
 
-        // Closing the cursor
-        cursorClassrooms.close();
+                    Classroom classroom = new Classroom(
+                            dataObject.getInt("class_id"),
+                            dataObject.getString("class_name"),
+                            dataObject.getString("class_level"),
+                            dataObject.getString("dept_id")
+                    );
+                    classroomList.add(classroom);
+                    ClassroomAdapter adapter = new ClassroomAdapter(classroomList, getApplicationContext());
+                    listViewClassrooms.setAdapter(adapter);
+                }
 
-        // Creating the adapter object
-        adapter = new ClassroomAdapter(this, R.layout.list_layout_class, classroomList, mDatabase);
-
-        // Adding the adapter to listview
-        listViewClassrooms.setAdapter(adapter);
+            } catch (JSONException error) {
+                error.printStackTrace();
+            }
+        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

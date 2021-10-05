@@ -1,68 +1,72 @@
-package com.donnekt.attendanceapp.staff;
+package com.donnekt.attendanceapp.student;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
-import com.android.volley.*;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.URLs;
-import com.donnekt.attendanceapp.admin.AdminDashboard;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class StaffActivity extends AppCompatActivity {
+public class StudentActivity extends AppCompatActivity {
 
-    EditText editTextFName, editTextLName, editTextPhone, editTextEmail, editTextPassword;
+    EditText editTextFName, editTextLName, editTextRegNum, editTextPhone, editTextEmail, spinnerClassId;
     RadioGroup radioGroupGender;
-    Spinner spinnerRoles;
+    //Spinner spinnerClassId;
     ProgressBar loadingProgBar;
-    Button registerBtn, viewStaffsButton;
+    Button registerBtn, viewStudentsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_staff);
+        setContentView(R.layout.activity_student);
+
         loadingProgBar = findViewById(R.id.loadingProgress);
 
         editTextFName = findViewById(R.id.editTextFName);
         editTextLName = findViewById(R.id.editTextLName);
         editTextPhone = findViewById(R.id.editTextPhone);
+        editTextRegNum = findViewById(R.id.editTextRegNum);
         editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPassword = findViewById(R.id.editTextPassword);
         radioGroupGender = findViewById(R.id.radioGender);
-        spinnerRoles = findViewById(R.id.spinnerRoles);
+        spinnerClassId = findViewById(R.id.spinnerClassId);
         registerBtn = findViewById(R.id.registerButton);
-        viewStaffsButton= findViewById(R.id.viewStaffsButton);
+        viewStudentsButton= findViewById(R.id.viewStudentsButton);
 
-        registerBtn.setOnClickListener(view -> registerStaffMember());
-
-        viewStaffsButton.setMovementMethod(LinkMovementMethod.getInstance());
-        viewStaffsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(StaffActivity.this, StaffViewAll.class);
-            startActivity(intent);
-        });
+        registerBtn.setOnClickListener(view -> registerStudent());
+        viewStudentsButton.setOnClickListener(v -> startActivity(new Intent(StudentActivity.this, StudentViewAll.class)));
     }
 
-    private void registerStaffMember() {
+    private void registerStudent() {
         final String SFName = editTextFName.getText().toString().trim();
         final String SLName = editTextLName.getText().toString().trim();
+        final String SRegNo = editTextRegNum.getText().toString().trim();
         final String SPhone = editTextPhone.getText().toString().trim();
         final String SEmail = editTextEmail.getText().toString().trim();
         final String SGender= ((RadioButton) findViewById(
                 radioGroupGender.getCheckedRadioButtonId())).getText().toString();
-        final String SRoles= spinnerRoles.getSelectedItem().toString();
-        final String SPass = editTextPassword.getText().toString().trim();
+        //final String SRoles= spinnerRoles.getSelectedItem().toString();
+        final String SClass = spinnerClassId.getText().toString().trim();
 
         //first we will do the validations
         if (TextUtils.isEmpty(SFName)) {
             editTextFName.setError("Please enter firstname");
+            editTextFName.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(SRegNo)) {
+            editTextFName.setError("Please enter Reg.Number");
             editTextFName.requestFocus();
             return;
         }
@@ -91,33 +95,34 @@ public class StaffActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(SPass)) {
-            editTextPassword.setError("Enter a password");
-            editTextPassword.requestFocus();
-            return;
-        }
-
         // Finalize operation!
-        transferDataUsingVolley(SFName, SLName, SEmail, SPhone, SGender, SRoles, SPass);
+        transferDataUsingVolley(SFName, SLName, SRegNo, SEmail, SPhone, SGender, SClass);
     }
 
-    private void transferDataUsingVolley(String FN, String LN, String EM, String PH, String GD, String RL, String PS) {
+    private void transferDataUsingVolley(String sfName, String slName, String sRegNo, String sEmail, String sPhone, String sGender, String sClass) {
         loadingProgBar.setVisibility(View.VISIBLE);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.STAFF_REGISTER, response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.STUD_REGISTER, response -> {
             // Inside on response method we are hiding & emptying EditText
-            loadingProgBar.setVisibility(View.GONE);
-            Toast.makeText(StaffActivity.this, response, Toast.LENGTH_LONG).show();
-        }, error -> Toast.makeText(StaffActivity.this, error.toString(), Toast.LENGTH_LONG).show()) {
+            try {
+                loadingProgBar.setVisibility(View.GONE);
+                JSONObject jsonObject = new JSONObject(response);
+                Toast.makeText(StudentActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                emptyEditTextAfterInsertion();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> Toast.makeText(StudentActivity.this, error.toString(), Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("firstname", FN);
-                params.put("lastname", LN);
-                params.put("telephone", PH);
-                params.put("email", EM);
-                params.put("gender", GD);
-                params.put("staff_role", RL);
-                params.put("password", PS);
+                params.put("firstname", sfName);
+                params.put("lastname", slName);
+                params.put("reg_number", sRegNo);
+                params.put("email", sEmail);
+                params.put("telephone", sPhone);
+                params.put("gender", sGender);
+                params.put("class_id", sClass);
                 return params;
             }
 
@@ -125,14 +130,15 @@ public class StaffActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-        emptyEditTextAfterInsertion();
     }
 
     private void emptyEditTextAfterInsertion() {
         editTextFName.getText().clear();
         editTextLName.getText().clear();
         editTextPhone.getText().clear();
+        editTextRegNum.getText().clear();
         editTextEmail.getText().clear();
-        editTextPassword.getText().clear();
     }
+
+
 }

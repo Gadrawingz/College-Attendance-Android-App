@@ -4,7 +4,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
                 style="@style/loginParent"
-                tools:context=".staff.StaffActivity">
+                tools:context=".student.StudentActivity">
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -15,7 +15,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="true">
-
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -42,7 +41,7 @@
 
                         <TextView
                                 style="@style/headerTextPrimary"
-                                android:text="REGISTER STAFF MEMBER"
+                                android:text="REGISTER STUDENT"
                                 android:layout_marginTop="10dp"/>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -67,6 +66,19 @@
                                     android:inputType="text"
                                     android:maxLines="1"
                                     android:hint="Last name" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+
+                            <EditText
+                                    android:id="@+id/editTextRegNum"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="textCapCharacters"
+                                    android:maxLines="1"
+                                    android:hint="Reg Number" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -100,52 +112,54 @@
                                 android:textSize="20dp"
                                 android:text="Staff member sex" />
 
-                            <RadioGroup
-                                    android:id="@+id/radioGender"
-                                    android:layout_width="match_parent"
+                        <RadioGroup
+                                android:id="@+id/radioGender"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:orientation="horizontal">
+                            <RadioButton
+                                    android:id="@+id/radioButtonMale"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dp"
-                                    android:orientation="horizontal">
-                                <RadioButton
-                                        android:id="@+id/radioButtonMale"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:checked="true"
-                                        android:text="Male"/>
+                                    android:checked="true"
+                                    android:text="Male"/>
 
-                                <RadioButton
-                                        android:id="@+id/radioButtonFemale"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Female"/>
-                            </RadioGroup>
+                            <RadioButton
+                                    android:id="@+id/radioButtonFemale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Female"/>
+                        </RadioGroup>
 
-                        <!-- Role -->
-                        <TextView
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+
+                            <EditText
+                                    android:id="@+id/spinnerClassId"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1"
+                                    android:hint="Class Id"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Classes-->
+                        <!--<TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="5dp"
                                 android:textSize="20dp"
-                                android:text="Select staff role" />
-                            <Spinner
-                                    android:id="@+id/spinnerRoles"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:maxLines="1"
-                                    android:entries="@array/staffRoles" />
+                                android:text="Select class id" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                                style="@style/parent"
-                                android:layout_marginTop="@dimen/textMarginTop">
-                            <EditText
-                                    android:id="@+id/editTextPassword"
-                                    style="@style/modifiedEditText"
-                                    android:hint="@string/loginPasswordHint"
-                                    android:maxLines="1"
-                                    android:inputType="textPassword"/>
-                        </com.google.android.material.textfield.TextInputLayout>
+                        <Spinner
+                                android:id="@+id/spinnerRoles"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:maxLines="1"
+                                android:entries="@array/staffRoles" />-->
 
                         <Button
                                 android:id="@+id/registerButton"
@@ -154,10 +168,10 @@
                                 android:text="Register"/>
 
                         <Button
-                                android:id="@+id/viewStaffsButton"
+                                android:id="@+id/viewStudentsButton"
                                 style="@style/loginButton"
                                 android:layout_gravity="center"
-                                android:text="View Staffs"/>
+                                android:text="View Students"/>
 
                         <ProgressBar android:layout_width="match_parent"
                                      android:layout_height="wrap_content"

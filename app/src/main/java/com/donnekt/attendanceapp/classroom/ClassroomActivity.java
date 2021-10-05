@@ -1,54 +1,51 @@
 package com.donnekt.attendanceapp.classroom;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.URLs;
+import com.donnekt.attendanceapp.VolleySingleton;
 import com.donnekt.attendanceapp.admin.AdminDashboard;
-import com.donnekt.attendanceapp.department.DepartmentViewAll;
-import com.donnekt.attendanceapp.classroom.ClassroomViewAll;
+import com.donnekt.attendanceapp.department.DepartmentActivity;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClassroomActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String DATABASE_NAME = "AttendanceTest";
-
     TextView viewClassrooms, exitClassrooms;
-    EditText className;
-    Spinner classLevel, classDept;
+    EditText className, classDept;
+    Spinner classLevel;
     Button saveButton;
-    SQLiteDatabase mDatabase;
+    ProgressBar isDataLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroom);
 
-        viewClassrooms = (TextView) findViewById(R.id.tvViewClassrooms);
-        exitClassrooms = (TextView) findViewById(R.id.tvExitClassrooms);
+        viewClassrooms = findViewById(R.id.tvViewClassrooms);
+        exitClassrooms = findViewById(R.id.tvExitClassrooms);
 
         className = (EditText) findViewById(R.id.editClassName);
         classLevel= (Spinner) findViewById(R.id.spinnerClassLevel);
-        classDept = (Spinner) findViewById(R.id.spinnerClassDept);
-
-        saveButton = (Button) findViewById(R.id.buttonAddClass);
+        classDept = (EditText) findViewById(R.id.spinnerClassDept);
+        //classDept = (Spinner) findViewById(R.id.spinnerClassDept);
+        isDataLoading = findViewById(R.id.dataLoading);
+        saveButton = findViewById(R.id.buttonAddClass);
 
         // Save & View events killInQ
         saveButton.setOnClickListener(this);
         viewClassrooms.setOnClickListener(this);
         exitClassrooms.setOnClickListener(this);
-
-        //creating a database
-        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-
-        createDepartmentTable();
-
-    }
-
-    private void createDepartmentTable(){
-        mDatabase.execSQL("CREATE TABLE IF NOT EXISTS classrooms (classroomId INTEGER PRIMARY KEY AUTOINCREMENT, classroomName VARCHAR(100) NOT NULL, classroomLevel VARCHAR(50) NOT NULL, department VARCHAR(200) NOT NULL)");
     }
 
     // This method will validate the name
@@ -65,16 +62,32 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
     private void addClassroom() {
         String name = className.getText().toString().trim();
         String level= classLevel.getSelectedItem().toString().trim();
-        String dept = classDept.getSelectedItem().toString().trim();
-
+        String dept = classDept.getText().toString().trim();
+        // String dept = classDept.getSelectedItem().toString().trim();
         // Validating the inputs
-        if (inputsAreCorrect(name)) {
-            String insertSQL = "INSERT INTO classrooms(classroomName, classroomLevel, department) VALUES (?, ?, ?)";
-
-            // the execSQL method is for inserting values with 2 params
-            mDatabase.execSQL(insertSQL, new String[]{name, level, dept});
-            Toast.makeText(this, "Classroom's saved!", Toast.LENGTH_SHORT).show();
-            emptyEditTextAfterDataInsert();
+        if(inputsAreCorrect(name)) {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.CLASS_CREATE,
+                    response -> {
+                        try {
+                            isDataLoading.setVisibility(View.GONE);
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(ClassroomActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            className.getText().clear();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("class_name", name);
+                    params.put("class_level", level);
+                    params.put("dept_id", dept);
+                    return params;
+                }
+            };
+            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
         }
     }
 
@@ -98,10 +111,5 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
                 startActivity(new Intent(this, AdminDashboard.class));
                 break;
         }
-    }
-
-    // Empty Shits after All shits
-    private void emptyEditTextAfterDataInsert() {
-        className.getText().clear();
     }
 }

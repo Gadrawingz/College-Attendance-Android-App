@@ -8,8 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#FF402D</color>
     <color name="white_greyish">#EEEEEE</color>
     <color name="background">#ececec</color>
     <color name="gray">#808080</color>
@@ -21,25 +21,21 @@
     <color name="imageBorderColor">#E01E7A</color>
     <color name="miniTitle">#2A2E43</color>
 
-
     <color name="greenLess50">#B8E99D</color>
     <color name="greenLess49">#C4E9B7</color>
     <color name="greenLess55">#036404</color>
+    <color name="greenGreener">#009933</color>
+    <color name="greenDarker">#003300</color>
 
     <color name="bluishGad">#0F1198</color>
     <color name="bluish400">#0008A3</color>
 
-
-
     <color name="reddish300">#E90121</color>
     <color name="reddish280">#BE0C13</color>
 
-
-
-
-
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#00a5ff</color>
+    <color name="start_blue">#21618c</color>
     <color name="loginBkColor">#f0f0f0</color>
     <!--colros for card-->
     <color name="whiteCardColor">#fff</color>

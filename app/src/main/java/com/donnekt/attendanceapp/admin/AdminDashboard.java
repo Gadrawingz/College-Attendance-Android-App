@@ -15,6 +15,8 @@ import com.donnekt.attendanceapp.module.ModuleActivity;
 import com.donnekt.attendanceapp.module.ModuleViewAll;
 import com.donnekt.attendanceapp.staff.StaffActivity;
 import com.donnekt.attendanceapp.staff.StaffViewAll;
+import com.donnekt.attendanceapp.student.StudentActivity;
+import com.donnekt.attendanceapp.student.StudentViewAll;
 
 public class AdminDashboard extends AppCompatActivity {
 
@@ -28,70 +30,59 @@ public class AdminDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_admin_dashboard);
 
 
-        TextView goToSettings = (TextView) findViewById(R.id.btnAdminSettings);
-        TextView addDept = (TextView) findViewById(R.id.add_department);
-        TextView viewDept = (TextView) findViewById(R.id.view_departs);
-        TextView addClass = (TextView) findViewById(R.id.add_classroom);
-        TextView viewClass = (TextView) findViewById(R.id.view_classes);
-        TextView addStaff = (TextView) findViewById(R.id.add_staff);
-        TextView viewStaff = (TextView) findViewById(R.id.view_staff);
-        TextView addModule = (TextView) findViewById(R.id.add_module);
-        TextView viewModule = (TextView) findViewById(R.id.view_module);
+        TextView goToSettings = findViewById(R.id.btnAdminSettings);
+        TextView addDept = findViewById(R.id.add_department);
+        TextView viewDept = findViewById(R.id.view_departs);
+        TextView addClass = findViewById(R.id.add_classroom);
+        TextView viewClass = findViewById(R.id.view_classes);
+        TextView addStaff = findViewById(R.id.add_staff);
+        TextView viewStaff = findViewById(R.id.view_staff);
+        TextView addModule = findViewById(R.id.add_module);
+        TextView viewModule = findViewById(R.id.view_module);
 
-        goToSettings.setMovementMethod(LinkMovementMethod.getInstance());
         goToSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, AdminSettings.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, AdminSettings.class));
         });
 
-        addDept.setMovementMethod(LinkMovementMethod.getInstance());
         addDept.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, DepartmentActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, DepartmentActivity.class));
         });
 
-        viewDept.setMovementMethod(LinkMovementMethod.getInstance());
         viewDept.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, DepartmentViewAll.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, DepartmentViewAll.class));
         });
 
-        addClass.setMovementMethod(LinkMovementMethod.getInstance());
         addClass.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, ClassroomActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, ClassroomActivity.class));
         });
 
-        viewClass.setMovementMethod(LinkMovementMethod.getInstance());
         viewClass.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, ClassroomViewAll.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, ClassroomViewAll.class));
         });
 
-        addStaff.setMovementMethod(LinkMovementMethod.getInstance());
         addStaff.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, StaffActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, StaffActivity.class));
         });
 
-        viewStaff.setMovementMethod(LinkMovementMethod.getInstance());
         viewStaff.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, StaffViewAll.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, StaffViewAll.class));
         });
 
-        addModule.setMovementMethod(LinkMovementMethod.getInstance());
         addModule.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, ModuleActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, ModuleActivity.class));
         });
 
-        viewModule.setMovementMethod(LinkMovementMethod.getInstance());
         viewModule.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminDashboard.this, ModuleViewAll.class);
-            startActivity(intent);
+            startActivity(new Intent(AdminDashboard.this, ModuleViewAll.class));
         });
 
+        findViewById(R.id.add_student).setOnClickListener(v -> {
+            startActivity(new Intent(AdminDashboard.this, StudentActivity.class));
+        });
+
+        findViewById(R.id.view_students).setOnClickListener(v -> {
+            startActivity(new Intent(AdminDashboard.this, StudentViewAll.class));
+        });
 
 
 

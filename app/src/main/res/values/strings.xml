@@ -40,12 +40,6 @@
 
 
     <!--Arrays place -->
-    <array name="staff_roles">
-        <item>HOD</item>
-        <item>DAS</item>
-        <item>LECTURER</item>
-        <item>ACADEMIC</item>
-    </array>
 
     <array name="class_levels">
         <item>Level 1</item>
@@ -80,5 +74,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="module_name">Module Name</string>
+    <string name="module_code">Module code...</string>
 
 </resources>

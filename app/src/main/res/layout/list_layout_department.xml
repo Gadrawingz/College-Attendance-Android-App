@@ -43,7 +43,7 @@
             android:orientation="vertical">
 
         <Button
-                android:id="@+id/buttonEditDept"
+                android:id="@+id/buttonEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="1.5dp"
@@ -67,5 +67,12 @@
                 android:text="Delete" />
 
     </LinearLayout>
+
+    <ProgressBar android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_centerVertical="true"
+                 android:visibility="gone"
+                 android:id="@+id/deleteProgBar"/>
 
 </LinearLayout>
