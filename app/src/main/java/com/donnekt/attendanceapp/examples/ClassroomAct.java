@@ -1,3 +1,6 @@
+package com.donnekt.attendanceapp.examples;
+
+/*
 package com.donnekt.attendanceapp.classroom;
 
 import android.annotation.SuppressLint;
@@ -37,11 +40,11 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
     Button saveButton;
     ProgressBar isDataLoading;
 
-    @SuppressWarnings("deprecation")
     private static ProgressDialog mProgressDialog;
     private ArrayList<Department> departmentArrayList;
 
     private final ArrayList<String> departments = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,28 +59,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
 
         // Departments should be dynamic shits
         classDept = findViewById(R.id.spinnerClassDept);
-
-        classDept.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-
-                //String item = (String) adapterView.getItemAtPosition(pos);
-                for (Department department : departmentArrayList) {
-                    if(classDept.getSelectedItem().toString().trim().equals(department.getDepartmentName())) {
-                        //List<SPModel> labels = new ArrayList<>();
-                        List<String> departs = new ArrayList<>();
-                        Toast.makeText(getApplicationContext(), String.valueOf(department.getDepartmentId()), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
+        // classDept.setOnItemSelectedListener();
         loadAllDepartments();
 
         isDataLoading = findViewById(R.id.dataLoading);
@@ -88,7 +70,6 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
         viewClassrooms.setOnClickListener(this);
         exitClassrooms.setOnClickListener(this);
     }
-
 
     private void loadAllDepartments() {
         showSimpleProgressDialog(this, "Loading...","Getting departments",false);
@@ -108,19 +89,24 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
 
                                 JSONObject dataObj = dataArray.getJSONObject(i);
 
+
                                 deptModel.setDepartmentId(dataObj.getInt("dept_id"));
                                 deptModel.setDepartmentName(dataObj.getString("dept_name"));
                                 deptModel.setDepartmentCaption(dataObj.getString("dept_caption"));
                                 departmentArrayList.add(deptModel);
                             }
 
+                            List<String> labels = new ArrayList<String>();
+                            List<String> IDs = new ArrayList<String>();
+
                             for (Department department : departmentArrayList) {
-                                departments.add(department.getDepartmentName());
+                                departments.add(department.getDepartmentId() + ") " + department.getDepartmentName());
                             }
 
                             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(ClassroomActivity.this, simple_spinner_item, departments);
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                             classDept.setAdapter(spinnerArrayAdapter);
+
                             removeSimpleProgressDialog();
                         }
 
@@ -152,7 +138,9 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
     private void addClassroom() {
         String name = className.getText().toString().trim();
         String level= classLevel.getSelectedItem().toString().trim();
-        String dept = classDept.getSelectedItem().toString().trim();
+        String depart = classDept.getSelectedItem().toString().trim();
+        // String finalized1 = depart.lastIndexOf("", Integer.parseInt(depart));
+        String dept = depart;
 
         // Validating the inputs
         if(inputsAreCorrect(name)) {
@@ -243,3 +231,4 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
         }
     }
 }
+*/

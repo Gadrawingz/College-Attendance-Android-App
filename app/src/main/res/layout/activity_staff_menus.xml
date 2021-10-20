@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".admin.AdminDashboard"
+        tools:context=".users.StaffMenus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/contentBodyColor">
@@ -16,7 +15,7 @@
 
         <TextView
                 style="@style/viewParent.headerText"
-                android:text="Admin operations" />
+                android:id="@+id/dashboard_header"/>
 
         <!-- Department -->
         <TextView
@@ -24,9 +23,9 @@
                 android:text="Departments"/>
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
-                android:drawableLeft="@drawable/ic_edit_profile"
+                android:drawableLeft="@drawable/ic_notifications"
                 android:id="@+id/add_department"
-                android:text="Add department"/>
+                android:text="@string/add_department"/>
 
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
@@ -68,7 +67,7 @@
 
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
-                android:drawableLeft="@drawable/ic_edit_password"
+                android:drawableLeft="@drawable/ic_languages"
                 android:layout_marginTop="10dp"
                 android:id="@+id/view_staff"
                 android:text="View staffs"/>
@@ -87,11 +86,10 @@
 
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
-                android:drawableLeft="@drawable/ic_edit_password"
+                android:drawableLeft="@drawable/ic_languages"
                 android:layout_marginTop="10dp"
                 android:id="@+id/view_module"
                 android:text="View modules"/>
-
 
         <!-- Student section -->
         <TextView
@@ -123,17 +121,11 @@
                 android:text="Settings"/>
 
         <TextView
-                style="@style/viewParent.headerText.settingsTextIcon"
-                android:drawableLeft="@drawable/ic_notifications"
-                android:id="@+id/btnTesting"
-                android:text="Testing"/>
-
-        <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
                 android:text="Attendance App @ 2021"
                 android:textAlignment="center"
                 android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"/>
-
+        `
     </LinearLayout>
 </ScrollView>

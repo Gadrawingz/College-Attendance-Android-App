@@ -11,6 +11,12 @@ public class Department {
         this.departmentCaption = deptCaption;
     }
 
+    public Department(int deptId) {
+        this.departmentId = deptId;
+    }
+
+    public Department() {}
+
     // getter & setter: id
     public int getDepartmentId() {
         return departmentId;

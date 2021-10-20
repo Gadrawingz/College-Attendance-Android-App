@@ -16,9 +16,22 @@
             android:padding="@dimen/mainViewsMargin">
 
         <TextView
+                android:id="@+id/loginText"
                 style="@style/headerTextPrimary"
-                android:text="@string/loginTitleText"
+                android:text="@string/loginAsTitle"
                 android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loginRole"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/blueColorC"
+                android:layout_marginBottom="15dp" />
 
         <com.google.android.material.textfield.TextInputLayout
                 style="@style/parent"
@@ -48,12 +61,6 @@
                 style="@style/loginButton"
                 android:layout_gravity="center"
                 android:text="Login"/>
-        <Button
-                android:id="@+id/buttonTest"
-                style="@style/loginButton"
-                android:layout_gravity="center"
-                android:text="Admin Access"/>
-
 
         <ProgressBar android:layout_width="match_parent"
                      android:layout_height="wrap_content"
@@ -63,9 +70,15 @@
                      android:id="@+id/loginLoadingPB"/>
 
         <TextView
-                style="@style/mainFooter"
-                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/exitLogin"
+                android:layout_marginTop="10dp"
+                android:text="@string/exit_login"
+                android:textColor="@color/reddish280"
                 android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textSize="18dp"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"/>
 

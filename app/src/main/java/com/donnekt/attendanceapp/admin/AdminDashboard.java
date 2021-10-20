@@ -3,10 +3,10 @@ package com.donnekt.attendanceapp.admin;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.SpinnerTest;
 import com.donnekt.attendanceapp.classroom.ClassroomActivity;
 import com.donnekt.attendanceapp.classroom.ClassroomViewAll;
 import com.donnekt.attendanceapp.department.DepartmentActivity;
@@ -39,6 +39,7 @@ public class AdminDashboard extends AppCompatActivity {
         TextView viewStaff = findViewById(R.id.view_staff);
         TextView addModule = findViewById(R.id.add_module);
         TextView viewModule = findViewById(R.id.view_module);
+
 
         goToSettings.setOnClickListener(v -> {
             startActivity(new Intent(AdminDashboard.this, AdminSettings.class));
@@ -84,6 +85,9 @@ public class AdminDashboard extends AppCompatActivity {
             startActivity(new Intent(AdminDashboard.this, StudentViewAll.class));
         });
 
+        findViewById(R.id.btnTesting).setOnClickListener(v -> {
+            startActivity(new Intent(AdminDashboard.this, SpinnerTest.class));
+        });
 
 
     }

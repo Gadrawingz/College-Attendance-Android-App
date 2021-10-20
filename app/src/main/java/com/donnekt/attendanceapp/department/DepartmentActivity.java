@@ -25,8 +25,6 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
     Button addDeptButton;
     ProgressBar isDataLoading;
 
-    public static final String DATABASE_NAME = "Attendance";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
