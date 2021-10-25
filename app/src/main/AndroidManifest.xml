@@ -13,6 +13,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AttendanceApp">
+        <activity android:name=".module.ModulesLecturer">
+        </activity>
         <activity android:name=".users.StaffMenus">
         </activity>
         <activity android:name=".users.DashboardDoq">

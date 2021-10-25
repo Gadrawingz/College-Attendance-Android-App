@@ -40,7 +40,33 @@ public class LoginActivity extends AppCompatActivity {
         // Stay on good shit bruh!
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
-            startActivity(new Intent(this, DashboardDas.class));
+
+            Staff staff = SharedPrefManager.getInstance(this).getLoggedInStaff();
+            String activeStaffRole = staff.getRole();
+
+            switch (activeStaffRole) {
+                case "DAS":
+                    startActivity(new Intent(this, DashboardDas.class));
+                    break;
+
+                case "HOD":
+                    startActivity(new Intent(this, DashboardHod.class));
+                    break;
+
+                case "DOQ":
+                    startActivity(new Intent(this, DashboardDoq.class));
+                    break;
+
+                case "LECTURER":
+                    startActivity(new Intent(this, DashboardLecturer.class));
+                    break;
+
+                default:
+                    Toast.makeText(getApplicationContext(), "WRONG PAGE", Toast.LENGTH_SHORT).show();
+            }
+
+
+
         }
 
 

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ModuleAdapter extends ArrayAdapter<Module> {
 
-    private final Context mCtx;
+    protected Context mCtx;
     private final List<Module> moduleList;
 
     public ModuleAdapter(List<Module> moduleList, Context mCtx) {
@@ -88,5 +88,45 @@ public class ModuleAdapter extends ArrayAdapter<Module> {
         // Return the list item
         return LVItem;
     }
+}
 
+class ModuleAdapterML extends ArrayAdapter<Module> {
+
+    private final Context mCtx;
+    private final List<Module> moduleLecturerList;
+
+    public ModuleAdapterML(List<Module> moduleLecturerList, Context mCtx) {
+        super(mCtx, R.layout.list_layout_modlect, moduleLecturerList);
+        this.mCtx = mCtx;
+        this.moduleLecturerList = moduleLecturerList;
+    }
+
+    @SuppressLint({"ViewHolder", "InflateParams"})
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(mCtx);
+        View LVItem = inflater.inflate(R.layout.list_layout_modlect, null, true);
+
+        // Getting module of the specified position
+        Module module = moduleLecturerList.get(position);
+
+        // Getting views
+        TextView textViewModuleName = LVItem.findViewById(R.id.tvModuleName);
+        TextView textViewModuleCode = LVItem.findViewById(R.id.tvModuleCode);
+        TextView tvModTotalClasses = LVItem.findViewById(R.id.tvModTotalClasses);
+        Button makeAttendance = LVItem.findViewById(R.id.makeAttendance);
+        Button attendanceDetails = LVItem.findViewById(R.id.attendanceDetails);
+        ProgressBar deleteProgBar = LVItem.findViewById(R.id.deleteProgBar);
+
+        // Adding data to views
+        textViewModuleName.setText("Name: "+module.getModuleName());
+        textViewModuleCode.setText("Code ("+module.getModuleCode()+" )");
+        tvModTotalClasses.setText("4");
+
+
+
+        // Return the list item
+        return LVItem;
+    }
 }

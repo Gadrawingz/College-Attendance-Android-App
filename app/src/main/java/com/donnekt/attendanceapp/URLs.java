@@ -25,6 +25,7 @@ public class URLs {
     public static final String MOD_CREATE = MAIN_URL +"module_api?call=register";
     public static final String MOD_DELETE = MAIN_URL +"module/delete/";
     public static final String MOD_UPDATE = MAIN_URL +"module/update/";
+    public static final String MOD_VIEW_LECT = MAIN_URL +"module/lect/";
 
     public static final String STUD_VIEW_ALL = MAIN_URL +"student_api?call=view";
     public static final String STUD_REGISTER = MAIN_URL +"student_api?call=register";
