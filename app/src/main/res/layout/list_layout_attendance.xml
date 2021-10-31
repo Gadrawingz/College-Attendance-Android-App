@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              android:padding="8dp">
+
+    <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:padding="5dp"
+            android:background="@color/blueShit1"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/tvStudentNames"
+                android:textSize="14sp"
+                android:textColor="@color/textWhite1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"/>
+
+        <TextView
+                android:id="@+id/tvStudentRegNo"
+                android:textSize="14sp"
+                android:textColor="@color/cardTextColor1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"/>
+
+        <TextView
+                android:id="@+id/tvStudentMarks"
+                android:textSize="12sp"
+                android:textStyle="bold|normal"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="12dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <Button
+                android:id="@+id/isPresent"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="3dp"
+                android:textSize="21dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/border_bluish1"
+                android:text="P" />
+
+        <Button
+                android:id="@+id/isAbsent"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="3dp"
+                android:textSize="21dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/border_reddish1"
+                android:text="A" />
+    </LinearLayout>
+</LinearLayout>

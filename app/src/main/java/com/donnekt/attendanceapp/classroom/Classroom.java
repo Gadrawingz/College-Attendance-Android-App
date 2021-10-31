@@ -2,8 +2,8 @@ package com.donnekt.attendanceapp.classroom;
 
 public class Classroom {
 
-    int classroomId;
-    String classroomName, classroomLevel, department;
+    int classroomId, refDeptId;
+    String classroomName, classroomLevel, department, refDeptName, refDeptCaption;
 
     // Const without ID:
     public Classroom(String className, String classLevel, String department) {
@@ -17,6 +17,16 @@ public class Classroom {
         this.classroomName = className;
         this.classroomLevel = classLevel;
         this.department = department;
+    }
+
+    // Full one
+    public Classroom(int classId, String className, String classLevel, int refDeptId, String refDeptName, String refCaption) {
+        this.classroomId = classId;
+        this.classroomName = className;
+        this.classroomLevel = classLevel;
+        this.refDeptId = refDeptId;
+        this.refDeptName= refDeptName;
+        this.refDeptCaption= refCaption;
     }
 
     // (1)
@@ -51,5 +61,33 @@ public class Classroom {
     }
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    // (5)
+    public int getRefDeptId() {
+        return refDeptId;
+    }
+
+    public void setRefDeptId(int refDeptId) {
+        this.refDeptId = refDeptId;
+    }
+
+    // (6)
+    public String getRefDeptName() {
+        return refDeptName;
+    }
+
+    public void setRefDeptName(String refDeptName) {
+        this.refDeptName = refDeptName;
+    }
+
+    // (7)
+
+    public String getRefDeptCaption() {
+        return refDeptCaption;
+    }
+
+    public void setRefDeptCaption(String refDeptCaption) {
+        this.refDeptCaption = refDeptCaption;
     }
 }

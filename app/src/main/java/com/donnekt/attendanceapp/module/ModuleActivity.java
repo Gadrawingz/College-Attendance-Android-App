@@ -1,30 +1,49 @@
 package com.donnekt.attendanceapp.module;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.URLs;
 import com.donnekt.attendanceapp.VolleySingleton;
+import com.donnekt.attendanceapp.classroom.ClassroomActivity;
+import com.donnekt.attendanceapp.department.Department;
+import com.donnekt.attendanceapp.staff.Staff;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static android.R.layout.simple_spinner_item;
+import static com.donnekt.attendanceapp.DialogShit.exitDamnProgressDialog;
+import static com.donnekt.attendanceapp.DialogShit.showDamnProgressDialog;
+import static com.donnekt.attendanceapp.Methods.*;
 
 
 public class ModuleActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText moduleName, moduleCode, deptId, lecturerId;
-    Button addModuleBtn, doViewModules;
+    EditText moduleName, moduleCode;
+    Spinner lecturerId;
+    Button addModuleBtn;
+    TextView doViewModules, doExitModules;
     ProgressBar isDataLoading;
+
+    private ArrayList<Staff> staffArrayList;
+    private final ArrayList<String> lecturers = new ArrayList<>();
+    private int selectedLecturer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +52,80 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
 
         moduleName = findViewById(R.id.editModuleName);
         moduleCode = findViewById(R.id.editModuleCode);
-        deptId     = findViewById(R.id.editDeptId);
-        lecturerId = findViewById(R.id.editLecturerId);
+        lecturerId = findViewById(R.id.spinnerLecturer);
         isDataLoading = findViewById(R.id.dataLoading);
         addModuleBtn = findViewById(R.id.buttonSave);
-        doViewModules= findViewById(R.id.buttonViewModules);
+        doViewModules= findViewById(R.id.tvViewModules);
+        doExitModules= findViewById(R.id.tvExitModules);
 
         // Save & View button
         doViewModules.setOnClickListener(this);
+        doExitModules.setOnClickListener(this);
         addModuleBtn.setOnClickListener(this);
+
+        loadAllLecturers();
+
+        lecturerId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                for (Staff staff : staffArrayList) {
+                    if(lecturerId.getSelectedItem().toString().trim().equals(staff.getFirstname()+" "+staff.getLastname())) {
+                        selectedLecturer = staff.getStaffId();
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) { }
+        });
     }
 
+
+    private void loadAllLecturers() {
+        showDamnProgressDialog(this, "Loading...","Getting lecturers",false);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.STAFF_LECTURERS,
+                response -> {
+                    Log.d("strrrrr", ">>" + response);
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        if(obj.optString("status").equals("fetched")){
+                            staffArrayList = new ArrayList<>();
+                            JSONArray dataArray  = obj.getJSONArray("lecturers");
+
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                Staff staffModel = new Staff();
+                                JSONObject dataObj = dataArray.getJSONObject(i);
+                                staffModel.setStaffId(dataObj.getInt("staff_id"));
+                                staffModel.setFirstname(dataObj.getString("firstname"));
+                                staffModel.setLastname(dataObj.getString("lastname"));
+                                staffArrayList.add(staffModel);
+                            }
+
+                            for (Staff staff : staffArrayList) {
+                                String FULL_NAME = capitalizeAllFirstLetters(staff.getFirstname()+" "+staff.getLastname());
+                                lecturers.add(FULL_NAME);
+                            }
+
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(ModuleActivity.this, simple_spinner_item, lecturers);
+                            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                            lecturerId.setAdapter(spinnerArrayAdapter);
+                            exitDamnProgressDialog();
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> Toast.makeText(getApplicationContext(), "Network issues!", Toast.LENGTH_LONG).show());
+        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+
     // This method will validate the name and caption
-    private boolean inputsAreCorrect(String name, String code, String dept, String lect) {
+    private boolean inputsAreCorrect(String name, String code) {
         if (name.isEmpty()) {
             moduleName.setError("Please enter module name");
             moduleName.requestFocus();
@@ -58,18 +138,6 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
             return false;
         }
 
-        if (dept.isEmpty()) {
-            deptId.setError("Make sure you add department");
-            deptId.requestFocus();
-            return false;
-        }
-
-        if (lect.isEmpty()) {
-            lecturerId.setError("Please add lecturer");
-            lecturerId.requestFocus();
-            return false;
-        }
-
         return true;
     }
 
@@ -77,11 +145,11 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
     private void addModule() {
         String mName = (moduleName.getText().toString().trim());
         String mCode = (moduleCode.getText().toString().trim());
-        String dId   = (deptId.getText().toString().trim());
-        String lId   = (lecturerId.getText().toString().trim());
+        String lId   = String.valueOf(selectedLecturer);
+        isDataLoading.setVisibility(View.VISIBLE);
 
         // Validating the inputs
-        if (inputsAreCorrect(mName, mCode, dId, lId)) {
+        if (inputsAreCorrect(mName, mCode)) {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.MOD_CREATE,
                     response -> {
                         try {
@@ -100,7 +168,6 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
                     Map<String, String> params = new HashMap<>();
                     params.put("module_name", mName);
                     params.put("module_code", mCode);
-                    params.put("dept_id", dId);
                     params.put("lecturer_id", lId);
                     return params;
                 }
@@ -111,6 +178,7 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -121,9 +189,12 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             // case: click to view all
-            case R.id.buttonViewModules:
+            case R.id.tvViewModules:
                 startActivity(new Intent(this, ModuleViewAll.class));
-                //Toast.makeText(getApplicationContext(), "OOPS!", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.tvExitModules:
+                startActivity(new Intent(this, ModuleActivity.class));
                 break;
         }
     }

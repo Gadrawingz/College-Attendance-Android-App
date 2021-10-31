@@ -1,4 +1,4 @@
-package com.donnekt.attendanceapp.attendance;
+package com.donnekt.attendanceapp.student;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;

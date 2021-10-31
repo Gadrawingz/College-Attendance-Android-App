@@ -51,7 +51,9 @@ public class ClassroomViewAll extends AppCompatActivity {
                             dataObject.getInt("class_id"),
                             dataObject.getString("class_name"),
                             dataObject.getString("class_level"),
-                            dataObject.getString("dept_id")
+                            dataObject.getInt("dept_id"),
+                            dataObject.getString("dept_name"),
+                            dataObject.getString("dept_caption")
                     );
                     classroomList.add(classroom);
                     ClassroomAdapter adapter = new ClassroomAdapter(classroomList, getApplicationContext());

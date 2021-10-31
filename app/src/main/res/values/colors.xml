@@ -76,16 +76,12 @@
     <color name="blueShit3">#080842</color>
     <color name="blueShit4">#000047</color>
 
-    080842
-
-
 
     <color name="cardColor1">#0b5345</color>
     <color name="cardTextColor1">#fadbd8</color>
     <color name="cardTextColor2">#eaf2f8</color>
     <color name="textWhite1">#eaffee</color>
-
-
+    <color name="reddish285">#850A14</color>
 
 
 </resources>

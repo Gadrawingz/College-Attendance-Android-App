@@ -35,7 +35,6 @@
                 android:id="@+id/view_departs"
                 android:text="View all"/>
 
-
         <!-- Classrooms -->
         <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"

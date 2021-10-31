@@ -13,6 +13,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AttendanceApp">
+        <activity android:name=".module.ModuleDetails">
+        </activity>
         <activity android:name=".module.ModulesLecturer">
         </activity>
         <activity android:name=".users.StaffMenus">
@@ -45,9 +47,9 @@
         </activity>
         <activity android:name=".staff.StaffHome">
         </activity>
-        <activity android:name=".attendance.StudentsList">
+        <activity android:name=".student.StudentsList">
         </activity>
-        <activity android:name=".attendance.AttendanceAct">
+        <activity android:name=".student.AttendanceAct">
         </activity>
         <activity android:name=".staff.StaffDashboard">
         </activity>

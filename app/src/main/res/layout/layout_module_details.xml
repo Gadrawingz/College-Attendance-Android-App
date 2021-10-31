@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/gradient_clear">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <TextView
+                style="@style/viewParent.headerText"
+                android:text="Module details"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Module Name"/>
+        <TextView
+                android:id="@+id/tvModuleName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="10dp"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Module Code"/>
+
+        <TextView
+                android:id="@+id/tvModuleCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="10dp"/>
+
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Module Hours"/>
+
+        <TextView
+                android:id="@+id/tvModuleHours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/blueShit4"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_blue"
+                android:padding="5dp"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/tvModuleLecturer"
+                    style="@style/viewParent.beautifulText"
+                    android:drawableLeft="@drawable/ic_edit_password"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"/>
+
+            <TextView
+                    android:id="@+id/tvMLecturerEmail"
+                    style="@style/viewParent.beautifulText"
+                    android:drawableLeft="@drawable/ic_edit_password"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/exitDetails"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="Exit"
+                android:textSize="19dp"
+                android:textColor="@color/blueShit1"
+                android:background="@drawable/border_bnw"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -36,7 +36,6 @@
         <LinearLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:padding="8dp"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
@@ -46,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:gravity="center_vertical"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:padding="1.5dp"
                     android:textStyle="bold"
                     android:background="@drawable/bg_white_b_rounded"

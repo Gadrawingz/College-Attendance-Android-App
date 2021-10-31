@@ -44,13 +44,15 @@ public class Staff {
         this.regDate = regDate;
     }
 
+    public Staff() { }
+
     // Getting id
     public int getStaffId() {
         return staffId;
     }
 
     // Setting id
-    public void getStaffId(int id) {
+    public void setStaffId(int id) {
         this.staffId = id;
     }
 
@@ -127,4 +129,5 @@ public class Staff {
     public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
+
 }

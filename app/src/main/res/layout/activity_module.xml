@@ -1,121 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:padding="20dp"
-        android:layout_height="match_parent"
-        tools:context=".module.ModuleActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".module.ModuleActivity">
 
     <LinearLayout
-            android:id="@+id/login_layout"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
             android:background="@drawable/border_green"
-            android:orientation="vertical" >
+            android:layout_margin="5dp"
+            android:padding="16dp">
 
         <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Add new module"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="15dp"
+                android:text="Register module(course)"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:gravity="center_horizontal"/>
 
         <EditText
                 android:id="@+id/editModuleName"
-                android:singleLine="true"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:hint="@string/module_name"
-                android:padding="10dp"
-                android:textColorHint="@color/teal_700"
-                android:textSize="16sp" />
+                android:hint="Maths" />
 
         <EditText
                 android:id="@+id/editModuleCode"
-                android:singleLine="true"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:drawablePadding="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_vertical"
-                android:hint="@string/module_code"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/teal_700"
-                android:textSize="16sp" />
+                android:hint="ICT300" />
 
-        <EditText
-                android:id="@+id/editDeptId"
-                android:singleLine="true"
-                android:layout_width="fill_parent"
+
+        <!-- Select lecturer -->
+        <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:hint="Department id..."
-                android:padding="10dp"
-                android:textColorHint="@color/teal_700"
-                android:textSize="16sp" />
+                android:paddingLeft="6dp"
+                android:text="Select lecturer" />
 
-
-        <EditText
-                android:id="@+id/editLecturerId"
-                android:singleLine="true"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:hint="Lecturer id..."
-                android:padding="10dp"
-                android:textColorHint="@color/teal_700"
-                android:textSize="16sp" />
-
-        <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px" />
+        <Spinner
+                android:id="@+id/spinnerLecturer"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/real_spinner"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="12dp"
+                android:spinnerMode="dropdown"/>
 
         <Button
                 android:id="@+id/buttonSave"
-                android:layout_width="fill_parent"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/loginbutton_selector"
-                android:padding="3dp"
-                android:text="Save Data"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-        <Button
-                android:id="@+id/buttonViewModules"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/loginbutton_selector"
-                android:padding="3dp"
-                android:text="View"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="Save" />
 
         <ProgressBar android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:visibility="gone"
                      android:id="@+id/dataLoading"/>
 
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_blue1"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tvViewModules"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bluish400"
+                    android:padding="10dp"
+                    android:text="View"
+                    android:textAlignment="center"
+                    android:textSize="18dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/tvExitModules"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/reddish280"
+                    android:padding="10dp"
+                    android:layout_marginLeft="38dp"
+                    android:text="Exit"
+                    android:textAlignment="center"
+                    android:textSize="18dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textStyle="bold" />
+
+
+        </LinearLayout>
+
     </LinearLayout>
+
 </RelativeLayout>

@@ -1,10 +1,11 @@
 package com.donnekt.attendanceapp.module;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
@@ -21,23 +22,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModulesLecturer extends AppCompatActivity {
+public class ModuleDetails extends AppCompatActivity {
 
     List<Module> moduleList;
-    ListView listViewModules;
+    ListView listViewMDetails;
+    Button exitDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modules_lecturer);
+        setContentView(R.layout.activity_module_details);
 
-        listViewModules = findViewById(R.id.listViewModules);
+        listViewMDetails = findViewById(R.id.listViewMDetails);
         moduleList = new ArrayList<>();
         showAllModules();
 
-
-        TextView mainTitle = findViewById(R.id.mainTitle);
-        mainTitle.setText("All modules");
+        /*findViewById(R.id.exitDetails).setOnClickListener(view -> {
+            finish();
+            startActivity(new Intent(getApplicationContext(), ModulesLecturer.class));
+        });*/
     }
 
     private void showAllModules() {
@@ -48,13 +51,15 @@ public class ModulesLecturer extends AppCompatActivity {
         Staff staffMember = SharedPrefManager.getInstance(this).getLoggedInStaff();
         int staffId = staffMember.getStaffId();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.MOD_VIEW_LECT+staffId, response -> {
+        // Getting ID shit
+        String moduleIdKey = getIntent().getStringExtra("module_id_key");
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.MOD_VIEW_ONE+moduleIdKey, response -> {
             progressBar.setVisibility(View.INVISIBLE);
-            findViewById(R.id.mainTitle).setVisibility(View.VISIBLE);
 
             try {
                 JSONObject object = new JSONObject(response);
-                JSONArray dataArray = object.getJSONArray("modulelects");
+                JSONArray dataArray = object.getJSONArray("module");
 
                 for(int i=0; i<dataArray.length(); i++) {
                     JSONObject dataObject = dataArray.getJSONObject(i);
@@ -72,8 +77,8 @@ public class ModulesLecturer extends AppCompatActivity {
                     );
 
                     moduleList.add(module);
-                    ModuleAdapterML adapter = new ModuleAdapterML(moduleList, getApplicationContext());
-                    listViewModules.setAdapter(adapter);
+                    ModuleAdapterDetail ad = new ModuleAdapterDetail(moduleList, getApplicationContext());
+                    listViewMDetails.setAdapter(ad);
                 }
 
             } catch (JSONException error) {

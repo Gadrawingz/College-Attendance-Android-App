@@ -64,11 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 default:
                     Toast.makeText(getApplicationContext(), "WRONG PAGE", Toast.LENGTH_SHORT).show();
             }
-
-
-
         }
-
 
         loginRole = findViewById(R.id.loginRole);
         exitLogin = findViewById(R.id.exitLogin);
@@ -132,10 +128,11 @@ public class LoginActivity extends AppCompatActivity {
             loginLoadingPB.setVisibility(View.GONE);
 
             try {
-                JSONObject jsonObject = new JSONObject(response);
-                if(!jsonObject.getBoolean("error")) {
-                    // If there is no shit on the way!
 
+                JSONObject jsonObject = new JSONObject(response);
+                if(jsonObject.optString("status").equals("ok")) {
+
+                    // If there is no shit on the way!
                     JSONArray staffJson = jsonObject.getJSONArray("details");
 
                     for (int k=0; k<staffJson.length(); k++) {

@@ -52,8 +52,12 @@ public class ModuleViewAll extends AppCompatActivity {
                             dataObject.getInt("module_id"),
                             dataObject.getString("module_name"),
                             dataObject.getString("module_code"),
-                            dataObject.getString("dept_id"),
-                            dataObject.getString("lecturer_id")
+                            dataObject.getInt("lecturer_id"),
+                            dataObject.getString("firstname"),
+                            dataObject.getString("lastname"),
+                            dataObject.getString("telephone"),
+                            dataObject.getString("email"),
+                            dataObject.getString("staff_role")
                     );
 
                     moduleList.add(module);

@@ -42,6 +42,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
     private ArrayList<Department> departmentArrayList;
 
     private final ArrayList<String> departments = new ArrayList<>();
+    private int selectedDept;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,21 +62,17 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-
                 //String item = (String) adapterView.getItemAtPosition(pos);
                 for (Department department : departmentArrayList) {
                     if(classDept.getSelectedItem().toString().trim().equals(department.getDepartmentName())) {
-                        //List<SPModel> labels = new ArrayList<>();
                         List<String> departs = new ArrayList<>();
-                        Toast.makeText(getApplicationContext(), String.valueOf(department.getDepartmentId()), Toast.LENGTH_SHORT).show();
+                        selectedDept = department.getDepartmentId();
                     }
                 }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
         loadAllDepartments();
@@ -130,7 +127,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
                 },
                 error -> {
                     //displaying the error in toast if occurs
-                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Network issues!", Toast.LENGTH_LONG).show();
                 });
 
         // request queue
@@ -152,7 +149,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
     private void addClassroom() {
         String name = className.getText().toString().trim();
         String level= classLevel.getSelectedItem().toString().trim();
-        String dept = classDept.getSelectedItem().toString().trim();
+        String dept = String.valueOf(selectedDept);
 
         // Validating the inputs
         if(inputsAreCorrect(name)) {
@@ -167,7 +164,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
                             e.printStackTrace();
                         }
                     },
-                    error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()) {
+                    error -> Toast.makeText(getApplicationContext(), "Network issues!", Toast.LENGTH_LONG).show()) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
