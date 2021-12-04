@@ -2,7 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:orientation="vertical"
+                android:background="@color/gray"
                 style="@style/loginParent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 tools:context=".LoginActivity">
     <ScrollView
             style="@style/parent">
@@ -18,13 +21,12 @@
 
                 <LinearLayout
                         style="@style/parent"
-                        android:background="@drawable/home_header"
                         android:orientation="vertical"
                         android:layout_weight="3">
 
                     <ImageView
                             style="@style/fittedImage"
-                            android:background="@drawable/iprc_huye_logo"></ImageView>
+                            android:background="@drawable/gradient_greenish"></ImageView>
                 </LinearLayout>
             </LinearLayout>
 

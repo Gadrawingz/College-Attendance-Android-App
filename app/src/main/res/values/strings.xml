@@ -62,6 +62,37 @@
         <item>DOQ</item>
     </array>
 
+    <array name="provinces">
+        <item>EAST</item>
+        <item>WEST</item>
+        <item>NORTH</item>
+        <item>SOUTH</item>
+    </array>
+
+    <array name="districts">
+        <item>HUYE</item>
+        <item>NYANZA</item>
+        <item>NYAMAGABE</item>
+        <item>NGOMA</item>
+    </array>
+
+    <array name="sectors">
+        <item>NGARAMA</item>
+        <item>TUMBA</item>
+        <item>GATSIBO</item>
+        <item>KAGEYO</item>
+    </array>
+
+    <array name="cells">
+        <item>KARAMBI</item>
+        <item>RANGO</item>
+    </array>
+
+    <array name="villages">
+        <item>KIYOVU</item>
+        <item>GATARE</item>
+    </array>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
@@ -90,8 +121,8 @@
     <string-array name="nav_item_activity_titles">
         <item>Home</item>
         <item>Photos</item>
-        <item>Movies</item>
         <item>Notifications</item>
+        <item>Movies</item>
         <item>Settings</item>
     </string-array>
 
@@ -107,5 +138,7 @@
     <string name="module_code">Module code...</string>
     <string name="exit_login">Exit login</string>
     <string name="add_department">Add department</string>
+    <string name="add_new_department">Add new Department</string>
+    <string name="update_department">Update Department</string>
 
 </resources>

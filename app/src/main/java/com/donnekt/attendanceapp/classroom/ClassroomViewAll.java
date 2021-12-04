@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
@@ -22,6 +23,7 @@ public class ClassroomViewAll extends AppCompatActivity {
 
     List<Classroom> classroomList;
     ListView listViewClassrooms;
+    TextView mainTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,10 @@ public class ClassroomViewAll extends AppCompatActivity {
         setContentView(R.layout.activity_classroom_view_all);
 
         listViewClassrooms = findViewById(R.id.listViewClassrooms);
+        mainTitle = findViewById(R.id.mainTitle);
         classroomList = new ArrayList<>();
+
+        mainTitle.setText("All Classrooms");
         // Method for displaying departments in the list
         showAllClassrooms();
     }

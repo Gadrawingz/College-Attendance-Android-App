@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".student.AttendanceAct">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              tools:context=".student.AttendanceAct"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/tvCMainHeader"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="STUDENT FROM THIS CLASS"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
     <ListView
             android:id="@+id/lvStudentsList"
@@ -13,9 +26,7 @@
 
     <ProgressBar android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_centerHorizontal="true"
-                 android:layout_centerVertical="true"
                  android:visibility="gone"
                  android:id="@+id/loadingProgBar"/>
 
-</RelativeLayout>
+</LinearLayout>

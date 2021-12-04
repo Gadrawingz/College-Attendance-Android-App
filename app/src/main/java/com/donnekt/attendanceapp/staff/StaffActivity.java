@@ -3,7 +3,6 @@ package com.donnekt.attendanceapp.staff;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.URLs;
-import com.donnekt.attendanceapp.admin.AdminDashboard;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +41,6 @@ public class StaffActivity extends AppCompatActivity {
 
         registerBtn.setOnClickListener(view -> registerStaffMember());
 
-        viewStaffsButton.setMovementMethod(LinkMovementMethod.getInstance());
         viewStaffsButton.setOnClickListener(v -> {
             Intent intent = new Intent(StaffActivity.this, StaffViewAll.class);
             startActivity(intent);
@@ -104,10 +101,11 @@ public class StaffActivity extends AppCompatActivity {
     private void transferDataUsingVolley(String FN, String LN, String EM, String PH, String GD, String RL, String PS) {
         loadingProgBar.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.STAFF_REGISTER, response -> {
+
             // Inside on response method we are hiding & emptying EditText
             loadingProgBar.setVisibility(View.GONE);
             Toast.makeText(StaffActivity.this, response, Toast.LENGTH_LONG).show();
-        }, error -> Toast.makeText(StaffActivity.this, error.toString(), Toast.LENGTH_LONG).show()) {
+        }, error -> Toast.makeText(StaffActivity.this, "Network error!", Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();

@@ -20,7 +20,7 @@ public class Module {
         this.moduleCode = moduleCode;
         this.lecturerId = lecturerId;
         this.lFirstName = lFName;
-        this.lLastName = lFName;
+        this.lLastName = lLName;
         this.lPhone = lPhone;
         this.lEmil = lEmail;
         this.lRole = lRole;

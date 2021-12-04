@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,8 +18,8 @@ import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.URLs;
 import com.donnekt.attendanceapp.VolleySingleton;
-import com.donnekt.attendanceapp.admin.AdminDashboard;
 import com.donnekt.attendanceapp.department.Department;
+import com.donnekt.attendanceapp.users.StaffMenus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,13 +30,14 @@ import java.util.List;
 import java.util.Map;
 
 import static android.R.layout.simple_spinner_item;
+import static com.donnekt.attendanceapp.DialogShit.exitDamnProgressDialog;
+import static com.donnekt.attendanceapp.DialogShit.showDamnProgressDialog;
 
 public class ClassroomActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView viewClassrooms, exitClassrooms;
+    TextView viewClassrooms, saveButton;
     EditText className;
     Spinner classLevel, classDept;
-    Button saveButton;
     ProgressBar isDataLoading;
 
     @SuppressWarnings("deprecation")
@@ -44,16 +47,17 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
     private final ArrayList<String> departments = new ArrayList<>();
     private int selectedDept;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroom);
 
         viewClassrooms = findViewById(R.id.tvViewClassrooms);
-        exitClassrooms = findViewById(R.id.tvExitClassrooms);
-
         className = findViewById(R.id.editClassName);
         classLevel= findViewById(R.id.spinnerClassLevel);
+        isDataLoading = findViewById(R.id.dataLoading);
+        saveButton = findViewById(R.id.buttonAddClass);
 
         // Departments should be dynamic shits
         classDept = findViewById(R.id.spinnerClassDept);
@@ -77,18 +81,14 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
 
         loadAllDepartments();
 
-        isDataLoading = findViewById(R.id.dataLoading);
-        saveButton = findViewById(R.id.buttonAddClass);
-
         // Save & View events killInQ
         saveButton.setOnClickListener(this);
         viewClassrooms.setOnClickListener(this);
-        exitClassrooms.setOnClickListener(this);
     }
 
 
     private void loadAllDepartments() {
-        showSimpleProgressDialog(this, "Loading...","Getting departments",false);
+        showDamnProgressDialog(this, "Loading...","Getting departments",false);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.DEPT_VIEW_ALL,
                 response -> {
                     Log.d("strrrrr", ">>" + response);
@@ -118,7 +118,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
                             ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(ClassroomActivity.this, simple_spinner_item, departments);
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                             classDept.setAdapter(spinnerArrayAdapter);
-                            removeSimpleProgressDialog();
+                            exitDamnProgressDialog();
                         }
 
                     } catch (JSONException e) {
@@ -136,6 +136,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
     }
 
     // This method will validate the name
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private boolean inputsAreCorrect(String name) {
         if (name.isEmpty()) {
             className.setError("Please enter class name");
@@ -146,6 +147,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
     }
 
     // In this method we will do the create operation
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private void addClassroom() {
         String name = className.getText().toString().trim();
         String level= classLevel.getSelectedItem().toString().trim();
@@ -178,7 +180,7 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
@@ -193,50 +195,6 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
             case R.id.tvViewClassrooms:
                 startActivity(new Intent(this, ClassroomViewAll.class));
                 break;
-
-            // case: click to quit departments
-            case R.id.tvExitClassrooms:
-                startActivity(new Intent(this, AdminDashboard.class));
-                break;
-        }
-    }
-
-
-    public static void removeSimpleProgressDialog() {
-        try {
-            if (mProgressDialog != null) {
-                if (mProgressDialog.isShowing()) {
-                    mProgressDialog.dismiss();
-                    mProgressDialog = null;
-                }
-            }
-        } catch (IllegalArgumentException ie) {
-            ie.printStackTrace();
-
-        } catch (RuntimeException re) {
-            re.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void showSimpleProgressDialog(Context context, String title, String msg, boolean isCancelable) {
-        try {
-            if (mProgressDialog == null) {
-                mProgressDialog = ProgressDialog.show(context, title, msg);
-                mProgressDialog.setCancelable(isCancelable);
-            }
-
-            if (!mProgressDialog.isShowing()) {
-                mProgressDialog.show();
-            }
-
-        } catch (IllegalArgumentException ie) {
-            ie.printStackTrace();
-        } catch (RuntimeException re) {
-            re.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

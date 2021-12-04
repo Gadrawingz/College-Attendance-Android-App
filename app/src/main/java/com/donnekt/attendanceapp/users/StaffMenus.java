@@ -12,8 +12,6 @@ import com.donnekt.attendanceapp.LoginActivity;
 import com.donnekt.attendanceapp.MainActivity;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.SharedPrefManager;
-import com.donnekt.attendanceapp.admin.AdminDashboard;
-import com.donnekt.attendanceapp.admin.AdminSettings;
 import com.donnekt.attendanceapp.classroom.ClassroomActivity;
 import com.donnekt.attendanceapp.classroom.ClassroomViewAll;
 import com.donnekt.attendanceapp.department.DepartmentActivity;
@@ -33,7 +31,6 @@ public class StaffMenus extends AppCompatActivity implements View.OnClickListene
 
     LinearLayout layoutDas, layoutHod, layoutDoq, layoutLecturer;
     TextView loggedInRole, tvGeneralLogout;
-    // ImageView backToDash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,30 +63,23 @@ public class StaffMenus extends AppCompatActivity implements View.OnClickListene
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             Staff activeUser = SharedPrefManager.getInstance(this).getLoggedInStaff();
             String sRole = activeUser.getRole();
-            // String sRole = getIntent().getStringExtra("sent_role");
-            // String sRole = "HOD";
             loggedInRole.setText(sRole);
 
             switch (sRole) {
                 case "DAS":
-                    // Hiding and Showing shits accordingly
                     layoutDas.setVisibility(VISIBLE);
-                    Toast.makeText(getApplicationContext(), sRole, Toast.LENGTH_LONG).show();
                     break;
 
                 case "HOD":
                     layoutHod.setVisibility(VISIBLE);
-                    Toast.makeText(getApplicationContext(), sRole, Toast.LENGTH_LONG).show();
                     break;
 
                 case "DOQ":
                     layoutDoq.setVisibility(VISIBLE);
-                    Toast.makeText(getApplicationContext(), sRole, Toast.LENGTH_LONG).show();
-
                     break;
+
                 case "LECTURER":
                     layoutLecturer.setVisibility(VISIBLE);
-                    Toast.makeText(getApplicationContext(), sRole, Toast.LENGTH_LONG).show();
                     break;
             }
 
@@ -145,6 +135,14 @@ public class StaffMenus extends AppCompatActivity implements View.OnClickListene
         findViewById(R.id.add_student).setOnClickListener(v -> startActivity(new Intent(StaffMenus.this, StudentActivity.class)));
 
         findViewById(R.id.view_students).setOnClickListener(v -> startActivity(new Intent(StaffMenus.this, StudentViewAll.class)));
+
+
+
+        findViewById(R.id.hod_view_students).setOnClickListener(v -> startActivity(new Intent(StaffMenus.this, StudentViewAll.class)));
+
+        findViewById(R.id.hod_view_classes).setOnClickListener(v -> startActivity(new Intent(StaffMenus.this, ClassroomViewAll.class)));
+
+        findViewById(R.id.hod_assign_modules).setOnClickListener(v -> startActivity(new Intent(StaffMenus.this, ModuleViewAll.class)));
 
 
     }

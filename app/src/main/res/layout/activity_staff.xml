@@ -16,7 +16,6 @@
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="true">
 
-
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -97,8 +96,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:textSize="20dp"
-                                android:text="Staff member sex" />
+                                android:layout_marginBottom="5dp"
+                                android:textSize="18dp"
+                                android:textColor="@color/blueShit1"
+                                android:textStyle="bold"
+                                android:text="Choose gender" />
 
                             <RadioGroup
                                     android:id="@+id/radioGender"
@@ -126,7 +128,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:textSize="20dp"
+                                android:textSize="18dp"
+                                android:textColor="@color/blueShit1"
+                                android:textStyle="bold"
                                 android:text="Select staff role" />
                             <Spinner
                                     android:id="@+id/spinnerRoles"
@@ -147,17 +151,37 @@
                                     android:inputType="textPassword"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <Button
-                                android:id="@+id/registerButton"
-                                style="@style/loginButton"
-                                android:layout_gravity="center"
-                                android:text="Register"/>
 
-                        <Button
-                                android:id="@+id/viewStaffsButton"
-                                style="@style/loginButton"
-                                android:layout_gravity="center"
-                                android:text="View Staffs"/>
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal">
+
+                            <Button
+                                    android:id="@+id/registerButton"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:padding="1.5dp"
+                                    android:layout_margin="5dp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold|normal"
+                                    android:background="@drawable/border_bluish1"
+                                    android:text="Save" />
+
+                            <Button
+                                    android:id="@+id/viewStaffsButton"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:padding="1.5dp"
+                                    android:layout_margin="5dp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:background="@drawable/border_bluish1"
+                                    android:text="View"/>
+                        </LinearLayout>
 
                         <ProgressBar android:layout_width="match_parent"
                                      android:layout_height="wrap_content"

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".module.ModulesLecturer">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              tools:context=".module.ModulesLecturer"
+              android:orientation="vertical">
 
     <TextView
             android:layout_height="wrap_content"
@@ -29,4 +30,4 @@
                  android:visibility="gone"
                  android:id="@+id/loadingProgBar"/>
 
-</RelativeLayout>
+</LinearLayout>

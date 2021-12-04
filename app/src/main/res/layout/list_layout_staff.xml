@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="horizontal"
-              android:padding="8dp">
+              android:padding="5dp">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -16,94 +16,65 @@
             android:orientation="vertical">
 
         <TextView
-                android:id="@+id/tvStaffFirst"
+                android:id="@+id/tvStaffFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-
-        <TextView
-                android:id="@+id/tvStaffLast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-
-        <TextView
-                android:id="@+id/tvStaffEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-
-        <TextView
-                android:id="@+id/tvStaffPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
         <TextView
                 android:id="@+id/tvStaffRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="1dp"
+                android:padding="8dp"
                 android:layout_marginTop="5dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-
-        <TextView
-                android:id="@+id/tvStaffPass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-
-        <TextView
-                android:id="@+id/tvRegDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:background="@drawable/border_super"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:textColor="@color/black" />
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
             <Button
-                    android:id="@+id/linkViewStaffDetails"
+                    android:id="@+id/buttonStaffDetails"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:padding="1.5dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/remove_bg"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold|normal"
+                    android:background="@drawable/border_bluish1"
                     android:text="Details" />
 
             <Button
-                    android:id="@+id/buttonDeleteStaff"
+                    android:id="@+id/buttonDisableStaff"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:padding="1.5dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/remove_bg"
-                    android:text="Delete" />
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:background="@drawable/remove_bg"/>
+
+            <Button
+                    android:id="@+id/buttonEnableStaff"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:padding="1.5dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:background="@drawable/gradient_green"/>
 
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

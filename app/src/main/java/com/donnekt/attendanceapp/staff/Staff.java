@@ -3,7 +3,7 @@ package com.donnekt.attendanceapp.staff;
 // Model class
 public class Staff {
     int staffId;
-    String firstname, lastname, email, telephone, gender, role, password, regDate;
+    String firstname, lastname, email, telephone, gender, role, status, password, regDate;
 
     // Constructor with two parameters name and password
     public Staff(String email, String password) {
@@ -12,13 +12,15 @@ public class Staff {
     }
 
     // Parameter constructor containing all parameters
-    public Staff(int staffId, String firstname, String lastname, String email, String telephone, String role, String password, String regDate) {
+    public Staff(int staffId, String firstname, String lastname, String email, String telephone, String gender, String role, String status, String password, String regDate) {
         this.staffId = staffId;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email    = email;
         this.telephone = telephone;
+        this.gender = gender;
         this.role = role;
+        this.status = status;
         this.password = password;
         this.regDate = regDate;
     }
@@ -130,4 +132,11 @@ public class Staff {
         this.regDate = regDate;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

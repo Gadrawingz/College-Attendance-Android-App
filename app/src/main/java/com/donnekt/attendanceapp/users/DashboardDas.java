@@ -8,43 +8,59 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.donnekt.attendanceapp.*;
-import com.donnekt.attendanceapp.admin.AdminDashboard;
 import com.donnekt.attendanceapp.staff.Staff;
-import com.donnekt.attendanceapp.staff.StaffDashboard;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static com.donnekt.attendanceapp.DialogShit.exitDamnProgressDialog;
 import static com.donnekt.attendanceapp.DialogShit.showDamnProgressDialog;
 
 public class DashboardDas extends AppCompatActivity {
 
-    TextView dashboardHeader, staffCounts, studentCounts, deptCounts, classCounts;
-
+    TextView tvCurrentDate, boxInHeader, topDHeader, goToProfile,
+            card1LowerFirst, card1UpperFirst, card2LowerFirst, card2UpperFirst,
+            card3LowerFirst, card3UpperFirst, card4LowerFirst, card4UpperFirst, manageActs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_das);
 
-        staffCounts = findViewById(R.id.staffCounts);
-        studentCounts = findViewById(R.id.studentCounts);
-        deptCounts = findViewById(R.id.deptCounts);
-        classCounts = findViewById(R.id.classCounts);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        String todayDate = dateFormat.format(calendar.getTime());
 
+        card1LowerFirst = findViewById(R.id.card1LowerFirst);
+        card1UpperFirst = findViewById(R.id.card1UpperFirst);
 
-        dashboardHeader = findViewById(R.id.dashboard_header);
+        card2LowerFirst = findViewById(R.id.card2LowerFirst);
+        card2UpperFirst = findViewById(R.id.card2UpperFirst);
+
+        card3LowerFirst = findViewById(R.id.card3LowerFirst);
+        card3UpperFirst = findViewById(R.id.card3UpperFirst);
+
+        card4LowerFirst = findViewById(R.id.card4LowerFirst);
+        card4UpperFirst = findViewById(R.id.card4UpperFirst);
+
+        manageActs = findViewById(R.id.manageActs);
+        goToProfile = findViewById(R.id.goToProfile);
+
+        tvCurrentDate = findViewById(R.id.tvCurrentDate);
+        boxInHeader = findViewById(R.id.boxInHeader);
+        topDHeader = findViewById(R.id.topDHeader);
+
+        tvCurrentDate.setText("Today's: "+todayDate);
 
         // Use this from Dialog class
-        //getAllCounts();
+        getAllCounts();
 
         // Getting shit done!
         if(SharedPrefManager.getInstance(this).isLoggedIn()) {
 
             Staff staffMember = SharedPrefManager.getInstance(this).getLoggedInStaff();
             String activeRole = staffMember.getRole();
-
-            dashboardHeader.setText(activeRole+": "+staffMember.getFirstname()+" "+staffMember.getLastname());
-            //Toast.makeText(getApplicationContext(), staffMember.getFirstname(), Toast.LENGTH_SHORT).show();
 
             findViewById(R.id.manageActs).setOnClickListener(v -> {
                 String sentWord = activeRole;
@@ -53,12 +69,15 @@ public class DashboardDas extends AppCompatActivity {
                 startActivity(i);
             });
 
-            findViewById(R.id.tvSettings).setOnClickListener(v -> {
+            findViewById(R.id.goToProfile).setOnClickListener(v -> {
                 String sentWord = activeRole;
-                Intent i = new Intent(DashboardDas.this, StaffDashboard.class);
+                Intent i = new Intent(DashboardDas.this, ProfileActivity.class);
                 i.putExtra("sent_role", sentWord);
                 startActivity(i);
             });
+
+
+
 
 
         } else {
@@ -71,13 +90,14 @@ public class DashboardDas extends AppCompatActivity {
     }
 
     private void getAllCounts() {
-        showDamnProgressDialog(this, "Loading...","Retrieving data...",false);
+        showDamnProgressDialog(this, "Loading...","Retrieving data...", true);
 
         StringRequest countDeptReq = new StringRequest(Request.Method.GET, URLs.DEPT_VIEW_ALL, response -> {
             try {
                 JSONObject object = new JSONObject(response);
                 //Damn it!
-                deptCounts.setText(object.optString("counts"));
+                card1LowerFirst.setText("Departments");
+                card1UpperFirst.setText(object.optString("counts"));
             } catch (JSONException error) {
                 error.printStackTrace();
             }
@@ -88,19 +108,21 @@ public class DashboardDas extends AppCompatActivity {
             try {
                 JSONObject object = new JSONObject(response);
                 // Push shit!
-                staffCounts.setText(object.optString("counts"));
+                card2LowerFirst.setText("Staffs");
+                card2UpperFirst.setText(object.optString("counts"));
                 exitDamnProgressDialog();
             } catch (JSONException error) {
                 error.printStackTrace();
             }
-        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        }, error -> Toast.makeText(getApplicationContext(), "Network problem!", Toast.LENGTH_SHORT).show());
         VolleySingleton.getInstance(this).addToRequestQueue(countStaffReq);
 
         StringRequest countClassReq = new StringRequest(Request.Method.GET, URLs.CLASS_VIEW_ALL, response -> {
             try {
                 JSONObject object = new JSONObject(response);
                 // Push shit!
-                classCounts.setText(object.optString("counts"));
+                card3LowerFirst.setText("Classes");
+                card3UpperFirst.setText(object.optString("counts"));
                 exitDamnProgressDialog();
             } catch (JSONException error) {
                 error.printStackTrace();
@@ -112,7 +134,8 @@ public class DashboardDas extends AppCompatActivity {
             try {
                 JSONObject object = new JSONObject(response);
                 // Push shit!
-                studentCounts.setText(object.optString("counts"));
+                card4LowerFirst.setText("Students");
+                card4UpperFirst.setText(object.optString("counts"));
                 exitDamnProgressDialog();
             } catch (JSONException error) {
                 error.printStackTrace();

@@ -50,12 +50,25 @@ public class DepartmentAdapter extends ArrayAdapter<Department> {
 
         // Getting record of the specified position
         Department department = departmentList.get(position);
-        // Adding data to views Constructor class
-        textViewDNAME.setText(department.getDepartmentName());
-        textViewDCAPT.setText(department.getDepartmentCaption());
 
-        // D&U-SHIT
-        buttonEdit.setOnClickListener(dView -> mCtx.startActivity(new Intent(mCtx.getApplicationContext(), UpdatingActivity.class)));
+        String D_ID= String.valueOf(department.getDepartmentId());
+        String D_NM= String.valueOf(department.getDepartmentName());
+        String D_CP = String.valueOf(department.getDepartmentCaption());
+
+        textViewDNAME.setText(D_NM);
+        textViewDCAPT.setText(D_CP);
+
+        // UPDATE SHIT
+        buttonEdit.setOnClickListener(view -> {
+            Intent g = new Intent(mCtx.getApplicationContext(), DepartmentUpdate.class);
+            g.putExtra("d_id_key", D_ID);
+            g.putExtra("d_name_key", D_NM);
+            g.putExtra("d_caption_key", D_CP);
+            mCtx.startActivity(g);
+            g.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        });
+
+        // DELETE SHIT:
         buttonDelete.setOnClickListener(view -> {
             deleteProgBar.setVisibility(View.VISIBLE);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.DEPT_DELETE+department.getDepartmentId(),
@@ -69,8 +82,9 @@ public class DepartmentAdapter extends ArrayAdapter<Department> {
                             e.printStackTrace();
                         }
                     },
-                    error -> Toast.makeText(mCtx.getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()) {
+                    error -> Toast.makeText(mCtx.getApplicationContext(), "Network Issues", Toast.LENGTH_SHORT).show()) {
             };
+
             RequestQueue requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
             requestQueue.add(stringRequest);
         });

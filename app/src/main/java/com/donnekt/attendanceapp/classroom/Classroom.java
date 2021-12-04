@@ -2,8 +2,9 @@ package com.donnekt.attendanceapp.classroom;
 
 public class Classroom {
 
-    int classroomId, refDeptId;
+    int classroomId, refDeptId, refModuleId;
     String classroomName, classroomLevel, department, refDeptName, refDeptCaption;
+    String moduleName, moduleCode;
 
     // Const without ID:
     public Classroom(String className, String classLevel, String department) {
@@ -29,11 +30,23 @@ public class Classroom {
         this.refDeptCaption= refCaption;
     }
 
+    public Classroom(int classId, String className, String classLevel, int moduleId, String moduleName, String moduleCode, String deptName, String deptCaption) {
+        this.classroomId = classId;
+        this.classroomName = className;
+        this.classroomLevel = classLevel;
+        this.refModuleId = moduleId;
+        this.moduleName = moduleName;
+        this.moduleCode = moduleCode;
+        this.refDeptName= deptName;
+        this.refDeptCaption= deptCaption;
+    }
+
+    public Classroom() { }
+
     // (1)
     public int getClassroomId() {
         return classroomId;
     }
-
     public void setClassroomId(int classroomId) {
         this.classroomId = classroomId;
     }
@@ -89,5 +102,31 @@ public class Classroom {
 
     public void setRefDeptCaption(String refDeptCaption) {
         this.refDeptCaption = refDeptCaption;
+    }
+
+
+    // Additional stuffs
+    public int getRefModuleId() {
+        return refModuleId;
+    }
+
+    public void setRefModuleId(int refModuleId) {
+        this.refModuleId = refModuleId;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
     }
 }

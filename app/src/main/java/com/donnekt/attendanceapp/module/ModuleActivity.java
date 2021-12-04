@@ -3,10 +3,12 @@ package com.donnekt.attendanceapp.module;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,7 +33,6 @@ import static android.R.layout.simple_spinner_item;
 import static com.donnekt.attendanceapp.DialogShit.exitDamnProgressDialog;
 import static com.donnekt.attendanceapp.DialogShit.showDamnProgressDialog;
 import static com.donnekt.attendanceapp.Methods.*;
-
 
 public class ModuleActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -110,7 +111,6 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                             lecturerId.setAdapter(spinnerArrayAdapter);
                             exitDamnProgressDialog();
-
                         }
 
                     } catch (JSONException e) {
@@ -125,6 +125,7 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
 
 
     // This method will validate the name and caption
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private boolean inputsAreCorrect(String name, String code) {
         if (name.isEmpty()) {
             moduleName.setError("Please enter module name");

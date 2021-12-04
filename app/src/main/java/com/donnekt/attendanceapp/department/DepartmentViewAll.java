@@ -4,14 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.URLs;
 import com.donnekt.attendanceapp.VolleySingleton;
@@ -26,6 +23,7 @@ public class DepartmentViewAll extends AppCompatActivity {
 
     List<Department> departmentList;
     ListView listViewDepartments;
+    TextView mainTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +31,10 @@ public class DepartmentViewAll extends AppCompatActivity {
         setContentView(R.layout.activity_department_view_all);
 
         listViewDepartments = findViewById(R.id.listViewDepartments);
+        mainTitle = findViewById(R.id.mainTitle);
         departmentList = new ArrayList<>();
         loadDepartments();
+        mainTitle.setText("All departments");
     }
 
     private void loadDepartments() {
@@ -63,7 +63,7 @@ public class DepartmentViewAll extends AppCompatActivity {
             } catch (JSONException error) {
                 error.printStackTrace();
             }
-        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        }, error -> Toast.makeText(getApplicationContext(), "Network Issues", Toast.LENGTH_SHORT).show());
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

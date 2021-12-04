@@ -1,9 +1,12 @@
 package com.donnekt.attendanceapp.department;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -11,7 +14,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.URLs;
 import com.donnekt.attendanceapp.VolleySingleton;
-import com.donnekt.attendanceapp.admin.AdminDashboard;
+import com.donnekt.attendanceapp.users.StaffMenus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,6 +48,7 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
     }
 
     // This method will validate the name and caption
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private boolean inputsAreCorrect(String name, String caption) {
         if (name.isEmpty()) {
             deptName.setError("Please enter a name");
@@ -61,6 +65,7 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
     }
 
     // In this method we will do the create operation
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private void addDepartment() {
         String name = deptName.getText().toString().trim();
         String caption = deptCaption.getText().toString().trim();
@@ -80,7 +85,7 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
                             e.printStackTrace();
                         }
                     },
-                    error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()) {
+                    error -> Toast.makeText(getApplicationContext(), "Network Issues", Toast.LENGTH_SHORT).show()) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
@@ -93,6 +98,8 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    @SuppressLint("NewApi")
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -109,7 +116,7 @@ public class DepartmentActivity extends AppCompatActivity implements View.OnClic
 
             // case: click to quit depts
             case R.id.tvExitDepartments:
-                startActivity(new Intent(this, AdminDashboard.class));
+                startActivity(new Intent(this, StaffMenus.class));
                 break;
         }
     }

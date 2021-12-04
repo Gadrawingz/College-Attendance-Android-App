@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                style="@style/loginParent"
+                tools:context=".users.UpdateActivity">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:background="@color/blackish401">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp">
+
+                <androidx.cardview.widget.CardView
+                        style="@style/mainCard"
+                        app:cardCornerRadius="@dimen/loginCardRadius"
+                        android:elevation="5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/mainViewsMarginTop"
+                        android:layout_marginBottom="@dimen/mainViewsMarginBottom"
+                        android:background="@color/whiteCardColor">
+
+                    <LinearLayout
+                            style="@style/linearParent"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/mainViewsMargin">
+
+                        <TextView
+                                style="@style/headerTextPrimary"
+                                android:text="CREATE ACCOUNT"
+                                android:layout_marginTop="10dp"/>
+
+                        <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_gravity="center"
+                                android:orientation="horizontal"
+                                android:padding="2dp">
+                            <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="140dp"
+                                    android:layout_marginTop="@dimen/textMarginTop">
+
+                                <EditText
+                                        android:id="@+id/editTextFName"
+                                        style="@style/modifiedEditText"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:hint="First name"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="140dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="@dimen/textMarginTop">
+
+                                <EditText
+                                        android:id="@+id/editTextLName"
+                                        style="@style/modifiedEditText"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:hint="Last name"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <!-- Gender -->
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_horizontal"
+                                android:layout_gravity="center_horizontal"
+                                android:textSize="18dp"
+                                android:text="Farmer sex"/>
+
+                        <RadioGroup
+                                android:id="@+id/radioGender"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:gravity="center_horizontal"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
+                            <RadioButton
+                                    android:id="@+id/radioButtonMale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:layout_marginRight="20dp"
+                                    android:text="Male"/>
+
+                            <RadioButton
+                                    android:id="@+id/radioButtonFemale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Female"/>
+                        </RadioGroup>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+
+                            <EditText
+                                    android:id="@+id/editTextDob"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="textCapCharacters"
+                                    android:maxLines="1"
+                                    android:hint="Date of Birth"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+
+                            <EditText
+                                    android:id="@+id/editTextNID"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1"
+                                    android:hint="National ID"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+                            <EditText
+                                    android:id="@+id/editTextPhone"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="phone"
+                                    android:maxLines="1"
+                                    android:hint="Phone number"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/textMarginTop">
+                            <EditText
+                                    android:id="@+id/editTextArea"
+                                    style="@style/modifiedEditText"
+                                    android:inputType="phone"
+                                    android:maxLines="1"
+                                    android:hint="Enter Land area"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Provinces -->
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:textSize="18dp"
+                                android:text="Select province"/>
+                        <Spinner
+                                android:id="@+id/province"
+                                android:layout_width="match_parent"
+                                android:layout_height="29dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="14dp"
+                                android:entries="@array/provinces"
+                                android:spinnerMode="dropdown"
+                                android:maxLines="1"/>
+
+                        <!-- District -->
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:textSize="18dp"
+                                android:text="Select district"/>
+                        <Spinner
+                                android:id="@+id/district"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="14dp"
+                                android:entries="@array/districts"
+                                android:spinnerMode="dropdown"
+                                android:maxLines="1"/>
+
+                        <!-- Sectors -->
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:textSize="18dp"
+                                android:text="Select sector"/>
+                        <Spinner
+                                android:id="@+id/sector"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="14dp"
+                                android:entries="@array/sectors"
+                                android:spinnerMode="dropdown"
+                                android:maxLines="1"/>
+
+                        <!-- Cells -->
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:textSize="18dp"
+                                android:text="Select cell"/>
+                        <Spinner
+                                android:id="@+id/cell"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="14dp"
+                                android:entries="@array/sectors"
+                                android:spinnerMode="dropdown"
+                                android:maxLines="1"/>
+
+                        <!-- Village -->
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:textSize="18dp"
+                                android:text="Select village"/>
+                        <Spinner
+                                android:id="@+id/village"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="14dp"
+                                android:entries="@array/villages"
+                                android:spinnerMode="dropdown"
+                                android:maxLines="1"/>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal">
+
+                            <Button
+                                    android:id="@+id/registerButton"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:padding="1.5dp"
+                                    android:layout_margin="5dp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold|normal"
+                                    android:background="@drawable/border_bluish1"
+                                    android:text="Register"/>
+
+                            <Button
+                                    android:id="@+id/viewStudentsButton"
+                                    android:layout_width="140dp"
+                                    android:layout_height="wrap_content"
+                                    android:padding="1.5dp"
+                                    android:layout_margin="5dp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:background="@drawable/border_bluish1"
+                                    android:text="View"/>
+                        </LinearLayout>
+
+                        <ProgressBar android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_gravity="center"
+                                     android:layout_centerHorizontal="true"
+                                     android:layout_centerVertical="true"
+                                     android:visibility="gone"
+                                     android:id="@+id/loadingProgress"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

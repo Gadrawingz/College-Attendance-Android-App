@@ -68,7 +68,10 @@ public class ModuleViewAll extends AppCompatActivity {
             } catch (JSONException error) {
                 error.printStackTrace();
             }
-        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        }, error -> Toast.makeText(getApplicationContext(), "Network error!", Toast.LENGTH_SHORT).show());
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+
+
+
 }

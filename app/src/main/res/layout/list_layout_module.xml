@@ -33,6 +33,16 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="10dp"/>
 
+        <TextView
+                android:id="@+id/tvModuleClasses"
+                android:textSize="12sp"
+                android:textColor="@color/imageRoseColor4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
+
         <LinearLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -61,7 +71,7 @@
             android:orientation="vertical">
 
         <Button
-                android:id="@+id/buttonEditMod"
+                android:id="@+id/buttonManageMod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="1.5dp"
@@ -71,7 +81,7 @@
                 android:background="@color/blueShit1"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="5dp"
-                android:text="Edit" />
+                android:text="Manage"/>
 
         <Button
                 android:id="@+id/buttonDeleteMod"

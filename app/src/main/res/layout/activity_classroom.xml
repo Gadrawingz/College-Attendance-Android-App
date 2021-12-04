@@ -10,114 +10,150 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:orientation="vertical"
-            android:background="@drawable/border_green"
+            android:background="@drawable/border_super_white"
             android:layout_margin="5dp"
             android:padding="16dp">
+
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="Add a new classroom"
+                android:layout_marginBottom="20dp"
+                android:padding="14dp"
+                android:text="Add new classroom"
                 android:textStyle="bold"
                 android:textAlignment="center"
+                android:textColor="@color/white"
+                android:background="@drawable/top_bg_round"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:gravity="center_horizontal"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:textColor="@color/bicColorB"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Department Name"/>
 
         <EditText
                 android:id="@+id/editClassName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Example: ICTL3a" />
+                android:layout_height="?actionBarSize"
+                android:textColorHint="@color/blueShit1"
+                android:background="@drawable/rounded_white"
+                android:hint="ICTL3a"
+                android:textColor="@color/black"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:ems="10"
+                android:textSize="15sp"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"/>
 
 
-        <!-- levels -->
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="6dp"
-                android:text="Select level" />
+                android:paddingBottom="5dp"
+                android:textColor="@color/bicColorB"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Select level"/>
 
         <Spinner
                 android:id="@+id/spinnerClassLevel"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/real_spinner"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="12dp"
+                android:layout_height="?actionBarSize"
+                android:textColorHint="@color/blueShit1"
+                android:background="@drawable/rounded_white"
+                android:textColor="@color/black"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:ems="10"
+                android:textSize="15sp"
+                android:inputType="text"
                 android:entries="@array/class_levels"
-                android:spinnerMode="dropdown" />
+                android:spinnerMode="dropdown"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"/>
 
-        <!-- department -->
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="6dp"
-                android:text="Select department" />
+                android:paddingBottom="5dp"
+                android:textColor="@color/bicColorB"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Select department"/>
 
         <Spinner
                 android:id="@+id/spinnerClassDept"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/real_spinner"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="12dp"
-                android:spinnerMode="dropdown"/>
+                android:layout_height="?actionBarSize"
+                android:textColorHint="@color/blueShit1"
+                android:background="@drawable/rounded_white"
+                android:textColor="@color/black"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:ems="10"
+                android:textSize="15sp"
+                android:inputType="text"
+                android:entries="@array/class_levels"
+                android:spinnerMode="dropdown"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"/>
 
-        <Button
-                android:id="@+id/buttonAddClass"
-                android:layout_width="90dp"
+
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:padding="6dp"
-                android:text="Save" />
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/buttonAddClass"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold|normal"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:background="@drawable/border_bluish1"
+                    android:text="Register"/>
+
+            <TextView
+                    android:id="@+id/tvViewClassrooms"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/gradient_green"
+                    android:text="View"/>
+        </LinearLayout>
 
         <ProgressBar android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:visibility="gone"
                      android:id="@+id/dataLoading"/>
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_blue1"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-            <TextView
-                    android:id="@+id/tvViewClassrooms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/bluish400"
-                    android:padding="10dp"
-                    android:text="View"
-                    android:textAlignment="center"
-                    android:textSize="18dp"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:textStyle="bold" />
-
-            <TextView
-                    android:id="@+id/tvExitClassrooms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/reddish280"
-                    android:padding="10dp"
-                    android:layout_marginLeft="38dp"
-                    android:text="Exit"
-                    android:textAlignment="center"
-                    android:textSize="18dp"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:textStyle="bold" />
-
-
-        </LinearLayout>
 
     </LinearLayout>
 

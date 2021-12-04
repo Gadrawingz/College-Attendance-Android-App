@@ -2,7 +2,6 @@
 <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".users.StaffMenus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,9 +27,11 @@
                     android:id="@+id/backToDash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/backarrow"
-                    android:layout_centerVertical="true"
-                    android:tint="#000000" />
+                    android:src="@drawable/ic_close_menu_white"
+                    android:background="@color/blueShit1"
+                    android:padding="3dp"
+                    android:layout_margin="1.5dp"
+                    android:layout_centerVertical="true"/>
 
             <TextView
                     android:id="@+id/dashboard_header"
@@ -39,7 +40,8 @@
                     android:drawablePadding="4dp"
                     android:layout_height="wrap_content"
                     android:textAlignment="textEnd"
-                    android:textColor="#3F3E3E"
+                    android:textColor="@color/blueShit2"
+                    android:textStyle="bold"
                     android:textSize="18sp"
                     android:fontFamily="@font/baloo2_semibold"
                     android:gravity="end|right"/>
@@ -58,15 +60,23 @@
                     android:text="Departments"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_notifications"
+                    android:drawableLeft="@drawable/ic_add_circle"
                     android:id="@+id/add_department"
                     android:text="@string/add_department"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_password"
+                    android:drawableLeft="@drawable/ic_list_view_green"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
                     android:id="@+id/view_departs"
                     android:text="View all"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/bluish400"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="3dp"/>
+
 
             <!-- Classrooms -->
             <TextView
@@ -74,15 +84,22 @@
                     android:text="Classrooms"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_profile"
+                    android:drawableLeft="@drawable/ic_classroom_pink"
                     android:id="@+id/add_classroom"
                     android:text="Add class"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_languages"
+                    android:drawableLeft="@drawable/ic_list_view_green"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
                     android:id="@+id/view_classes"
                     android:text="View classes"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/bluish400"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="3dp"/>
 
 
             <!-- Staff members -->
@@ -91,15 +108,22 @@
                     android:text="Staff Members"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_profile"
+                    android:drawableLeft="@drawable/ic_group_add_green"
                     android:id="@+id/add_staff"
                     android:text="Register new"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_languages"
+                    android:drawableLeft="@drawable/ic_view_list_bulleted"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
                     android:id="@+id/view_staff"
                     android:text="View staffs"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/bluish400"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="3dp"/>
 
             <!-- Modules -->
             <TextView
@@ -107,15 +131,22 @@
                     android:text="Modules (courses)"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_profile"
+                    android:drawableLeft="@drawable/ic_modules"
                     android:id="@+id/add_module"
                     android:text="Register new"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_languages"
+                    android:drawableLeft="@drawable/ic_view_add_check"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="3dp"
                     android:id="@+id/view_module"
                     android:text="View modules"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/bluish400"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="3dp"/>
 
             <!-- Student section -->
             <TextView
@@ -123,12 +154,12 @@
                     android:text="Students"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_profile"
+                    android:drawableLeft="@drawable/ic_account_many"
                     android:id="@+id/add_student"
                     android:text="Register new"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_password"
+                    android:drawableLeft="@drawable/ic_view_list_bulleted"
                     android:layout_marginTop="10dp"
                     android:id="@+id/view_students"
                     android:text="View students"/>
@@ -147,14 +178,14 @@
             <!-- Department -->
             <TextView
                     style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Departments"/>
+                    android:text="Responsibilities"/>
 
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_password"
+                    android:drawableLeft="@drawable/ic_add_circle"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/view_departs_hod"
-                    android:text="View all"/>
+                    android:id="@+id/hod_assign_modules"
+                    android:text="Assign modules"/>
 
             <!-- Classrooms -->
             <TextView
@@ -162,9 +193,9 @@
                     android:text="Classrooms"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_languages"
+                    android:drawableLeft="@drawable/ic_view_eye"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/view_classes_hod"
+                    android:id="@+id/hod_view_classes"
                     android:text="View classes"/>
 
             <!-- Student section -->
@@ -173,35 +204,58 @@
                     android:text="Students"/>
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_password"
+                    android:drawableLeft="@drawable/ic_view_list_bulleted"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/view_students_hod"
+                    android:id="@+id/hod_view_students"
                     android:text="View students"/>
+
+            <!-- Attendance section -->
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Attendance"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_list_view_green"
+                android:layout_marginTop="10dp"
+                android:id="@+id/hod_view_attendance"
+                android:text="View attendance"/>
+
         </LinearLayout>
 
         <LinearLayout
-                android:id="@+id/layoutDoq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            android:id="@+id/layoutDoq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                    style="@style/viewParent.headerText"
-                    android:id="@+id/dashboard_header_lecturer"/>
-
+                style="@style/viewParent.headerText"
+                android:id="@+id/dashboard_header_doq"/>
             <!-- Department -->
             <TextView
-                    style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Attendance"/>
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Responsibilities"/>
+
+            <!-- Section -->
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="View"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_student"
+                android:layout_marginTop="10dp"
+                android:id="@+id/view_eligibility"
+                android:text="Eligible students"/>
 
             <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_edit_password"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/att_modules"
-                    android:text="View all"/>
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_list_view_green"
+                android:layout_marginTop="10dp"
+                android:id="@+id/view_not_eligible"
+                android:text="Not Eligible"/>
 
         </LinearLayout>
+
 
     <!-- Lecturer Shit -->
     <LinearLayout
@@ -209,220 +263,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <LinearLayout
-                android:id="@+id/layoutLecturerS1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/border_black4"
-                android:padding="3dp"
-                android:weightSum="2">
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/lecturerCard"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:clickable="true"
-                    android:elevation="12dp"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp" tools:targetApi="lollipop">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <ImageView
-                            android:id="@+id/image_view21"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_edit_password"
-                            app:layout_constraintBottom_toTopOf="@+id/textView21"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                            android:id="@+id/textView21"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="LECTURER"
-                            android:textAllCaps="true"
-                            android:textColor="@color/greenDarker"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/image_view21" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/doqCard"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:clickable="true"
-                    android:elevation="12dp"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp" tools:targetApi="lollipop">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <ImageView
-                            android:id="@+id/image_view22"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_edit_password"
-                            app:layout_constraintBottom_toTopOf="@+id/textView22"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="D.O.Q"
-                            android:textAllCaps="true"
-                            android:textColor="@color/greenDarker"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/image_view22" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-        <LinearLayout
-                android:id="@+id/layoutLecturerS2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/border_black4"
-                android:padding="3dp"
-                android:weightSum="2">
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/lecturerCard2"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:clickable="true"
-                    android:elevation="12dp"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp" tools:targetApi="lollipop">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <ImageView
-                            android:id="@+id/image_view21b"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_edit_password"
-                            app:layout_constraintBottom_toTopOf="@+id/textView21b"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                            android:id="@+id/textView21b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="LECTURER"
-                            android:textAllCaps="true"
-                            android:textColor="@color/greenDarker"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/image_view21b" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/doqCard2"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:clickable="true"
-                    android:elevation="12dp"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    app:cardCornerRadius="8dp" tools:targetApi="lollipop">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <ImageView
-                            android:id="@+id/image_view22b"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_edit_password"
-                            app:layout_constraintBottom_toTopOf="@+id/textView22b"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                            android:id="@+id/textView22b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="D.O.Q"
-                            android:textAllCaps="true"
-                            android:textColor="@color/greenDarker"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/image_view22b" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
     </LinearLayout>
 
 
@@ -433,7 +273,7 @@
                 android:text="More..."/>
         <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
-                android:drawableLeft="@drawable/ic_notifications"
+                android:drawableLeft="@drawable/ic_logout_red"
                 android:id="@+id/tvGeneralLogout"
                 android:text="Logout now"/>
 

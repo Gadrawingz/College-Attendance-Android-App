@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.donnekt.attendanceapp.LoginActivity;
-import com.donnekt.attendanceapp.MainActivity;
+import com.donnekt.attendanceapp.ProfileActivity;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.SharedPrefManager;
 import com.donnekt.attendanceapp.module.ModulesLecturer;
@@ -18,9 +18,10 @@ import java.util.Locale;
 public class DashboardLecturer extends AppCompatActivity {
 
     TextView
-            tvCurrentDate, boxInHeader, topDHeader, makeAttendance,
+            tvCurrentDate, boxInHeader, topDHeader, makeAttendance, goToProfile,
             card1LowerFirst, card1UpperFirst, card2LowerFirst, card2UpperFirst,
             card3LowerFirst, card3UpperFirst, card4LowerFirst, card4UpperFirst;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +34,18 @@ public class DashboardLecturer extends AppCompatActivity {
 
         card1LowerFirst = findViewById(R.id.card1LowerFirst);
         card1UpperFirst = findViewById(R.id.card1UpperFirst);
+
         card2LowerFirst = findViewById(R.id.card2LowerFirst);
         card2UpperFirst = findViewById(R.id.card2UpperFirst);
+
         card3LowerFirst = findViewById(R.id.card3LowerFirst);
         card3UpperFirst = findViewById(R.id.card3UpperFirst);
+
         card4LowerFirst = findViewById(R.id.card4LowerFirst);
         card4UpperFirst = findViewById(R.id.card4UpperFirst);
+
         makeAttendance = findViewById(R.id.make_attendance);
+        goToProfile = findViewById(R.id.goToProfile);
 
         tvCurrentDate = findViewById(R.id.tvCurrentDate);
         boxInHeader = findViewById(R.id.boxInHeader);
@@ -51,9 +57,9 @@ public class DashboardLecturer extends AppCompatActivity {
 
             Staff staffMember = SharedPrefManager.getInstance(this).getLoggedInStaff();
             String activeRole = staffMember.getRole();
-            String fullName = staffMember.getFirstname()+" "+staffMember.getLastname();
+            String fullName = "Lect. "+staffMember.getLastname();
 
-            boxInHeader.setText(activeRole+" 's Overview".toUpperCase(Locale.ROOT));
+            boxInHeader.setText(activeRole+" 's Overview".toUpperCase());
             topDHeader.setText(fullName.toUpperCase());
 
 
@@ -71,7 +77,7 @@ public class DashboardLecturer extends AppCompatActivity {
             card4UpperFirst.setText("2");
 
             // Push time in!
-            tvCurrentDate.setText("<< Today's: "+todayDate+" >>");
+            tvCurrentDate.setText("Today's: "+todayDate+" >>");
 
             // Go to menus
             findViewById(R.id.backToDash).setOnClickListener(v -> {
@@ -90,6 +96,10 @@ public class DashboardLecturer extends AppCompatActivity {
 
         makeAttendance.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ModulesLecturer.class));
+        });
+
+        goToProfile.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         });
 
     }

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
           package="com.donnekt.attendanceapp">
+
+    <uses-sdk
+            android:minSdkVersion="8"
+            android:targetSdkVersion="11"/>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -13,6 +16,18 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AttendanceApp">
+        <activity android:name=".classroom.ClassroomUpdate">
+        </activity>
+        <activity android:name=".department.DepartmentUpdate">
+        </activity>
+        <activity android:name=".users.UpdateActivity">
+        </activity>
+        <activity android:name=".module.ModuleAssigning">
+        </activity>
+        <activity android:name=".student.StudentDetails">
+        </activity>
+        <activity android:name=".staff.StaffDetails">
+        </activity>
         <activity android:name=".module.ModuleDetails">
         </activity>
         <activity android:name=".module.ModulesLecturer">
@@ -28,12 +43,6 @@
         <activity android:name=".users.DashboardLecturer">
         </activity>
         <activity android:name=".LoginActivity">
-        </activity>
-        <activity android:name=".examples.TempTesting">
-        </activity>
-        <activity android:name=".SpinnerTest2">
-        </activity>
-        <activity android:name=".SpinnerTest">
         </activity>
         <activity android:name=".classroom.ClassroomGroup">
         </activity>
@@ -51,8 +60,6 @@
         </activity>
         <activity android:name=".student.AttendanceAct">
         </activity>
-        <activity android:name=".staff.StaffDashboard">
-        </activity>
         <activity android:name=".staff.StaffViewAll">
         </activity>
         <activity android:name=".module.ModuleViewAll">
@@ -63,13 +70,7 @@
         </activity>
         <activity android:name=".classroom.ClassroomViewAll">
         </activity>
-        <activity android:name=".admin.AdminSettings">
-        </activity>
         <activity android:name=".classroom.ClassroomActivity">
-        </activity>
-        <activity android:name=".admin.AdminDashLMenus">
-        </activity>
-        <activity android:name=".admin.AdminDashboard">
         </activity>
         <activity android:name=".department.DepartmentViewAll">
         </activity>

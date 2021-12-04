@@ -37,14 +37,21 @@
 
         <TextView
                 android:id="@+id/tvClassDept"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="17dp"
+                android:textSize="16dp"
+                android:gravity="left"
+                android:background="@drawable/border_whitish"
                 android:padding="8sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
-
+        <!-- For bordering -->
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -63,7 +70,9 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/remove_bg"
+                android:textColor="@color/white"
+                android:textStyle="bold|normal"
+                android:background="@drawable/border_bluish1"
                 android:text="Edit" />
 
         <Button
@@ -75,6 +84,8 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 android:background="@drawable/remove_bg"
                 android:text="Delete" />
 

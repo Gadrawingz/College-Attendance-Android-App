@@ -14,8 +14,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.URLs;
-import com.donnekt.attendanceapp.staff.ListViewAdapter;
-import com.donnekt.attendanceapp.staff.Staff;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,46 +37,35 @@ public class AttendanceAct extends AppCompatActivity {
     }
 
     private void loadStudents() {
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadingProgBar);
+        final ProgressBar progressBar = findViewById(R.id.loadingProgBar);
         progressBar.setVisibility(View.VISIBLE);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.STUD_VIEW_ALL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                progressBar.setVisibility(View.INVISIBLE);
-                try {
-                    JSONObject object = new JSONObject(response);
-                    JSONArray staffArray = object.getJSONArray("students");
+        String classIdKey = getIntent().getStringExtra("class_id_key"); // Class key
 
-                    int studentCount = Integer.parseInt(object.optString("counts"));
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.STUD_CLASS+classIdKey, response -> {
+            progressBar.setVisibility(View.INVISIBLE);
+            try {
+                JSONObject object = new JSONObject(response);
+                JSONArray staffArray = object.getJSONArray("studclasses");
 
-                    for(int i=0; i<staffArray.length(); i++) {
-                        JSONObject staffObject = staffArray.getJSONObject(i);
-                        int studentId = i+=1;
+                for(int i=0; i<staffArray.length(); i++) {
+                    JSONObject staffObject = staffArray.getJSONObject(i);
+                    Student studShit = new Student(
+                            staffObject.getInt("student_id"),
+                            staffObject.getString("firstname"),
+                            staffObject.getString("lastname"),
+                            staffObject.getString("reg_number")
+                    );
 
-                        Student studShit = new Student(
-                                staffObject.getInt("student_id"),
-                                staffObject.getString("firstname"),
-                                staffObject.getString("lastname"),
-                                staffObject.getString("reg_number")
-                        );
-
-                        studentList.add(studShit);
-                        StAttendanceAdapter adapter = new StAttendanceAdapter(studentList, getApplicationContext());
-                        lvStudentsList.setAdapter(adapter);
-                    }
-
-                } catch (JSONException error) {
-                    error.printStackTrace();
+                    studentList.add(studShit);
+                    StAttendanceAdapter adapter = new StAttendanceAdapter(studentList, getApplicationContext());
+                    lvStudentsList.setAdapter(adapter);
                 }
-            }
 
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            } catch (JSONException error) {
+                error.printStackTrace();
             }
-        });
+        }, error -> Toast.makeText(getApplicationContext(), "Network issues!", Toast.LENGTH_SHORT).show());
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
