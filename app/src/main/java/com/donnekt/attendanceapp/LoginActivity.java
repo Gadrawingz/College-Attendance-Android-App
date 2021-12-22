@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -16,8 +17,11 @@ import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.staff.Staff;
 import com.donnekt.attendanceapp.users.DashboardDas;
 import com.donnekt.attendanceapp.users.DashboardDoq;
+import com.donnekt.attendanceapp.users.DashboardDpat;
 import com.donnekt.attendanceapp.users.DashboardHod;
 import com.donnekt.attendanceapp.users.DashboardLecturer;
+import com.google.android.material.textfield.TextInputEditText;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,9 +31,8 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     public TextView loginRole, exitLogin;
-    EditText editTextEmail, editTextPassword;
+    TextInputEditText editTextEmail, editTextPassword;
     ProgressBar loginLoadingPB;
-    SharedPrefManager sharedPrefHandler;
     private RequestQueue requestQueue;
 
     @Override
@@ -37,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Stay on good shit bruh!
+        // Stay on good shit!
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
 
@@ -61,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(this, DashboardLecturer.class));
                     break;
 
+                case "DPAT":
+                    startActivity(new Intent(this, DashboardDpat.class));
+                    break;
+
                 default:
                     Toast.makeText(getApplicationContext(), "WRONG PAGE", Toast.LENGTH_SHORT).show();
             }
@@ -73,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         String receivedKey = getIntent().getStringExtra("sent_key");
         loginRole.setText("("+receivedKey+")");
 
-        loginLoadingPB = findViewById(R.id.loginLoadingPB);
+        loginLoadingPB = findViewById(R.id.progressbar);
         editTextEmail = findViewById(R.id.editEmail);
         editTextPassword = findViewById(R.id.editPassword);
 
@@ -128,7 +135,6 @@ public class LoginActivity extends AppCompatActivity {
             loginLoadingPB.setVisibility(View.GONE);
 
             try {
-
                 JSONObject jsonObject = new JSONObject(response);
                 if(jsonObject.optString("status").equals("ok")) {
 
@@ -140,11 +146,15 @@ public class LoginActivity extends AppCompatActivity {
 
                         Staff staff = new Staff(
                                 staffObject.getInt("staff_id"),
+                                staffObject.getInt("dept_id"),
+                                staffObject.getString("dept_name"),
                                 staffObject.getString("firstname"),
                                 staffObject.getString("lastname"),
                                 staffObject.getString("email"),
+                                staffObject.getString("telephone"),
                                 staffObject.getString("gender"),
-                                staffObject.getString("staff_role")
+                                staffObject.getString("staff_role"),
+                                staffObject.getString("staff_status")
                         );
 
                         // Store shit
@@ -166,6 +176,9 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                             startActivity(new Intent(getApplicationContext(), DashboardLecturer.class));
 
+                        } else if(staffObject.getString("staff_role").equals("DPAT")) {
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), DashboardDpat.class));
                         } else {
                             Toast.makeText(getApplicationContext(), "INVALID ROLE", Toast.LENGTH_SHORT).show();
                         }
@@ -176,7 +189,7 @@ public class LoginActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show()) {
+        }, error -> Toast.makeText(LoginActivity.this, "No Network!", Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    style="@style/loginParent"
+    tools:context=".student.ClaimingPath">
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/mainTitle"
+        android:layout_marginTop="0dp"
+        android:textSize="24dp"
+        android:drawableLeft="@drawable/backarrow"
+        android:drawableTint="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/transparent_login"
+        android:focusableInTouchMode="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    style="@style/mainCard"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/mainViewsMarginTop"
+                    android:layout_marginBottom="@dimen/mainViewsMarginBottom"
+                    android:background="@color/whiteCardColor"
+                    android:elevation="5dp"
+                    app:cardCornerRadius="@dimen/loginCardRadius">
+
+                    <LinearLayout
+                        style="@style/linearParent"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/mainViewsMargin">
+
+                        <TextView
+                            style="@style/headerTextPrimary"
+                            android:layout_marginTop="10dp"
+                            android:text="Search Specific Attendance"
+                            android:textSize="25dp" />
+
+                        <!-- Lecturer -->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="Day:"
+                            android:textColor="@color/blueShit1"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/textMarginTop">
+
+                            <EditText
+                                android:id="@+id/attendanceDay"
+                                style="@style/modifiedEditText"
+                                android:inputType="text"
+                                android:maxLines="1" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dp"
+                            android:text="Select Lecturer"
+                            android:textColor="@color/bicColorB"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spinnerLecturer"
+                            android:layout_width="match_parent"
+                            android:layout_height="?actionBarSize"
+                            android:textColorHint="@color/blueShit1"
+                            android:background="@drawable/rounded_white"
+                            android:textColor="@color/black"
+                            android:paddingStart="8dp"
+                            android:paddingLeft="8dp"
+                            android:ems="10"
+                            android:textSize="15sp"
+                            android:spinnerMode="dropdown"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"/>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/submitButton"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/border_bluish1"
+                                android:padding="1.5dp"
+                                android:text="Submit"
+                                android:textColor="@color/white"
+                                android:textStyle="bold|normal" />
+
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/loadingProgress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

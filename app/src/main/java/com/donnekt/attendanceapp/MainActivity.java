@@ -7,7 +7,7 @@ import androidx.cardview.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView hodCard, dasCard, lecturerCard, doqCard;
+    CardView hodCard, dasCard, lecturerCard, doqCard, dpatCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         dasCard = findViewById(R.id.dasCard);
         lecturerCard = findViewById(R.id.lecturerCard);
         doqCard = findViewById(R.id.doqCard);
+        dpatCard = findViewById(R.id.dpatCard);
 
 
         dasCard.setOnClickListener(view -> {
@@ -43,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         doqCard.setOnClickListener(view -> {
             String sentWord = "DOQ";
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.putExtra("sent_key", sentWord);
+            startActivity(intent);
+        });
+
+        dpatCard.setOnClickListener(view -> {
+            String sentWord = "DPAT";
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             intent.putExtra("sent_key", sentWord);
             startActivity(intent);

@@ -1,86 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.donnekt.attendanceapp">
+    package="com.donnekt.attendanceapp">
 
-    <uses-sdk
-            android:minSdkVersion="8"
-            android:targetSdkVersion="11"/>
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AttendanceApp">
-        <activity android:name=".classroom.ClassroomUpdate">
-        </activity>
-        <activity android:name=".department.DepartmentUpdate">
-        </activity>
-        <activity android:name=".users.UpdateActivity">
-        </activity>
-        <activity android:name=".module.ModuleAssigning">
-        </activity>
-        <activity android:name=".student.StudentDetails">
-        </activity>
-        <activity android:name=".staff.StaffDetails">
-        </activity>
-        <activity android:name=".module.ModuleDetails">
-        </activity>
-        <activity android:name=".module.ModulesLecturer">
-        </activity>
-        <activity android:name=".users.StaffMenus">
-        </activity>
-        <activity android:name=".users.DashboardDoq">
-        </activity>
-        <activity android:name=".users.DashboardHod">
-        </activity>
-        <activity android:name=".users.DashboardDas">
-        </activity>
-        <activity android:name=".users.DashboardLecturer">
-        </activity>
-        <activity android:name=".LoginActivity">
-        </activity>
-        <activity android:name=".classroom.ClassroomGroup">
-        </activity>
-        <activity android:name=".student.StudentViewAll">
-        </activity>
-        <activity android:name=".ProfileActivity">
-        </activity>
-        <activity android:name=".student.StudentActivity">
-        </activity>
-        <activity android:name=".UpdatingActivity">
-        </activity>
-        <activity android:name=".staff.StaffHome">
-        </activity>
-        <activity android:name=".student.StudentsList">
-        </activity>
-        <activity android:name=".student.AttendanceAct">
-        </activity>
-        <activity android:name=".staff.StaffViewAll">
-        </activity>
-        <activity android:name=".module.ModuleViewAll">
-        </activity>
-        <activity android:name=".module.ModuleActivity">
-        </activity>
-        <activity android:name=".staff.StaffActivity">
-        </activity>
-        <activity android:name=".classroom.ClassroomViewAll">
-        </activity>
-        <activity android:name=".classroom.ClassroomActivity">
-        </activity>
-        <activity android:name=".department.DepartmentViewAll">
-        </activity>
-        <activity android:name=".department.DepartmentActivity">
-        </activity>
-        <activity android:name=".MainActivity">
+        android:allowBackup="true"
+        android:extractNativeLibs="false"
+        android:icon="@mipmap/icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AttendanceApp">
+        <activity
+            android:name=".student.ClaimingPath"
+            android:exported="false" />
+        <activity
+            android:name=".staff.ChangePassword"
+            android:exported="false" />
+        <activity
+            android:name=".staff.ProfileUpdate"
+            android:exported="false" />
+        <activity
+            android:name=".student.AttendanceUpdate"
+            android:exported="false" />
+        <activity
+            android:name=".staff.RegisterLecturer"
+            android:exported="false" />
+        <activity
+            android:name=".users.DashboardDpat"
+            android:exported="false" />
+        <activity
+            android:name=".student.StudentFinalResult"
+            android:exported="false" />
+        <activity
+            android:name=".student.StudentClassReportDoq"
+            android:exported="false" />
+        <activity
+            android:name=".classroom.ClassroomDepartment"
+            android:exported="false" />
+        <activity
+            android:name=".student.StudentClassReport"
+            android:exported="false" />
+        <activity
+            android:name=".module.ModulesLecturerRep"
+            android:exported="false" />
+        <activity
+            android:name=".users.reports.ReportLecturer"
+            android:exported="false" />
+        <activity
+            android:name=".users.reports.ReportDoq"
+            android:exported="false" />
+        <activity
+            android:name=".users.reports.ReportHod"
+            android:exported="false" />
+        <activity
+            android:name=".classroom.ClassroomLecturers"
+            android:exported="false" />
+        <activity
+            android:name=".staff.StaffLecturers"
+            android:exported="false" />
+        <activity android:name=".student.AttendanceViewHod" />
+        <activity android:name=".student.AttendanceView" />
+        <activity android:name=".users.DashboardDas" />
+        <activity android:name=".module.ModuleUpdate" />
+        <activity android:name=".classroom.ClassroomUpdate" />
+        <activity android:name=".department.DepartmentUpdate" />
+        <activity android:name=".users.UpdateActivity" />
+        <activity android:name=".module.ModuleAssigning" />
+        <activity android:name=".student.StudentDetails" />
+        <activity android:name=".staff.StaffDetails" />
+        <activity android:name=".module.ModuleDetails" />
+        <activity android:name=".module.ModulesLecturer" />
+        <activity android:name=".users.StaffMenus" />
+        <activity android:name=".users.DashboardDoq" />
+        <activity android:name=".users.DashboardHod" />
+        <activity android:name=".users.DashboardLecturer" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".classroom.ClassroomGroup" />
+        <activity android:name=".student.StudentViewAll" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".student.StudentActivity" />
+        <activity android:name=".UpdatingActivity" />
+        <activity android:name=".staff.StaffHome" />
+        <activity android:name=".student.StudentsList" />
+        <activity android:name=".student.AttendanceAct" />
+        <activity android:name=".staff.StaffViewAll" />
+        <activity android:name=".module.ModuleViewAll" />
+        <activity android:name=".module.ModuleActivity" />
+        <activity android:name=".staff.StaffActivity" />
+        <activity android:name=".classroom.ClassroomViewAll" />
+        <activity android:name=".classroom.ClassroomActivity" />
+        <activity android:name=".department.DepartmentViewAll" />
+        <activity android:name=".department.DepartmentActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

@@ -1,38 +1,54 @@
 package com.donnekt.attendanceapp.staff;
 
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.android.volley.*;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.SharedPrefManager;
 import com.donnekt.attendanceapp.URLs;
+import com.donnekt.attendanceapp.department.DepartmentViewAll;
+import com.donnekt.attendanceapp.users.StaffMenus;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class StaffViewAll extends AppCompatActivity {
 
     List<Staff> staffList;
     ListView listViewStaffs;
+    TextView mainTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_view_all);
 
+        mainTitle = findViewById(R.id.mainTitle);
         listViewStaffs = findViewById(R.id.listViewStaffs);
         staffList = new ArrayList<>();
+        Staff user = SharedPrefManager.getInstance(this).getLoggedInStaff();
+        mainTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sentWord = user.getRole();
+                Intent intent =new Intent(StaffViewAll.this, StaffMenus.class);
+                intent.putExtra("sent_role", sentWord);
+                startActivity(intent);
+            }
+        });
 
         loadStaffMemberList();
     }

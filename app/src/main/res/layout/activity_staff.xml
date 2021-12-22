@@ -35,161 +35,184 @@
                         android:background="@color/whiteCardColor">
 
                     <LinearLayout
-                            style="@style/linearParent"
-                            android:layout_gravity="center"
-                            android:padding="@dimen/mainViewsMargin">
+                        style="@style/linearParent"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/mainViewsMargin">
 
                         <TextView
-                                style="@style/headerTextPrimary"
-                                android:text="REGISTER STAFF MEMBER"
-                                android:layout_marginTop="10dp"/>
+                            style="@style/headerTextPrimary"
+                            android:layout_marginTop="10dp"
+                            android:text="ADD STAFF MEMBER" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                                style="@style/parent"
-                                android:layout_marginTop="@dimen/textMarginTop">
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/textMarginTop">
 
                             <EditText
-                                    android:id="@+id/editTextFName"
-                                    style="@style/modifiedEditText"
-                                    android:inputType="text"
-                                    android:maxLines="1"
-                                    android:hint="First name" />
+                                android:id="@+id/editTextFName"
+                                style="@style/modifiedEditText"
+                                android:hint="First name"
+                                android:inputType="text"
+                                android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                                style="@style/parent"
-                                android:layout_marginTop="@dimen/textMarginTop">
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/textMarginTop">
 
                             <EditText
-                                    android:id="@+id/editTextLName"
-                                    style="@style/modifiedEditText"
-                                    android:inputType="text"
-                                    android:maxLines="1"
-                                    android:hint="Last name" />
+                                android:id="@+id/editTextLName"
+                                style="@style/modifiedEditText"
+                                android:hint="Last name"
+                                android:inputType="text"
+                                android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                                style="@style/parent"
-                                android:layout_marginTop="@dimen/textMarginTop">
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/textMarginTop">
 
                             <EditText
-                                    android:id="@+id/editTextEmail"
-                                    style="@style/modifiedEditText"
-                                    android:inputType="textEmailAddress"
-                                    android:maxLines="1"
-                                    android:hint="Email address" />
+                                android:id="@+id/editTextEmail"
+                                style="@style/modifiedEditText"
+                                android:hint="Email address"
+                                android:inputType="textEmailAddress"
+                                android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                                style="@style/parent"
-                                android:layout_marginTop="@dimen/textMarginTop">
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/textMarginTop">
+
                             <EditText
-                                    android:id="@+id/editTextPhone"
-                                    style="@style/modifiedEditText"
-                                    android:inputType="phone"
-                                    android:maxLines="1"
-                                    android:hint="Phone number" />
+                                android:id="@+id/editTextPhone"
+                                style="@style/modifiedEditText"
+                                android:hint="Phone number"
+                                android:inputType="phone"
+                                android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <!-- Gender -->
                         <TextView
-                                android:layout_width="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="Choose gender"
+                            android:textColor="@color/blueShit1"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/radioGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radioButtonMale"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="5dp"
-                                android:textSize="18dp"
-                                android:textColor="@color/blueShit1"
-                                android:textStyle="bold"
-                                android:text="Choose gender" />
+                                android:checked="true"
+                                android:text="Male" />
 
-                            <RadioGroup
-                                    android:id="@+id/radioGender"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dp"
-                                    android:orientation="horizontal">
-                                <RadioButton
-                                        android:id="@+id/radioButtonMale"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:checked="true"
-                                        android:text="Male"/>
-
-                                <RadioButton
-                                        android:id="@+id/radioButtonFemale"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Female"/>
-                            </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/radioButtonFemale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Female" />
+                        </RadioGroup>
 
                         <!-- Role -->
                         <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="5dp"
-                                android:textSize="18dp"
-                                android:textColor="@color/blueShit1"
-                                android:textStyle="bold"
-                                android:text="Select staff role" />
-                            <Spinner
-                                    android:id="@+id/spinnerRoles"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:maxLines="1"
-                                    android:entries="@array/staffRoles" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Select staff role"
+                            android:textColor="@color/blueShit1"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spinnerRoles"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="8dp"
+                            android:entries="@array/staffRoles"
+                            android:maxLines="1" />
+                        <!-- Classes-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="Select department"
+                            android:textColor="@color/blueShit1"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spinnerDeptId"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="14dp"
+                            android:maxLines="1"
+                            android:paddingTop="@dimen/margin10dp"
+                            android:paddingBottom="@dimen/margin10dp" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                                style="@style/parent"
-                                android:layout_marginTop="@dimen/textMarginTop">
+                            style="@style/parent"
+                            android:layout_marginTop="@dimen/textMarginTop">
+
                             <EditText
-                                    android:id="@+id/editTextPassword"
-                                    style="@style/modifiedEditText"
-                                    android:hint="@string/loginPasswordHint"
-                                    android:maxLines="1"
-                                    android:inputType="textPassword"/>
+                                android:id="@+id/editTextPassword"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/loginPasswordHint"
+                                android:inputType="textPassword"
+                                android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-
                         <LinearLayout
-                                android:layout_width="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="15dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/registerButton"
+                                android:layout_width="140dp"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center"
-                                android:layout_marginTop="5dp"
-                                android:orientation="horizontal">
+                                android:layout_margin="5dp"
+                                android:background="@drawable/border_bluish1"
+                                android:padding="1.5dp"
+                                android:text="Save"
+                                android:textColor="@color/white"
+                                android:textStyle="bold|normal" />
 
                             <Button
-                                    android:id="@+id/registerButton"
-                                    android:layout_width="140dp"
-                                    android:layout_height="wrap_content"
-                                    android:padding="1.5dp"
-                                    android:layout_margin="5dp"
-                                    android:textColor="@color/white"
-                                    android:textStyle="bold|normal"
-                                    android:background="@drawable/border_bluish1"
-                                    android:text="Save" />
-
-                            <Button
-                                    android:id="@+id/viewStaffsButton"
-                                    android:layout_width="140dp"
-                                    android:layout_height="wrap_content"
-                                    android:padding="1.5dp"
-                                    android:layout_margin="5dp"
-                                    android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:background="@drawable/border_bluish1"
-                                    android:text="View"/>
+                                android:id="@+id/viewStaffsButton"
+                                android:layout_width="140dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/border_bluish1"
+                                android:padding="1.5dp"
+                                android:text="View"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </LinearLayout>
 
-                        <ProgressBar android:layout_width="match_parent"
-                                     android:layout_height="wrap_content"
-                                     android:layout_gravity="center"
-                                     android:layout_centerHorizontal="true"
-                                     android:layout_centerVertical="true"
-                                     android:visibility="gone"
-                                     android:id="@+id/loadingProgress"/>
+                        <ProgressBar
+                            android:id="@+id/loadingProgress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 

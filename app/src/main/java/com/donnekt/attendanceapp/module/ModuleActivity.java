@@ -38,8 +38,7 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
 
     EditText moduleName, moduleCode;
     Spinner lecturerId;
-    Button addModuleBtn;
-    TextView doViewModules, doExitModules;
+    TextView doViewModules, addModuleBtn;
     ProgressBar isDataLoading;
 
     private ArrayList<Staff> staffArrayList;
@@ -57,13 +56,10 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         isDataLoading = findViewById(R.id.dataLoading);
         addModuleBtn = findViewById(R.id.buttonSave);
         doViewModules= findViewById(R.id.tvViewModules);
-        doExitModules= findViewById(R.id.tvExitModules);
 
         // Save & View button
         doViewModules.setOnClickListener(this);
-        doExitModules.setOnClickListener(this);
         addModuleBtn.setOnClickListener(this);
-
         loadAllLecturers();
 
         lecturerId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -143,6 +139,7 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     // In this method we will do the create operation
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private void addModule() {
         String mName = (moduleName.getText().toString().trim());
         String mCode = (moduleCode.getText().toString().trim());
@@ -179,6 +176,7 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
@@ -192,10 +190,6 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
             // case: click to view all
             case R.id.tvViewModules:
                 startActivity(new Intent(this, ModuleViewAll.class));
-                break;
-
-            case R.id.tvExitModules:
-                startActivity(new Intent(this, ModuleActivity.class));
                 break;
         }
     }

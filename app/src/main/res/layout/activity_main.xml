@@ -6,14 +6,19 @@
         tools:context=".users.StaffMenus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/transparent_login">
+        >
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_margin="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_gravity="center_vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:src="@drawable/rp"/>
 
         <LinearLayout
                 android:id="@+id/layout999"
@@ -22,8 +27,9 @@
                 android:layout_gravity="center"
                 android:padding="5dp"
                 android:gravity="center|center_horizontal"
-                android:background="@drawable/gradient_green"
+                android:background="@drawable/headerbutton"
                 android:orientation="horizontal">
+
 
             <TextView
                     android:layout_width="wrap_content"
@@ -34,6 +40,69 @@
                     android:textSize="20sp"
                     android:gravity="center"
                     android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dpatCard"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:clickable="true"
+                android:elevation="12dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="8dp" tools:targetApi="lollipop">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/gray"
+                    android:layout_height="match_parent">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/departImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/profile1"
+                        app:layout_constraintBottom_toTopOf="@+id/tv200"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv200"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="DPAT"
+                        android:textAllCaps="true"
+                        android:textColor="@color/greenDarker"
+                        android:textSize="15.5sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/departImg" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
         <LinearLayout
@@ -64,11 +133,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                             android:id="@+id/image_view1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_edit_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                            android:src="@drawable/user3"
                             app:layout_constraintBottom_toTopOf="@+id/textView1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -112,11 +182,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                             android:id="@+id/image_view20"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_edit_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                            android:src="@drawable/lecturer3"
                             app:layout_constraintBottom_toTopOf="@+id/tvHod"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -173,11 +244,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                             android:id="@+id/image_view21"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_edit_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                            android:src="@drawable/staff33"
                             app:layout_constraintBottom_toTopOf="@+id/textView21"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -189,7 +261,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="LECTURER"
+                            android:text="LECTURERS"
                             android:textAllCaps="true"
                             android:textColor="@color/greenDarker"
                             android:textSize="14sp"
@@ -221,11 +293,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                             android:id="@+id/image_view22"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_edit_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:src="@drawable/profile1"
+                        android:layout_marginTop="20dp"
                             app:layout_constraintBottom_toTopOf="@+id/textView22"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -271,8 +344,8 @@
                     android:textAlignment="center"
                     android:padding="10dp"
                     android:text="@string/mainFooterText"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
                     android:gravity="center" tools:ignore="RtlCompat"/>
 
         </LinearLayout>

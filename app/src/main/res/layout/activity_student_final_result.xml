@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".student.StudentFinalResult">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/mainTitle"
+            android:textSize="24sp"
+            android:text="Attended modules"
+            android:drawableTint="@color/white"
+            android:drawableLeft="@drawable/backarrow"
+            android:textStyle="bold"
+            android:background="@color/start_blue"
+            android:textColor="@color/white"
+            android:padding="15dp"
+            android:gravity="center_horizontal"/>
+
+        <ListView
+            android:id="@+id/lvFinalModStudents"
+            android:layout_width="match_parent"
+            android:background="@drawable/border_blue1"
+            android:layout_height="wrap_content"/>
+
+        <ProgressBar android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:id="@+id/loadingProgBar"/>
+
+    </LinearLayout>

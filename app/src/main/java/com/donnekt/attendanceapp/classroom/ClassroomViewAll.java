@@ -1,5 +1,6 @@
 package com.donnekt.attendanceapp.classroom;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -10,8 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.SharedPrefManager;
 import com.donnekt.attendanceapp.URLs;
 import com.donnekt.attendanceapp.VolleySingleton;
+import com.donnekt.attendanceapp.department.DepartmentViewAll;
+import com.donnekt.attendanceapp.staff.Staff;
+import com.donnekt.attendanceapp.users.StaffMenus;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,8 +39,16 @@ public class ClassroomViewAll extends AppCompatActivity {
         listViewClassrooms = findViewById(R.id.listViewClassrooms);
         mainTitle = findViewById(R.id.mainTitle);
         classroomList = new ArrayList<>();
-
-        mainTitle.setText("All Classrooms");
+        Staff user = SharedPrefManager.getInstance(this).getLoggedInStaff();
+        mainTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sentWord = user.getRole();
+                Intent intent =new Intent(ClassroomViewAll.this, StaffMenus.class);
+                intent.putExtra("sent_role", sentWord);
+                startActivity(intent);
+            }
+        });
         // Method for displaying departments in the list
         showAllClassrooms();
     }

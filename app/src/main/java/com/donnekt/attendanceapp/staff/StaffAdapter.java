@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.android.volley.Request;
@@ -17,16 +14,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.SharedPrefManager;
 import com.donnekt.attendanceapp.URLs;
-import com.donnekt.attendanceapp.module.ModuleViewAll;
+import com.donnekt.attendanceapp.classroom.ClassroomLecturers;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
 
 import static android.view.View.GONE;
-import static com.donnekt.attendanceapp.DialogShit.exitDamnProgressDialog;
-import static com.donnekt.attendanceapp.DialogShit.showDamnProgressDialog;
 
 public class StaffAdapter extends ArrayAdapter<Staff> {
 
@@ -67,8 +64,10 @@ public class StaffAdapter extends ArrayAdapter<Staff> {
             Intent g = new Intent(mCtx.getApplicationContext(), StaffDetails.class);
             String staffId = String.valueOf(staff.getStaffId());
             g.putExtra("staff_id_key", staffId);
-            mCtx.startActivity(g);
-            g.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); // For killing activity
+
+            g.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            g.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mCtx.startActivity(g);// For killing activity
         });
 
 
@@ -82,7 +81,10 @@ public class StaffAdapter extends ArrayAdapter<Staff> {
         btnDisableStaff.setOnClickListener(view -> {
             StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.STAFF_DISABLE+staff.getStaffId(),
                     response -> {
-                        mCtx.startActivity(new Intent(mCtx.getApplicationContext(), StaffViewAll.class));
+                Intent g=new Intent(mCtx.getApplicationContext(), StaffViewAll.class);
+                        g.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        g.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mCtx.startActivity(g);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(mCtx.getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -96,12 +98,16 @@ public class StaffAdapter extends ArrayAdapter<Staff> {
             requestQueue.add(stringRequest);
         });
 
-
         btnEnableStaff.setText("Enable");
         btnEnableStaff.setOnClickListener(view -> {
             StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.STAFF_ENABLE+staff.getStaffId(),
                     response -> {
-                        mCtx.startActivity(new Intent(mCtx.getApplicationContext(), StaffViewAll.class));
+
+                Intent intent = new Intent(mCtx.getApplicationContext(), StaffViewAll.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mCtx.startActivity(intent);
+
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(mCtx.getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -123,6 +129,71 @@ public class StaffAdapter extends ArrayAdapter<Staff> {
 
 
 
+
+class LecturerAdapter extends ArrayAdapter<Staff> {
+    private List<Staff> staffList;
+    private Context mCtx;
+
+    LecturerAdapter(List<Staff> staffList, Context mCtx) {
+        super(mCtx, R.layout.list_layout_lecturer, staffList);
+        this.mCtx = mCtx;
+        this.staffList = staffList;
+    }
+
+    @NonNull
+    @Override
+    @SuppressLint("ViewHolder")
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(mCtx);
+        View LVItem = inflater.inflate(R.layout.list_layout_lecturer, null, true);
+
+        // Getting views
+        TextView textViewFN = LVItem.findViewById(R.id.tvStaffFullName);
+        TextView textViewEM = LVItem.findViewById(R.id.tvStaffEmail);
+        TextView textViewPH = LVItem.findViewById(R.id.tvStaffPhone);
+        Button btnStaffDetails = LVItem.findViewById(R.id.buttonStaffDetails);
+        Button btnStaffClasses = LVItem.findViewById(R.id.buttonClasses);
+        // Getting record of the specified position
+        Staff staff = staffList.get(position);
+
+        // Adding data to views Constructor class
+        textViewFN.setText(staff.getFirstname()+" "+staff.getLastname());
+        textViewEM.setText(staff.getEmail());
+        textViewPH.setText(staff.getTelephone());
+
+        btnStaffDetails.setOnClickListener(view -> {
+            Intent g = new Intent(mCtx.getApplicationContext(), StaffDetails.class);
+            String staffId = String.valueOf(staff.getStaffId());
+            g.putExtra("staff_id_key", staffId);
+            g.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            g.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mCtx.startActivity(g);
+        });
+
+        btnStaffClasses.setOnClickListener(view -> {
+            Intent g = new Intent(mCtx.getApplicationContext(), ClassroomLecturers.class);
+            String staffId = String.valueOf(staff.getStaffId());
+            g.putExtra("lecturer_id_key", staffId);
+            g.putExtra("department_key_return", "");
+            g.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            g.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mCtx.startActivity(g);
+        });
+
+        if(staff.getRole().equals("HOD")) {
+            btnStaffDetails.setVisibility(GONE);
+        }
+
+        // Return the list item
+        return LVItem;
+    }
+}
+
+
+
+
+
+
 class StaffADetails extends ArrayAdapter<Staff> {
     private List<Staff> staffList;
     private Context mCtx;
@@ -140,6 +211,11 @@ class StaffADetails extends ArrayAdapter<Staff> {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View LVItem = inflater.inflate(R.layout.layout_staff_details, null, true);
 
+
+        Staff member = SharedPrefManager.getInstance(mCtx.getApplicationContext()).getLoggedInStaff();
+        String sRole = member.getRole();
+        String deptKey = String.valueOf(member.getRefDeptId());
+
         // Getting views
         Button buttonExitStaff = LVItem.findViewById(R.id.buttonExitStaff);
         Button buttonDisableStaff = LVItem.findViewById(R.id.buttonDisableStaff);
@@ -150,6 +226,7 @@ class StaffADetails extends ArrayAdapter<Staff> {
         TextView textViewEM = LVItem.findViewById(R.id.tvStaffEmail);
         TextView textViewPH = LVItem.findViewById(R.id.tvStaffPhone);
         TextView textViewRL = LVItem.findViewById(R.id.tvStaffRole);
+        ImageView buttonBack = LVItem.findViewById(R.id.buttonBack);
 
         // Getting record of the specified position
         Staff staff = staffList.get(position);
@@ -165,15 +242,46 @@ class StaffADetails extends ArrayAdapter<Staff> {
         // For details
         buttonExitStaff.setOnClickListener(v -> {
             Intent i = new Intent(mCtx.getApplicationContext(), StaffViewAll.class);
-            mCtx.startActivity(i);
+            Intent j = new Intent(mCtx.getApplicationContext(), StaffLecturers.class);
+
             i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            j.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            j.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            if(sRole.equals("DAS")) {
+                mCtx.startActivity(i);
+            } else if(sRole.equals("HOD")) {
+                j.putExtra("department_key", deptKey);
+                mCtx.startActivity(j);
+            }
+        });
+
+        buttonBack.setOnClickListener(v -> {
+            Intent i = new Intent(mCtx.getApplicationContext(), StaffViewAll.class);
+            Intent j = new Intent(mCtx.getApplicationContext(), StaffLecturers.class);
+
+            i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            j.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            j.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            if(sRole.equals("DAS")) {
+                mCtx.startActivity(i);
+            } else if(sRole.equals("HOD")) {
+                j.putExtra("department_key", deptKey);
+                mCtx.startActivity(j);
+            }
         });
 
         buttonDisableStaff.setText("Disable");
         buttonDisableStaff.setOnClickListener(view -> {
             StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.STAFF_DISABLE+staff.getStaffId(),
                     response -> {
-                        mCtx.startActivity(new Intent(mCtx.getApplicationContext(), StaffViewAll.class));
+                Intent intent=new Intent(mCtx.getApplicationContext(), StaffViewAll.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        mCtx.startActivity(intent);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(mCtx.getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -183,6 +291,7 @@ class StaffADetails extends ArrayAdapter<Staff> {
                     },
                     error -> Toast.makeText(mCtx.getApplicationContext(), "No network!", Toast.LENGTH_SHORT).show()) {
             };
+
             RequestQueue requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
             requestQueue.add(stringRequest);
         });

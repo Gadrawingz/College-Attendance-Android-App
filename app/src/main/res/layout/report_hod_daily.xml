@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:padding="5dp"
+        android:background="@drawable/transparent_login"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvLecturerFn"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvLecturerLn"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"/>
+
+        <!--<LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bottomView"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_horizontal"
+                android:padding="1.5dp"
+                android:textStyle="italic"
+                android:textColor="@color/blueShit2"
+                android:background="@drawable/bg_white_b_rounded"/>
+        </LinearLayout>-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/classRep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1.5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
+            android:textColor="@color/white"
+            android:background="@drawable/gradient_bg"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"
+            android:text="Class report"/>
+
+        <Button
+            android:id="@+id/submitReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1.5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
+            android:textColor="@color/white"
+            android:background="@drawable/gradient_greenish"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"
+            android:text="Submit"/>
+
+    </LinearLayout>
+
+</LinearLayout>

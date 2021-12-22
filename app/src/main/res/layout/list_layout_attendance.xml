@@ -34,7 +34,7 @@
                 android:layout_marginTop="5dp"/>
 
         <TextView
-                android:id="@+id/tvStudentMarks"
+                android:id="@+id/tvAttendanceDay"
                 android:textSize="12sp"
                 android:textStyle="bold|normal"
                 android:textColor="@color/white"
@@ -63,6 +63,28 @@
                 android:gravity="center"
                 android:background="@drawable/border_bluish1"
                 android:text="P" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/attendancePDone"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_margin="3dp"
+                android:src="@drawable/ok"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:visibility="gone"
+                />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/attendanceADone"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="3dp"
+                android:src="@drawable/no"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:visibility="gone"
+                 />
 
         <Button
                 android:id="@+id/isAbsent"

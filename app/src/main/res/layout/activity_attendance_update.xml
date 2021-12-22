@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".student.AttendanceUpdate"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/mainTitle"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/backarrow"
+        android:drawableTint="@color/white"
+        android:textStyle="bold"
+        android:background="@color/bicColorA"
+        android:textColor="@color/white"
+        android:padding="8dp"
+        android:text="Update last attendance"
+        android:gravity="center_horizontal"/>
+
+    <ListView
+        android:id="@+id/lvStudentsList"
+        android:layout_width="match_parent"
+        android:background="@drawable/border_blue1"
+        android:layout_height="wrap_content"/>
+
+    <ProgressBar android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/loadingProgBar"/>
+
+</LinearLayout>

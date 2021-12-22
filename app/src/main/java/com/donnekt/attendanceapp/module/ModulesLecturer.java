@@ -1,5 +1,6 @@
 package com.donnekt.attendanceapp.module;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -14,6 +15,8 @@ import com.donnekt.attendanceapp.SharedPrefManager;
 import com.donnekt.attendanceapp.URLs;
 import com.donnekt.attendanceapp.VolleySingleton;
 import com.donnekt.attendanceapp.staff.Staff;
+import com.donnekt.attendanceapp.users.DashboardLecturer;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,18 +29,23 @@ public class ModulesLecturer extends AppCompatActivity {
     List<Module> moduleList;
     ListView listViewModules;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modules_lecturer);
 
         listViewModules = findViewById(R.id.listViewModules);
+
         moduleList = new ArrayList<>();
         showAllModules();
 
-
         TextView mainTitle = findViewById(R.id.mainTitle);
-        mainTitle.setText("All modules");
+        mainTitle.setText("Lecturer's modules");
+        mainTitle.setOnClickListener(v -> {
+            Intent intent=new Intent(ModulesLecturer.this, DashboardLecturer.class);
+            startActivity(intent);
+        });
     }
 
     private void showAllModules() {

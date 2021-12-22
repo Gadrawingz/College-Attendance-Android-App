@@ -2,8 +2,8 @@ package com.donnekt.attendanceapp.classroom;
 
 public class Classroom {
 
-    int classroomId, refDeptId, refModuleId;
-    String classroomName, classroomLevel, department, refDeptName, refDeptCaption;
+    int classroomId, refDeptId, refModuleId, refStaffId;
+    String classroomName, classroomLevel, department, staffFirstname, refDeptName, refDeptCaption;
     String moduleName, moduleCode;
 
     // Const without ID:
@@ -13,11 +13,13 @@ public class Classroom {
         this.department = department;
     }
 
-    public Classroom(int classId, String className, String classLevel, String department) {
+    // Usage in DOQ rep 1st
+    public Classroom(int classId, String className, String classLevel, int refDeptId, String refDeptName) {
         this.classroomId = classId;
         this.classroomName = className;
         this.classroomLevel = classLevel;
-        this.department = department;
+        this.refDeptId = refDeptId;
+        this.refDeptName = refDeptName;
     }
 
     // Full one
@@ -40,6 +42,17 @@ public class Classroom {
         this.refDeptName= deptName;
         this.refDeptCaption= deptCaption;
     }
+
+    public Classroom(int classId, String className, String classLevel, int refStaffId, String staffFirstname, String deptName, String deptCaption) {
+        this.classroomId = classId;
+        this.classroomName = className;
+        this.classroomLevel = classLevel;
+        this.refStaffId = refStaffId;
+        this.staffFirstname = staffFirstname;
+        this.refDeptName= deptName;
+        this.refDeptCaption= deptCaption;
+    }
+
 
     public Classroom() { }
 
@@ -128,5 +141,23 @@ public class Classroom {
 
     public void setModuleCode(String moduleCode) {
         this.moduleCode = moduleCode;
+    }
+
+    // extra data for class room
+
+    public int getRefStaffId() {
+        return refStaffId;
+    }
+
+    public void setRefStaffId(int refStaffId) {
+        this.refStaffId = refStaffId;
+    }
+
+    public String getStaffFirstname() {
+        return staffFirstname;
+    }
+
+    public void setStaffFirstname(String staffFirstname) {
+        this.staffFirstname = staffFirstname;
     }
 }

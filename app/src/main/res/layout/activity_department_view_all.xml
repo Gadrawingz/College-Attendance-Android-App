@@ -7,12 +7,15 @@
               tools:context=".department.DepartmentViewAll">
 
     <TextView
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/mainTitle"
             android:textSize="18sp"
             android:textStyle="bold"
+        android:text="Departments"
+        android:drawableLeft="@drawable/backarrow"
+        android:drawableTint="@color/white"
             android:background="@color/start_blue"
             android:textColor="@color/white"
             android:padding="8dp"
@@ -24,10 +27,9 @@
             android:background="@drawable/border_blue1"
             android:layout_height="wrap_content"/>
 
-    <ProgressBar android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerHorizontal="true"
-                 android:layout_centerVertical="true"
+    <ProgressBar android:layout_width="11dp"
+                 android:layout_height="8dp"
+                 android:layout_gravity="center_horizontal"
                  android:visibility="gone"
                  android:id="@+id/loadingProgBar"/>
 

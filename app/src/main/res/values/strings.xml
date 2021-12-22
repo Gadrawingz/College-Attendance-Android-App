@@ -35,7 +35,7 @@
     <string name="loginAsTitle">LOGIN AS:</string>
     <string name="loginUsernameHint">Username...</string>
     <string name="loginEmailHint">Email address...</string>
-    <string name="loginPasswordHint">Password...</string>
+    <string name="loginPasswordHint">Password…</string>
     <string name="mainHeaderText">College Attendance App</string>
     <string name="mainFooterText">Copyright @2021 Attendance App</string>
 
@@ -58,8 +58,8 @@
     <array name="staffRoles">
         <item>DAS</item>
         <item>HOD</item>
-        <item>LECTURER</item>
         <item>DOQ</item>
+        <item>DPAT</item>
     </array>
 
     <array name="provinces">
@@ -140,5 +140,6 @@
     <string name="add_department">Add department</string>
     <string name="add_new_department">Add new Department</string>
     <string name="update_department">Update Department</string>
+    <string name="register_module">Register new module</string>
 
 </resources>

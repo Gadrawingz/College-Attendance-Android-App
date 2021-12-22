@@ -1,36 +1,52 @@
 package com.donnekt.attendanceapp.users;
 
+import static com.donnekt.attendanceapp.DialogShit.exitDamnProgressDialog;
+import static com.donnekt.attendanceapp.DialogShit.showDamnProgressDialog;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
-import com.donnekt.attendanceapp.*;
+import com.donnekt.attendanceapp.LoginActivity;
+import com.donnekt.attendanceapp.ProfileActivity;
+import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.SharedPrefManager;
+import com.donnekt.attendanceapp.URLs;
+import com.donnekt.attendanceapp.VolleySingleton;
 import com.donnekt.attendanceapp.staff.Staff;
+import com.donnekt.attendanceapp.users.reports.ReportHod;
+import com.google.android.material.button.MaterialButton;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import static com.donnekt.attendanceapp.DialogShit.exitDamnProgressDialog;
-import static com.donnekt.attendanceapp.DialogShit.showDamnProgressDialog;
-
 public class DashboardHod extends AppCompatActivity {
 
-    TextView tvCurrentDate, boxInHeader, topDHeader, goToProfile,
+    MaterialButton goToProfile;
+    TextView textRole, userNames,
             card1LowerFirst, card1UpperFirst, card2LowerFirst, card2UpperFirst,
-            card3LowerFirst, card3UpperFirst, card4LowerFirst, card4UpperFirst, manageActs;
+            card3LowerFirst, card3UpperFirst, card4LowerFirst, card4UpperFirst;
+    String STAFF_DEPT_ID;
+
+    ConstraintLayout boxViewReport;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_das);
+        setContentView(R.layout.activity_dashboard_hod);
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
-        String todayDate = dateFormat.format(calendar.getTime());
+        Staff staffMember = SharedPrefManager.getInstance(this).getLoggedInStaff();
+        String activeRole = staffMember.getRole();
+        String staffNames = staffMember.getFirstname()+" "+staffMember.getLastname();
+        STAFF_DEPT_ID  = String.valueOf(staffMember.getRefDeptId());
+        String STAFF_DEPT_NAME  = staffMember.getRefDeptName();
 
         card1LowerFirst = findViewById(R.id.card1LowerFirst);
         card1UpperFirst = findViewById(R.id.card1UpperFirst);
@@ -43,42 +59,40 @@ public class DashboardHod extends AppCompatActivity {
 
         card4LowerFirst = findViewById(R.id.card4LowerFirst);
         card4UpperFirst = findViewById(R.id.card4UpperFirst);
+        boxViewReport = findViewById(R.id.boxReport);
 
-        manageActs = findViewById(R.id.manageActs);
-        goToProfile = findViewById(R.id.goToProfile);
+        card1LowerFirst.setText("Reports");
+        boxViewReport.setOnClickListener(v -> {
+            Intent i = new Intent(DashboardHod.this, ReportHod.class);
+            startActivity(i);
+        });
 
-        tvCurrentDate = findViewById(R.id.tvCurrentDate);
-        boxInHeader = findViewById(R.id.boxInHeader);
-        topDHeader = findViewById(R.id.topDHeader);
+        goToProfile = findViewById(R.id.viewProfile);
 
-        tvCurrentDate.setText("Today's: "+todayDate);
+        userNames = findViewById(R.id.userNames);
+        textRole = findViewById(R.id.textRole);
+
+        userNames.setText(staffNames);
+        textRole.setText("As ("+activeRole+")");
 
         // Use this from Dialog class
         getAllCounts();
 
         // Getting shit done!
         if(SharedPrefManager.getInstance(this).isLoggedIn()) {
-
-            Staff staffMember = SharedPrefManager.getInstance(this).getLoggedInStaff();
-            String activeRole = staffMember.getRole();
-
-            findViewById(R.id.manageActs).setOnClickListener(v -> {
+            findViewById(R.id.viewMenus).setOnClickListener(v -> {
                 String sentWord = activeRole;
                 Intent i = new Intent(DashboardHod.this, StaffMenus.class);
                 i.putExtra("sent_role", sentWord);
                 startActivity(i);
             });
 
-            findViewById(R.id.goToProfile).setOnClickListener(v -> {
+            findViewById(R.id.viewProfile).setOnClickListener(v -> {
                 String sentWord = activeRole;
                 Intent i = new Intent(DashboardHod.this, ProfileActivity.class);
                 i.putExtra("sent_role", sentWord);
                 startActivity(i);
             });
-
-
-
-
 
         } else {
             Intent intent = new Intent(DashboardHod.this, LoginActivity.class);
@@ -86,38 +100,25 @@ public class DashboardHod extends AppCompatActivity {
             finish();
         }
 
-
     }
 
     private void getAllCounts() {
-        showDamnProgressDialog(this, "Loading...","Retrieving data...", true);
-
-        StringRequest countDeptReq = new StringRequest(Request.Method.GET, URLs.DEPT_VIEW_ALL, response -> {
-            try {
-                JSONObject object = new JSONObject(response);
-                //Damn it!
-                card1LowerFirst.setText("Departments");
-                card1UpperFirst.setText(object.optString("counts"));
-            } catch (JSONException error) {
-                error.printStackTrace();
-            }
-        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
-        VolleySingleton.getInstance(this).addToRequestQueue(countDeptReq);
-
-        StringRequest countStaffReq = new StringRequest(Request.Method.GET, URLs.STAFF_VIEW_ALL, response -> {
+        showDamnProgressDialog(this, "Loading...","Please wait...", true);
+        @SuppressLint("SetTextI18n")
+        StringRequest countStaffReq = new StringRequest(Request.Method.GET, URLs.CLASS_DEPT_LECT+STAFF_DEPT_ID, response -> {
             try {
                 JSONObject object = new JSONObject(response);
                 // Push shit!
-                card2LowerFirst.setText("Staffs");
+                card2LowerFirst.setText("Lecturers");
                 card2UpperFirst.setText(object.optString("counts"));
                 exitDamnProgressDialog();
             } catch (JSONException error) {
                 error.printStackTrace();
             }
-        }, error -> Toast.makeText(getApplicationContext(), "Network problem!", Toast.LENGTH_SHORT).show());
+        }, error -> Toast.makeText(getApplicationContext(), " No Network!", Toast.LENGTH_SHORT).show());
         VolleySingleton.getInstance(this).addToRequestQueue(countStaffReq);
 
-        StringRequest countClassReq = new StringRequest(Request.Method.GET, URLs.CLASS_VIEW_ALL, response -> {
+        StringRequest countClassReq = new StringRequest(Request.Method.GET, URLs.CLASS_DEPT_CLASS+STAFF_DEPT_ID, response -> {
             try {
                 JSONObject object = new JSONObject(response);
                 // Push shit!
@@ -127,10 +128,10 @@ public class DashboardHod extends AppCompatActivity {
             } catch (JSONException error) {
                 error.printStackTrace();
             }
-        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        }, error -> Toast.makeText(getApplicationContext(), "No Network", Toast.LENGTH_SHORT).show());
         VolleySingleton.getInstance(this).addToRequestQueue(countClassReq);
 
-        StringRequest countStudReq = new StringRequest(Request.Method.GET, URLs.STUD_VIEW_ALL, response -> {
+        StringRequest countStudReq = new StringRequest(Request.Method.GET, URLs.CLASS_DEPT_STUD+STAFF_DEPT_ID, response -> {
             try {
                 JSONObject object = new JSONObject(response);
                 // Push shit!
@@ -140,8 +141,7 @@ public class DashboardHod extends AppCompatActivity {
             } catch (JSONException error) {
                 error.printStackTrace();
             }
-        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show());
+        }, error -> Toast.makeText(getApplicationContext(), "No Network", Toast.LENGTH_SHORT).show());
         VolleySingleton.getInstance(this).addToRequestQueue(countStudReq);
-
     }
 }

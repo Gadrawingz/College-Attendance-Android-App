@@ -10,102 +10,147 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:orientation="vertical"
-            android:background="@drawable/border_green"
+            android:background="@drawable/border_super_white"
             android:layout_margin="5dp"
             android:padding="16dp">
+
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="Register module(course)"
+                android:layout_marginBottom="20dp"
+                android:padding="14dp"
+                android:text="@string/register_module"
                 android:textStyle="bold"
                 android:textAlignment="center"
+                android:textColor="@color/white"
+                android:background="@drawable/top_bg_round"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:gravity="center_horizontal"/>
 
-        <EditText
-                android:id="@+id/editModuleName"
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
+        <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Maths" />
+                android:paddingBottom="5dp"
+                android:textColor="@color/bicColorB"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Module Name"/>
 
         <EditText
                 android:id="@+id/editModuleCode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ICT300" />
+                android:layout_height="?actionBarSize"
+                android:textColorHint="@color/blueShit1"
+                android:background="@drawable/rounded_white"
+                android:hint="Networking"
+                android:textColor="@color/gray"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:ems="10"
+                android:textSize="15sp"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"/>
 
 
-        <!-- Select lecturer -->
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="6dp"
-                android:text="Select lecturer" />
+                android:paddingBottom="5dp"
+                android:textColor="@color/bicColorB"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Module code"/>
+
+        <EditText
+                android:id="@+id/editModuleName"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:textColorHint="@color/gray"
+                android:background="@drawable/rounded_white"
+                android:hint="IT205"
+                android:textColor="@color/black"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:ems="10"
+                android:textSize="15sp"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="Select Lecturer"
+            android:textColor="@color/bicColorB"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Spinner
                 android:id="@+id/spinnerLecturer"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/real_spinner"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="12dp"
-                android:spinnerMode="dropdown"/>
+                android:layout_height="?actionBarSize"
+                android:textColorHint="@color/blueShit1"
+                android:background="@drawable/rounded_white"
+                android:textColor="@color/black"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:ems="10"
+                android:textSize="15sp"
+                android:spinnerMode="dropdown"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"/>
 
-        <Button
-                android:id="@+id/buttonSave"
-                android:layout_width="90dp"
+
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:padding="6dp"
-                android:text="Save" />
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/buttonSave"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold|normal"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:background="@drawable/border_bluish1"
+                    android:text="Save"/>
+
+            <TextView
+                    android:id="@+id/tvViewModules"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/border_bluish1"
+                    android:text="View"/>
+        </LinearLayout>
 
         <ProgressBar android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:visibility="gone"
                      android:id="@+id/dataLoading"/>
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_blue1"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-            <TextView
-                    android:id="@+id/tvViewModules"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/bluish400"
-                    android:padding="10dp"
-                    android:text="View"
-                    android:textAlignment="center"
-                    android:textSize="18dp"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:textStyle="bold" />
-
-            <TextView
-                    android:id="@+id/tvExitModules"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/reddish280"
-                    android:padding="10dp"
-                    android:layout_marginLeft="38dp"
-                    android:text="Exit"
-                    android:textAlignment="center"
-                    android:textSize="18dp"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:textStyle="bold" />
-
-
-        </LinearLayout>
 
     </LinearLayout>
 

@@ -11,6 +11,8 @@ public class SharedPrefManager {
 
     private static final String SH_PREF_NAME="gPrefManager";
     private static final String KEY_ID="staff_id";
+    private static final String KEY_REF_DEPT_ID="dept_id";
+    private static final String KEY_REF_DEPT_NAME="dept_name";
     private static final String KEY_FIRSTNAME="firstname";
     private static final String KEY_LASTNAME="lastname";
     private static final String KEY_EMAIL="email";
@@ -19,7 +21,6 @@ public class SharedPrefManager {
     private static final String KEY_ROLE="staff_role";
     private static final String KEY_STATUS="staff_status";
     private static final String KEY_PASSWORD="password";
-    private static final String KEY_DATE="reg_date";
 
 
     private SharedPrefManager(Context context){
@@ -38,6 +39,8 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = shPrefs.edit();
 
         editor.putInt(KEY_ID, staff.getStaffId());
+        editor.putInt(KEY_REF_DEPT_ID, staff.getRefDeptId());
+        editor.putString(KEY_REF_DEPT_NAME, staff.getRefDeptName());
         editor.putString(KEY_FIRSTNAME, staff.getFirstname());
         editor.putString(KEY_LASTNAME, staff.getLastname());
         editor.putString(KEY_EMAIL, staff.getEmail());
@@ -46,9 +49,7 @@ public class SharedPrefManager {
         editor.putString(KEY_ROLE, staff.getRole());
         editor.putString(KEY_STATUS, staff.getStatus());
         editor.putString(KEY_PASSWORD, staff.getPassword());
-        editor.putString(KEY_DATE, staff.getRegDate());
         editor.apply();
-
     }
 
     public boolean isLoggedIn(){
@@ -68,17 +69,16 @@ public class SharedPrefManager {
         SharedPreferences shPrefs = mct.getSharedPreferences(SH_PREF_NAME, Context.MODE_PRIVATE);
         return new Staff(
                 shPrefs.getInt(KEY_ID, -1),
+                shPrefs.getInt(KEY_REF_DEPT_ID, -1),
+                shPrefs.getString(KEY_REF_DEPT_NAME, null),
                 shPrefs.getString(KEY_FIRSTNAME, null),
                 shPrefs.getString(KEY_LASTNAME, null),
                 shPrefs.getString(KEY_EMAIL, null),
                 shPrefs.getString(KEY_PHONE, null),
                 shPrefs.getString(KEY_GENDER, null),
                 shPrefs.getString(KEY_ROLE, null),
-                shPrefs.getString(KEY_STATUS, null),
-                shPrefs.getString(KEY_PASSWORD, null),
-                shPrefs.getString(KEY_DATE, null)
+                shPrefs.getString(KEY_STATUS, null)
         );
     }
-
 
 }

@@ -71,6 +71,19 @@
             android:orientation="vertical">
 
         <Button
+                android:id="@+id/buttonEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="1.5dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/blueShit1"
+                android:background="@drawable/gradient_bluish"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="5dp"
+                android:text="Edit"/>
+
+        <Button
                 android:id="@+id/buttonManageMod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+    android:orientation="vertical"
                 tools:context=".module.ModuleDetails">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/backButton"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:background="@color/blueShit1"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/backarrow"
+            android:drawableTint="@color/white"
+            android:text="Module Details"
+            android:gravity="center_horizontal">
+
+
+        </TextView>
+
+    </LinearLayout>
 
     <ListView
             android:id="@+id/listViewMDetails"
             android:layout_width="match_parent"
-            android:background="@drawable/border_blue1"
             android:layout_height="wrap_content"/>
 
     <ProgressBar android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerHorizontal="true"
-                 android:layout_centerVertical="true"
+                 android:layout_height="match_parent"
+                 android:layout_gravity="center_horizontal"
                  android:visibility="gone"
                  android:id="@+id/loadingProgBar"/>
-</RelativeLayout>
+</LinearLayout>

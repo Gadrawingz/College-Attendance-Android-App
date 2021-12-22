@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".student.StudentClassReport">
+
+    <TextView
+        android:id="@+id/mainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/bicColorB"
+        android:drawableLeft="@drawable/backarrow"
+        android:drawableTint="@color/white"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:text="Student Class Report"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/totalCountsPresent"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@color/bicColorB"
+            android:drawableTint="@color/white"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="30dp"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/totalCountsAbsent"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@color/bicColorB"
+            android:drawableTint="@color/white"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvStudentsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_blue1" />
+
+    <ProgressBar
+        android:id="@+id/loadingProgBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -30,7 +30,8 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/backarrow"
                     android:layout_centerVertical="true"
-                    android:tint="#000000"/>
+                    android:tint="#000000"
+                tools:ignore="UseAppTint" />
 
             <TextView
                     android:layout_height="21dp"

@@ -27,8 +27,8 @@
                     android:id="@+id/backToDash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_close_menu_white"
-                    android:background="@color/blueShit1"
+                    android:src="@drawable/backarrow"
+
                     android:padding="3dp"
                     android:layout_margin="1.5dp"
                     android:layout_centerVertical="true"/>
@@ -47,6 +47,77 @@
                     android:gravity="end|right"/>
         </LinearLayout>
 
+
+        <!-- Menu DAS -->
+        <LinearLayout
+            android:id="@+id/layoutDpat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Responsibilities -->
+
+            <!-- Department -->
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Departments"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_add_circle"
+                android:id="@+id/add_department"
+                android:text="@string/add_department"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_list_view_green"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:id="@+id/view_departs"
+                android:text="View all"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="3dp"/>
+
+
+            <!-- Staff members -->
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Staff Members"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_group_add_green"
+                android:id="@+id/add_staff"
+                android:text="Register new"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_view_list_bulleted"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:id="@+id/view_staff"
+                android:text="View staffs"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="3dp"/>
+
+            <!-- Attendance section -->
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="View"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_view_list_bulleted"
+                android:layout_marginTop="10dp"
+                android:id="@+id/dpat_view_report"
+                android:text="DOQ Attendance Report"/>
+
+        </LinearLayout>
+
+
         <!-- Menu DAS -->
         <LinearLayout
                 android:id="@+id/layoutDas"
@@ -54,104 +125,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <!-- Department -->
-            <TextView
-                    style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Departments"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_add_circle"
-                    android:id="@+id/add_department"
-                    android:text="@string/add_department"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_list_view_green"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="3dp"
-                    android:id="@+id/view_departs"
-                    android:text="View all"/>
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/bluish400"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="3dp"/>
-
-
-            <!-- Classrooms -->
-            <TextView
-                    style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Classrooms"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_classroom_pink"
-                    android:id="@+id/add_classroom"
-                    android:text="Add class"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_list_view_green"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="3dp"
-                    android:id="@+id/view_classes"
-                    android:text="View classes"/>
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/bluish400"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="3dp"/>
-
-
-            <!-- Staff members -->
-            <TextView
-                    style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Staff Members"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_group_add_green"
-                    android:id="@+id/add_staff"
-                    android:text="Register new"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_view_list_bulleted"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="3dp"
-                    android:id="@+id/view_staff"
-                    android:text="View staffs"/>
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/bluish400"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="3dp"/>
-
-            <!-- Modules -->
-            <TextView
-                    style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Modules (courses)"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_modules"
-                    android:id="@+id/add_module"
-                    android:text="Register new"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_view_add_check"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="3dp"
-                    android:id="@+id/view_module"
-                    android:text="View modules"/>
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/bluish400"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="3dp"/>
-
             <!-- Student section -->
             <TextView
                     style="@style/viewParent.headerText.settingsMiniTitle"
                     android:text="Students"/>
+
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
                     android:drawableLeft="@drawable/ic_account_many"
@@ -175,10 +153,53 @@
                     style="@style/viewParent.headerText"
                     android:id="@+id/dashboard_header_hod"/>
 
-            <!-- Department -->
+            <!-- Classrooms -->
             <TextView
-                    style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Responsibilities"/>
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Classrooms"/>
+
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_classroom_pink"
+                android:id="@+id/add_classroom"
+                android:text="Register class"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_list_view_green"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:id="@+id/view_classes"
+                android:text="View classes"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="3dp"/>
+
+
+            <!-- Modules -->
+            <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Modules (courses)"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_modules"
+                android:id="@+id/add_module"
+                android:text="Register new module"/>
+            <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_view_add_check"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:id="@+id/view_module"
+                android:text="View all modules"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="3dp"/>
 
             <TextView
                     style="@style/viewParent.headerText.settingsTextIcon"
@@ -187,38 +208,29 @@
                     android:id="@+id/hod_assign_modules"
                     android:text="Assign modules"/>
 
-            <!-- Classrooms -->
             <TextView
-                    style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Classrooms"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_view_eye"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/hod_view_classes"
-                    android:text="View classes"/>
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_group_add_green"
+                android:layout_marginTop="10dp"
+                android:id="@+id/register_lecturer"
+                android:text="Register Lecturer in Dept"/>
 
-            <!-- Student section -->
-            <TextView
-                    style="@style/viewParent.headerText.settingsMiniTitle"
-                    android:text="Students"/>
-            <TextView
-                    style="@style/viewParent.headerText.settingsTextIcon"
-                    android:drawableLeft="@drawable/ic_view_list_bulleted"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/hod_view_students"
-                    android:text="View students"/>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="3dp"/>
             <!-- Attendance section -->
             <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
-                android:text="Attendance"/>
+                android:text="Reports"/>
             <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
                 android:drawableLeft="@drawable/ic_list_view_green"
                 android:layout_marginTop="10dp"
                 android:id="@+id/hod_view_attendance"
-                android:text="View attendance"/>
+                android:text="View Lecturers Report"/>
 
         </LinearLayout>
 
@@ -231,29 +243,27 @@
             <TextView
                 style="@style/viewParent.headerText"
                 android:id="@+id/dashboard_header_doq"/>
+
             <!-- Department -->
             <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
                 android:text="Responsibilities"/>
-
-            <!-- Section -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bluish400"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="3dp"/>
+            <!-- Attendance section -->
             <TextView
                 style="@style/viewParent.headerText.settingsMiniTitle"
                 android:text="View"/>
             <TextView
                 style="@style/viewParent.headerText.settingsTextIcon"
-                android:drawableLeft="@drawable/ic_student"
+                android:drawableLeft="@drawable/ic_view_list_bulleted"
                 android:layout_marginTop="10dp"
-                android:id="@+id/view_eligibility"
-                android:text="Eligible students"/>
-
-            <TextView
-                style="@style/viewParent.headerText.settingsTextIcon"
-                android:drawableLeft="@drawable/ic_list_view_green"
-                android:layout_marginTop="10dp"
-                android:id="@+id/view_not_eligible"
-                android:text="Not Eligible"/>
-
+                android:id="@+id/doq_view_eligibility"
+                android:text="Dept.Attendance Report"/>
         </LinearLayout>
 
 
@@ -263,6 +273,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Responsibilities"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/bluish400"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="3dp"/>
+        <!-- Attendance section -->
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Modules"/>
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_view_list_bulleted"
+                android:layout_marginTop="14dp"
+                android:id="@+id/lecturer_view_modules"
+                android:text="View modules"/>
+
+        <!-- Profile -->
+        <TextView
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                android:text="Profile"/>
+        <TextView
+                style="@style/viewParent.headerText.settingsTextIcon"
+                android:drawableLeft="@drawable/ic_profile"
+                android:layout_marginTop="10dp"
+                android:id="@+id/lecturer_view_profile"
+                android:text="View profile"/>
+
+        <!-- Attendance section -->
+
     </LinearLayout>
 
 

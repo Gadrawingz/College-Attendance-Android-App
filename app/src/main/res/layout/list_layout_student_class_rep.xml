@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:background="@color/blueShit1"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvStudentRegNo"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/cardTextColor1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tvStudentNames"
+            android:textSize="14sp"
+            android:textColor="@color/textWhite1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"/>
+
+        <TextView
+            android:id="@+id/tvStudentShowTym"
+            android:textSize="12sp"
+            android:textStyle="bold|normal"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="3dp"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/imageRoseColor2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/amazing_white"
+            android:layout_gravity="left"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_white1"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvStudentClass"
+                    android:textSize="12sp"
+                    android:textStyle="bold|normal"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:id="@+id/tvStudentAttMod"
+                    android:textSize="12sp"
+                    android:textStyle="bold|normal"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_white2"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvActionDate"
+                    android:textSize="12sp"
+                    android:textStyle="bold|normal"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:id="@+id/tvAttendanceStatus"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/greenLess55"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

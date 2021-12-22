@@ -2,8 +2,8 @@ package com.donnekt.attendanceapp.staff;
 
 // Model class
 public class Staff {
-    int staffId;
-    String firstname, lastname, email, telephone, gender, role, status, password, regDate;
+    int staffId, refDeptId, refClassId;
+    String firstname, lastname, email, telephone, gender, role, status, password, regDate, refDeptName, refClassName;
 
     // Constructor with two parameters name and password
     public Staff(String email, String password) {
@@ -44,6 +44,20 @@ public class Staff {
         this.role = role;
         this.password = password;
         this.regDate = regDate;
+    }
+
+    // SESSION FOR MEMBERS
+    public Staff(int staffId, int refDeptId, String refDeptName, String firstname, String lastname, String email, String telephone, String gender, String role, String status) {
+        this.refDeptId= refDeptId;
+        this.refDeptName= refDeptName;
+        this.staffId = staffId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email    = email;
+        this.telephone = telephone;
+        this.gender = gender;
+        this.role = role;
+        this.status = status;
     }
 
     public Staff() { }
@@ -138,5 +152,38 @@ public class Staff {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getRefDeptId() {
+        return refDeptId;
+    }
+
+    public void setRefDeptId(int refDeptId) {
+        this.refDeptId = refDeptId;
+    }
+
+    // Getter and Setter
+    public String getRefDeptName() {
+        return refDeptName;
+    }
+
+    public void setRefDeptName(String refDeptName) {
+        this.refDeptName = refDeptName;
+    }
+
+    public void setRefClassId(int refClassId) {
+        this.refClassId = refClassId;
+    }
+
+    public void setRefClassName(String refClassName) {
+        this.refClassName = refClassName;
+    }
+
+    public int getRefClassId() {
+        return refClassId;
+    }
+
+    public String getRefClassName() {
+        return refClassName;
     }
 }

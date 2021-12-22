@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:padding="5dp"
+        android:background="@drawable/dark_gradient"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvModuleName"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvModuleCode"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvLecturerNames"
+            android:textSize="18sp"
+            android:textColor="@color/greenLess49"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/marksView"
+                android:textSize="22sp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_horizontal"
+                android:padding="8dp"
+                android:textStyle="italic|bold"
+                android:textColor="@color/blueShit2"
+                android:background="@drawable/gradient_white2"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/tvPresence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:background="@drawable/gradient_success"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/tvAbsence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="1.5dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:background="@drawable/gradient_danger"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

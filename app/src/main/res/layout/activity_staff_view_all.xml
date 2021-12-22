@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".staff.StaffViewAll">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              tools:context=".staff.StaffViewAll">
+
+    <TextView
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/mainTitle"
+        android:text="Staff Members"
+        android:drawableLeft="@drawable/backarrow"
+        android:drawableTint="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="@color/start_blue"
+            android:textColor="@color/white"
+            android:padding="8dp"
+            android:gravity="center_horizontal"/>
 
     <ListView
             android:id="@+id/listViewStaffs"
@@ -14,9 +29,8 @@
 
     <ProgressBar android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_centerHorizontal="true"
-                 android:layout_centerVertical="true"
+                 android:layout_gravity="center_horizontal"
                  android:visibility="gone"
                  android:id="@+id/loadingProgBar"/>
 
-</RelativeLayout>
+</LinearLayout>

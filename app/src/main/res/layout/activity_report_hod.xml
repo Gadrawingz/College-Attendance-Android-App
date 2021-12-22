@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".users.reports.ReportHod"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/mainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/blueColorA"
+        android:drawableLeft="@drawable/backarrow"
+        android:drawableTint="@color/white"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/listViewHodReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ProgressBar android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:id="@+id/loadingProgBar"/>
+
+</LinearLayout>

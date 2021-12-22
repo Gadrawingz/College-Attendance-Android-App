@@ -1,16 +1,23 @@
 package com.donnekt.attendanceapp.module;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.donnekt.attendanceapp.R;
+import com.donnekt.attendanceapp.SharedPrefManager;
 import com.donnekt.attendanceapp.URLs;
 import com.donnekt.attendanceapp.VolleySingleton;
+import com.donnekt.attendanceapp.department.DepartmentViewAll;
+import com.donnekt.attendanceapp.staff.Staff;
+import com.donnekt.attendanceapp.users.StaffMenus;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +29,7 @@ public class ModuleViewAll extends AppCompatActivity {
 
     List<Module> moduleList;
     ListView listViewModules;
+    TextView mainTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +37,18 @@ public class ModuleViewAll extends AppCompatActivity {
         setContentView(R.layout.activity_module_view_all);
 
         listViewModules = findViewById(R.id.listViewModules);
+        mainTitle = findViewById(R.id.mainTitle);
         moduleList = new ArrayList<>();
+        Staff user = SharedPrefManager.getInstance(this).getLoggedInStaff();
+        mainTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sentWord = user.getRole();
+                Intent intent =new Intent(ModuleViewAll.this, StaffMenus.class);
+                intent.putExtra("sent_role", sentWord);
+                startActivity(intent);
+            }
+        });
 
         // Method for displaying data in the list
         showAllModules();
@@ -71,7 +90,5 @@ public class ModuleViewAll extends AppCompatActivity {
         }, error -> Toast.makeText(getApplicationContext(), "Network error!", Toast.LENGTH_SHORT).show());
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
-
-
 
 }

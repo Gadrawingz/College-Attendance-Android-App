@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -18,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.donnekt.attendanceapp.R;
 import com.donnekt.attendanceapp.URLs;
 import com.donnekt.attendanceapp.UpdatingActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,8 +54,8 @@ public class DepartmentAdapter extends ArrayAdapter<Department> {
         // Getting record of the specified position
         Department department = departmentList.get(position);
 
-        String D_ID= String.valueOf(department.getDepartmentId());
-        String D_NM= String.valueOf(department.getDepartmentName());
+        String D_ID = String.valueOf(department.getDepartmentId());
+        String D_NM = String.valueOf(department.getDepartmentName());
         String D_CP = String.valueOf(department.getDepartmentCaption());
 
         textViewDNAME.setText(D_NM);
@@ -64,20 +67,23 @@ public class DepartmentAdapter extends ArrayAdapter<Department> {
             g.putExtra("d_id_key", D_ID);
             g.putExtra("d_name_key", D_NM);
             g.putExtra("d_caption_key", D_CP);
-            mCtx.startActivity(g);
+
             g.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            g.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mCtx.startActivity(g);
         });
 
         // DELETE SHIT:
         buttonDelete.setOnClickListener(view -> {
-            deleteProgBar.setVisibility(View.VISIBLE);
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.DEPT_DELETE+department.getDepartmentId(),
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.DEPT_DELETE + department.getDepartmentId(),
                     response -> {
-                        mCtx.startActivity(new Intent(mCtx.getApplicationContext(), DepartmentViewAll.class));
                         try {
-                            deleteProgBar.setVisibility(View.INVISIBLE);
                             JSONObject jsonObject = new JSONObject(response);
                             Toast.makeText(mCtx.getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(mCtx.getApplicationContext(), DepartmentViewAll.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mCtx.startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -92,7 +98,6 @@ public class DepartmentAdapter extends ArrayAdapter<Department> {
         // Return the list item
         return LVItem;
     }
-
 
 
 }

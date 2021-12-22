@@ -69,7 +69,6 @@ public class ClassroomActivity extends AppCompatActivity implements View.OnClick
                 //String item = (String) adapterView.getItemAtPosition(pos);
                 for (Department department : departmentArrayList) {
                     if(classDept.getSelectedItem().toString().trim().equals(department.getDepartmentName())) {
-                        List<String> departs = new ArrayList<>();
                         selectedDept = department.getDepartmentId();
                     }
                 }

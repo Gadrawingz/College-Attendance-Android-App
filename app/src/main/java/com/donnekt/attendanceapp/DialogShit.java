@@ -23,12 +23,11 @@ public class DialogShit {
     } catch (Exception e) {
         e.printStackTrace();
     }
-
 }
 
     public static void showDamnProgressDialog(Context context, String title, String msg, boolean isCancelable) {
         try {
-            if (mProgressDialog == null) {
+            if(mProgressDialog == null) {
                 mProgressDialog = ProgressDialog.show(context, title, msg);
                 mProgressDialog.setCancelable(isCancelable);
             }
@@ -45,5 +44,4 @@ public class DialogShit {
             e.printStackTrace();
         }
     }
-
 }
